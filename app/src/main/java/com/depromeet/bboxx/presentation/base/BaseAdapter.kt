@@ -1,10 +1,10 @@
-package com.example.navermoviesearch.presentation.base
+package com.depromeet.bboxx.presentation.base
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.navermoviesearch.presentation.extension.getItem
+import com.depromeet.bboxx.presentation.extension.getItem
 import java.util.ArrayList
 
 abstract class BaseAdapter<D, VH : BaseViewHolder> : RecyclerView.Adapter<VH>() {

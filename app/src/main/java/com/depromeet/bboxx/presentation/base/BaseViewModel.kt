@@ -1,4 +1,4 @@
-package com.example.navermoviesearch.presentation.base
+package com.depromeet.bboxx.presentation.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable

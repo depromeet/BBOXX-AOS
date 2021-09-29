@@ -1,4 +1,4 @@
-package com.example.navermoviesearch.presentation.base
+package com.depromeet.bboxx.presentation.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

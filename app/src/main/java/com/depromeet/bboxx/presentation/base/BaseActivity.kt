@@ -1,17 +1,17 @@
-package com.example.navermoviesearch.presentation.base
+package com.depromeet.bboxx.presentation.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.example.navermoviesearch.presentation.util.ActivityManager
+import com.depromeet.bboxx.util.ActivityManager
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseActivity(@LayoutRes private val contentLayoutId: Int = 0): AppCompatActivity(),
+abstract class BaseActivity(@LayoutRes private val contentLayoutId: Int = 0) : AppCompatActivity(),
     CoroutineScope {
 
-    val disposable: CompositeDisposable by lazy{
+    val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 

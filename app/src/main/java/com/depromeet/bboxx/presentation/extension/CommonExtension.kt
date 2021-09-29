@@ -1,4 +1,4 @@
-package com.example.navermoviesearch.presentation.extension
+package com.depromeet.bboxx.presentation.extension
 
 fun <T> List<T>.getItem(index: Int): T?{
     if(index in 0 until size){

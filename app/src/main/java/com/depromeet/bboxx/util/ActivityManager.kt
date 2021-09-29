@@ -1,7 +1,7 @@
-package com.example.navermoviesearch.presentation.util
+package com.depromeet.bboxx.util
 
 import android.app.Activity
-import com.example.navermoviesearch.presentation.searchmovie.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.MainActivity
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -49,7 +49,7 @@ object ActivityManager {
             val item = iterator.next()
             val activity = item.get()
             activity?.let {
-                if(!it.isFinishing){
+                if (!it.isFinishing) {
                     try {
                         it.finishAffinity()
                     } catch (e: Exception) {
@@ -61,31 +61,31 @@ object ActivityManager {
         activityStack.clear()
     }
 
-    fun finishAllActivity(ignoreActivity: Activity){
+    fun finishAllActivity(ignoreActivity: Activity) {
         val iterator = activityStack.iterator()
         while (iterator.hasNext()) {
             val item = iterator.next()
             val activity = item.get()
             activity?.let {
-                if(it != ignoreActivity && !it.isFinishing){
+                if (it != ignoreActivity && !it.isFinishing) {
                     it.finish()
                     iterator.remove()
                 }
-            }?:iterator.remove()
+            } ?: iterator.remove()
         }
     }
 
-    fun finishActivity(targetActivityClass: Class<*>){
+    fun finishActivity(targetActivityClass: Class<*>) {
         val iterator = activityStack.iterator()
         while (iterator.hasNext()) {
             val item = iterator.next()
             val activity = item.get()
             activity?.let {
-                if(it.javaClass.canonicalName == targetActivityClass.canonicalName && !it.isFinishing){
-                    try{
+                if (it.javaClass.canonicalName == targetActivityClass.canonicalName && !it.isFinishing) {
+                    try {
                         it.finish()
                         iterator.remove()
-                    }catch (e : Exception){
+                    } catch (e: Exception) {
                         e.stackTrace
                     }
                 }
@@ -93,19 +93,19 @@ object ActivityManager {
         }
     }
 
-    fun getTopActivity() : Activity?{
-        if(activityStack.isNotEmpty()){
-            return activityStack[activityStack.size-1].get()
+    fun getTopActivity(): Activity? {
+        if (activityStack.isNotEmpty()) {
+            return activityStack[activityStack.size - 1].get()
         }
         return null
     }
 
-    fun existMainActivity() : Boolean {
+    fun existMainActivity(): Boolean {
         val iterator = activityStack.iterator()
         while (iterator.hasNext()) {
             val item = iterator.next()
             item.get().let {
-                if(it is MainActivity) {
+                if (it is MainActivity) {
                     return true
                 }
             }
@@ -113,7 +113,7 @@ object ActivityManager {
         return false
     }
 
-    fun getActivityHistorySize() : Int {
+    fun getActivityHistorySize(): Int {
         return activityStack.size
     }
 }
