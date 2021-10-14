@@ -7,4 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="text_splash">#FF000000</color>
+    <color name="text_title">#333333</color>
+    <color name="text_middle_title">#000000</color>
+
+    <color name="btn_board">#000000</color>
+    <color name="btn_gray_board">#EFEFEF</color>
+    <color name="btn_google_login">#EA4335</color>
+    <color name="btn_kakao_login">#FEE500</color>
+
+    <color name="edit_nickname">#E5E5E5</color>
+
+    <color name="view_line">#C4C4C4</color>
 </resources>
