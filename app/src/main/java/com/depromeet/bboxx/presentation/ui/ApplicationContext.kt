@@ -10,7 +10,7 @@ class ApplicationContext : Application() {
 
     companion object {
         private var instance: ApplicationContext? = null
-        fun movieApplicationContext(): Context? {
+        fun applicationContext(): Context? {
             return instance?.applicationContext
         }
     }
