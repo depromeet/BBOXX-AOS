@@ -34,7 +34,7 @@ class CustomLoginButton : LinearLayout {
     private fun initView() {
         val infService = Context.LAYOUT_INFLATER_SERVICE
         val li = context.getSystemService(infService) as LayoutInflater
-        val v: View = li.inflate(R.layout.custom_login_button, this, false)
+        val v: View = li.inflate(R.layout.view_login_button, this, false)
         addView(v)
         bg = findViewById<View>(R.id.bg) as ConstraintLayout
         symbol = findViewById<View>(R.id.symbol) as ImageView
@@ -58,7 +58,7 @@ class CustomLoginButton : LinearLayout {
         val symbol_resID =
             typedArray.getResourceId(R.styleable.LoginButton_symbol, R.drawable.ic_kakao)
         symbol!!.setImageResource(symbol_resID)
-        symbol!!.setColorFilter(Color.WHITE)
+        //symbol!!.setColorFilter(Color.WHITE)
         val textColor = typedArray.getColor(R.styleable.LoginButton_textColor, 0)
         text!!.setTextColor(textColor)
         val text_string = typedArray.getString(R.styleable.LoginButton_text)

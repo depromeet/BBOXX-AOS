@@ -1,42 +1,43 @@
 package com.depromeet.bboxx.presentation.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.presentation.ui.rxbus.RxBus
-import com.depromeet.bboxx.util.ActivityManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseActivity(@LayoutRes private val contentLayoutId: Int = 0) : AppCompatActivity(),
-    CoroutineScope {
+abstract class BaseFragment(@LayoutRes private val contentLayoutId: Int = 0): Fragment(), CoroutineScope{
+    val CURRENT_FRAGMENT = "current-fragment"
 
     val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
     }
-
     private lateinit var coroutineJob: Job
-    private lateinit var sessionJob: Job
-
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + coroutineJob
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (contentLayoutId > 0) {
-            setContentView(contentLayoutId)
-        }
         coroutineJob = SupervisorJob()
-        ActivityManager.addActivity(this)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (contentLayoutId > 0) {
+            return inflater.inflate(contentLayoutId, container, false)
+        }
+        return super.onCreateView(inflater, container, savedInstanceState)
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        ActivityManager.removeActivity(this)
         disposable.clear()
         coroutineJob.cancelChildren()
     }
@@ -47,5 +48,11 @@ abstract class BaseActivity(@LayoutRes private val contentLayoutId: Int = 0) : A
             .subscribe({
                 func.invoke(it)},
                 { e -> e.printStackTrace() })
+    }
+
+    fun requireNotNulls(vararg any: Any?) {
+        any.forEach {
+            requireNotNull(value = it)
+        }
     }
 }

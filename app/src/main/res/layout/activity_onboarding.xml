@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.depromeet.bboxx.presentation.extension.ViewPagerExtension
+
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_onboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

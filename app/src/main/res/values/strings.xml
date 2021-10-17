@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">BBOXX</string>
 
+    <string name="kakao_app_key">a591a8c1ec1e7f76e15911d67b9bcde4</string>
+    <string name="google_client_id">1025445736589-81774863ramd3cablchem35050bevdg7.apps.googleusercontent.com</string>
+
     <string name="splash_title">bboxx</string>
     <string name="title_onboard_first">안녕? 난 네 비밀친구 빡스야.\n요즘 어떻게 지내?</string>
     <string name="title_onboard_second">요즘 힘든 일이 참 많지?\n어딘가에 말하고 싶지 않아?</string>
@@ -33,4 +36,7 @@
     <string name="text_mypage_using">이용약관</string>
     <string name="text_mypage_person_info">개인정보 처리 방침</string>
     <string name="text_alarm_msg">너에게 온 알림이 아직 없어.</string>
+
+    <string name="system_error_try_again">시스템 오류가 발생했습니다.
+\n다시 시도해주세요.</string>
 </resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1025445736589",
+    "project_id": "bboxx-360ae",
+    "storage_bucket": "bboxx-360ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025445736589:android:cfd97871838fc20adc72c4",
+        "android_client_info": {
+          "package_name": "com.depromeet.bboxx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025445736589-iirc3scjbqvqc27jqlj8137gjhsdhs78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.depromeet.bboxx",
+            "certificate_hash": "bcb1142e9e81c1341f0836d6e84b23746640e27b"
+          }
+        },
+        {
+          "client_id": "1025445736589-ugkbpv9tmkp0ngjjhtd6scknpgde3vb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_3Ji4twPd_lPjyKfOrL9TTeGAzy-g7Ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025445736589-ugkbpv9tmkp0ngjjhtd6scknpgde3vb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,10 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/txt_board_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="111dp"
-        android:text="@string/title_onboard_four"
+        android:layout_marginHorizontal="@dimen/margin_horizon"
+        android:text="@string/title_onboard_third"
         style="@style/TitleTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
