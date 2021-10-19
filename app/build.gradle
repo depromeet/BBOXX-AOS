@@ -4,7 +4,6 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
-apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
@@ -35,7 +34,9 @@ android {
     }
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
+
 }
 
 dependencies {

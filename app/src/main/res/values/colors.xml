@@ -20,4 +20,21 @@
     <color name="edit_nickname">#E5E5E5</color>
 
     <color name="view_line">#C4C4C4</color>
+    <color name="red">#FF4444</color>
+    <color name="deep_purple">#9575CD</color>
+    <color name="color_E5E5E5">#E5E5E5</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_80">#CC000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_10">#1A000000</color>
+    <color name="color_A0A0A0">#A0A0A0</color>
+    <color name="color_C4C4C4">#C4C4C4</color>
+    <color name="color_050505">#050505</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_9D9D9D">#9D9D9D</color>
+    <color name="gray_10">#2C2C2C</color>
+    <color name="gray_2">#332C2C2C</color>
+    <color name="gray_4">#662C2C2C</color>
+    <color name="gray_6">#992C2C2C</color>
+    <color name="defalut_bg">#F1ECE9</color>
 </resources>
