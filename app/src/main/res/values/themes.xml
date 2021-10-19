@@ -21,7 +21,23 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="LoginButtonStyle" parent="@android:style/Widget.Button">
+    <style name="LoginButtonStyle" parent="@android:style/Widget.Button"/>
 
+    <style name="BaseTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
+    <style name="AppTheme.DimDialog" parent="BaseTheme.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
     </style>
 </resources>
