@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_80"
+    android:clickable="true">
+
+
+    <ImageView
+        android:id="@+id/iv_mic"
+        android:layout_width="30dp"
+        android:layout_height="32dp"
+        android:background="@drawable/frame"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/progress_circular"
+        app:layout_constraintLeft_toLeftOf="@id/progress_circular"
+        app:layout_constraintRight_toRightOf="@id/progress_circular"
+        app:layout_constraintTop_toTopOf="@id/progress_circular" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:indeterminateOnly="false"
+        android:max="120"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/bt_decibel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="40dp"
+        android:text="데시벨 측정 시작\nddd"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textSize="40sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/progress_circular"
+        app:layout_constraintLeft_toLeftOf="@id/progress_circular"
+        app:layout_constraintRight_toRightOf="@id/progress_circular"
+        app:layout_constraintTop_toTopOf="@id/progress_circular" />
+
+    <TextView
+        android:id="@+id/tv_decibel_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center"
+        android:text="힘든 일을 생각하며\n힘껏 소리질러봐"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:background="@drawable/decibel_background"
+        android:backgroundTint="@color/color_C4C4C4"
+        app:layout_constraintBottom_toBottomOf="@id/progress_circular"
+        app:layout_constraintLeft_toLeftOf="@id/progress_circular"
+        app:layout_constraintRight_toRightOf="@id/progress_circular"
+        app:layout_constraintTop_toTopOf="@id/progress_circular" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
