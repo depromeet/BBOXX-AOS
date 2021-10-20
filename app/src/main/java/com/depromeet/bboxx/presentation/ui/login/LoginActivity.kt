@@ -1,9 +1,11 @@
 package com.depromeet.bboxx.presentation.ui.login
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.constants.Constants.C_SUCCESS
+import com.depromeet.bboxx.databinding.ActivityLoginBinding
 import com.depromeet.bboxx.domain.enums.PlatformType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
@@ -14,9 +16,8 @@ import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
 import com.depromeet.bboxx.presentation.viewmodel.LoginViewModel
-import kotlinx.android.synthetic.main.activity_login.*
 
-class LoginActivity: BaseActivity(R.layout.activity_login) {
+class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -27,13 +28,14 @@ class LoginActivity: BaseActivity(R.layout.activity_login) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initBinding()
 
-        btn_google_login.setOnClickListener {
-            toGoogleLogin(this)
-        }
 
-        btn_kakao_login.setOnClickListener {
-            toKakaoLogin(this)
+        loginViewModel.snsLoginEvent.observeNonNull(this){ paltform ->
+            when(paltform){
+                "kakao" -> toKakaoLogin(this)
+                "google" -> toGoogleLogin(this)
+            }
         }
 
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
@@ -47,18 +49,27 @@ class LoginActivity: BaseActivity(R.layout.activity_login) {
         subscribeEvent(SnsErrorEvent::class.java, ::snsSignInErrorEvent)
     }
 
+    private fun initBinding() {
+        with(binding) {
+            lifecycleOwner = this@LoginActivity
+            vm = loginViewModel
+        }
+    }
+
     private fun userSnsVerifyEvent(event: SnsVerifyEvent) {
         snsPlatformType = event.snsPlatformType
         userEmail = event.email
 
+        toNickName(this)
     }
 
     private fun snsSignInErrorEvent(event: SnsErrorEvent) {
-        systemErrorDialog =
-            SystemErrorDialog(this, confirmClick = {
-                systemErrorDialog?.dismiss()
-            })
-        systemErrorDialog?.setCancelable(false)
-        systemErrorDialog?.show()
+        Toast.makeText(this, "SNS Sign Error", Toast.LENGTH_SHORT).show()
+//        systemErrorDialog =
+//            SystemErrorDialog(this, confirmClick = {
+//                systemErrorDialog?.dismiss()
+//            })
+//        systemErrorDialog?.setCancelable(false)
+//        systemErrorDialog?.show()
     }
 }

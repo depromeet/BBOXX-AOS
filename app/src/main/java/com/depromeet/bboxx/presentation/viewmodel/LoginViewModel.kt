@@ -10,7 +10,17 @@ class LoginViewModel: BaseViewModel() {
     val loginEvent = MutableLiveData<Result<TokenModel>>()
     val snsLoginResult = SingleLiveEvent<String>()
 
+    val snsLoginEvent = SingleLiveEvent<String>()
+
     private var fireBaseInstanceId: String? = ""
     private var publicKey: String = ""
     private var userUniqueKey : String = ""
+
+    fun onSnsLoginKakao(){
+        snsLoginEvent.value = "kakao"
+    }
+
+    fun onSnsLoginGoogle(){
+        snsLoginEvent.value = "google"
+    }
 }

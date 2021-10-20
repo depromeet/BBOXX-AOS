@@ -3,6 +3,7 @@ package com.depromeet.bboxx.presentation.ui.login
 import android.os.Bundle
 import android.util.Log
 import com.depromeet.bboxx.R
+import com.depromeet.bboxx.databinding.ActivitySnsLoginBinding
 import com.depromeet.bboxx.domain.enums.PlatformType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
@@ -10,7 +11,7 @@ import com.depromeet.bboxx.presentation.ui.rxbus.RxBus
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.sdk.user.model.User
 
-class KakaoTalkLoginActivity: BaseActivity(R.layout.activity_sns_login) {
+class KakaoTalkLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.activity_sns_login) {
     private var accessToken = ""
     private var socialUserId = ""
     private var mobileNumber = ""
@@ -24,11 +25,18 @@ class KakaoTalkLoginActivity: BaseActivity(R.layout.activity_sns_login) {
 
                 if (accessToken.isNotEmpty()) getKakaoUserInfo()
             }
+            else if(error != null){
+                RxBus.send(error)
+                finish()
+            }
         }
     }
+
     private fun getKaKaoTalkUserInfo() {
         UserApiClient.instance.me { user, error ->
             if (error != null) {
+                RxBus.send(error)
+                finish()
                 Log.e("TAG1", "사용자 정보 요청 실패", error)
             } else if (user != null) {
                 var scopes = mutableListOf<String>()
@@ -63,10 +71,14 @@ class KakaoTalkLoginActivity: BaseActivity(R.layout.activity_sns_login) {
 
                     UserApiClient.instance.loginWithNewScopes(this, scopes) { token, error ->
                         if (error != null) {
+                            RxBus.send(error)
+                            finish()
                         } else {
                             // 사용자 정보 재요청자
                             UserApiClient.instance.me { user, error ->
                                 if (error != null) {
+                                    RxBus.send(error)
+                                    finish()
                                 } else if (user != null) {
                                     Log.i("TAG", "사용자 정보 요청 성공")
 

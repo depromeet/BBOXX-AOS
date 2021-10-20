@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.depromeet.bboxx.R
+import com.depromeet.bboxx.databinding.ActivitySnsLoginBinding
 import com.depromeet.bboxx.domain.enums.PlatformType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
@@ -15,7 +16,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.Task
 
-class GoogleLoginActivity: BaseActivity(R.layout.activity_sns_login), GoogleApiClient.OnConnectionFailedListener {
+class GoogleLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.activity_sns_login), GoogleApiClient.OnConnectionFailedListener {
     companion object {
         private const val TAG = "GoogleActivity"
         private const val RC_SIGN_IN = 9001
@@ -34,6 +35,9 @@ class GoogleLoginActivity: BaseActivity(R.layout.activity_sns_login), GoogleApiC
             .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        signIn()
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -46,6 +50,14 @@ class GoogleLoginActivity: BaseActivity(R.layout.activity_sns_login), GoogleApiC
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
+        else{
+
+        }
+    }
+
+    private fun signIn(){
+        val signInIntent: Intent = mGoogleSignInClient!!.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
@@ -84,7 +96,13 @@ class GoogleLoginActivity: BaseActivity(R.layout.activity_sns_login), GoogleApiC
         }
     }
 
-    override fun onConnectionFailed(p0: ConnectionResult) {
-
+    override fun onConnectionFailed(e: ConnectionResult) {
+        if(e.errorCode != GoogleSignInStatusCodes.SIGN_IN_CANCELLED){
+            RxBus.send(SnsErrorEvent)
+            finish()
+        }
+        else{
+            finish()
+        }
     }
 }

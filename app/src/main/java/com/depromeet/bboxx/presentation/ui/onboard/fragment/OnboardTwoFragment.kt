@@ -6,11 +6,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.depromeet.bboxx.R
+import com.depromeet.bboxx.databinding.FragmentOnboardTwoBinding
 import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.viewmodel.OnboardViewModel
-import kotlinx.android.synthetic.main.fragment_onboard_two.*
 
-class OnboardTwoFragment: BaseFragment(R.layout.fragment_onboard_two) {
+class OnboardTwoFragment: BaseFragment<FragmentOnboardTwoBinding>(R.layout.fragment_onboard_two) {
 
     private val onboardViewModel: OnboardViewModel by activityViewModels {
         object : ViewModelProvider.Factory {
@@ -22,7 +22,7 @@ class OnboardTwoFragment: BaseFragment(R.layout.fragment_onboard_two) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        txt_next_step.setOnClickListener {
+        binding.txtNextStep.setOnClickListener {
             onboardViewModel.onNextStepEvent()
         }
     }

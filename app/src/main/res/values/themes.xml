@@ -21,6 +21,25 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TitleBoldH2" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/text_title</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineHeight" tools:ignore="NewApi">32dp</item>
+    </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorPrimary">@color/mypage_bg</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/black</item>
+    </style>
+
+
     <style name="LoginButtonStyle" parent="@android:style/Widget.Button"/>
 
     <style name="BaseTheme.Dialog" parent="Theme.AppCompat.Dialog">

@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:shape="rectangle" >
-    <solid android:color="@color/btn_google_login" />
+    <solid android:color="@color/white" />
     <corners
         android:radius="@dimen/btn_login_radius" />
 </shape>

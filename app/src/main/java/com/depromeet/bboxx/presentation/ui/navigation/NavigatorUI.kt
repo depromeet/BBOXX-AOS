@@ -4,7 +4,7 @@ import android.content.Context
 import com.depromeet.bboxx.presentation.ui.login.GoogleLoginActivity
 import com.depromeet.bboxx.presentation.ui.login.KakaoTalkLoginActivity
 import com.depromeet.bboxx.presentation.ui.login.LoginActivity
-import com.depromeet.bboxx.presentation.ui.nickname.NickNameActivity
+import com.depromeet.bboxx.presentation.ui.nickname.NicknameActivity
 import com.depromeet.bboxx.presentation.ui.onboard.OnboardActivity
 import com.depromeet.bboxx.presentation.ui.onboard.OnboardRefuseActivity
 import com.depromeet.bboxx.presentation.ui.onboard.OnboardRefuseReCheckActivity
@@ -65,7 +65,7 @@ object NavigatorUI {
 
     fun toNickName(context: Context){
         with(context){
-            startActivity(intentFor<NickNameActivity>()
+            startActivity(intentFor<NicknameActivity>()
                 .clearTop()
                 .singleTop()
                 .noAnimation())

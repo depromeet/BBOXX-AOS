@@ -22,7 +22,14 @@ class SplashActivity: AppCompatActivity() {
         splashViewModel.naviToActivity.observeNonNull(this){ event ->
             when(event){
                 MoveToEvent.ONBOARD -> NavigatorUI.toOnboard(this)
+
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        finish()
     }
 }

@@ -2,8 +2,8 @@ package com.depromeet.bboxx.presentation.ui.result
 
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()
-    data class Error(val exception: Throwable) : Result<Nothing>()
-    data class PagingError(val exception: Throwable) : Result<Nothing>()
+    data class Error(var exception: Throwable) : Result<Nothing>()
+    data class PagingError(var exception: Throwable) : Result<Nothing>()
     object Loading : Result<Nothing>()
     object Paging: Result<Nothing>()
     override fun toString(): String {

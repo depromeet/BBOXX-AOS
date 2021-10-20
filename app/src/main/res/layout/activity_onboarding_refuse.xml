@@ -8,13 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_bg">
 
         <TextView
             android:id="@+id/txt_board_refuse_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="111dp"
+            android:layout_marginTop="@dimen/margin_top_onboard"
             android:text="@string/title_onboard_five"
             android:layout_marginHorizontal="@dimen/margin_horizon"
             style="@style/TitleTextView"
