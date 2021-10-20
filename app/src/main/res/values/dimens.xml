@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_horizon">24dp</dimen>
+    <dimen name="margin_horizon_edit">24dp</dimen>
+    <dimen name="margin_top_onboard">89dp</dimen>
+    <dimen name="img_button_size">24dp</dimen>
+    <dimen name="btn_login_radius">70dp</dimen>
+    <dimen name="margin_alarm_item">18dp</dimen>
+</resources>

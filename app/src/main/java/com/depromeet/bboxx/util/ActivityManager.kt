@@ -1,7 +1,6 @@
 package com.depromeet.bboxx.util
 
 import android.app.Activity
-import com.depromeet.bboxx.presentation.ui.MainActivity
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -100,18 +99,6 @@ object ActivityManager {
         return null
     }
 
-    fun existMainActivity(): Boolean {
-        val iterator = activityStack.iterator()
-        while (iterator.hasNext()) {
-            val item = iterator.next()
-            item.get().let {
-                if (it is MainActivity) {
-                    return true
-                }
-            }
-        }
-        return false
-    }
 
     fun getActivityHistorySize(): Int {
         return activityStack.size

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.depromeet.bboxx.presentation.viewmodel.NicknameViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg">
+
+        <TextView
+            android:id="@+id/txt_nick_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="93dp"
+            style="@style/TitleTextView"
+            android:text="@string/title_nickname"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_nick_title_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_nickname_change"
+            android:textSize="14sp"
+            android:layout_marginTop="7dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nick_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_edit_nickname"
+            android:layout_marginHorizontal="@dimen/margin_horizon_edit"
+            android:layout_marginTop="58dp"
+            android:text="@={vm.showNickname}"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nick_title_change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_again"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/btn_again_nickname"
+            android:textColor="@color/text_title"
+            android:textAlignment="center"
+            android:onClick="@{()->vm.getAgainNickname()}"
+            android:stateListAnimator="@null"
+            app:icon="@drawable/ic_redoreturn"
+            app:iconGravity="textStart"
+            app:iconTint="@color/text_title"
+            app:iconPadding="8.4dp"
+            app:strokeWidth="0dp"
+            app:strokeColor="@color/main_bg"
+            android:backgroundTint="@color/main_bg"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_board_yes"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/btn_nickname_like"
+            android:background="@drawable/bg_btn_round_ten"
+            android:textColor="@color/white"
+            android:onClick="@{()->vm.onLikeNickname()}"
+            android:layout_marginBottom="56dp"
+            android:layout_marginHorizontal="@dimen/margin_horizon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

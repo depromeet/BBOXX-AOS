@@ -7,4 +7,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#000000</color>
+    <color name="main_bg">#F1ECE9</color>
+    <color name="mypage_bg">#2C2C2C</color>
+
+    <color name="text_splash">#FF000000</color>
+    <color name="text_title">#333333</color>
+    <color name="text_middle_title">#000000</color>
+    <color name="text_mypage_title">#FCF8F2</color>
+
+    <color name="btn_board">#000000</color>
+    <color name="btn_gray_board">#EFEFEF</color>
+    <color name="btn_google_login">#EA4335</color>
+    <color name="btn_kakao_login">#FEE500</color>
+    <color name="btn_again_choose">#2C2C2C</color>
+
+    <color name="edit_nickname">#E5E5E5</color>
+
+    <color name="view_line">#C4C4C4</color>
 </resources>

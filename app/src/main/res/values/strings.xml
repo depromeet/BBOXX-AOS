@@ -1,3 +1,43 @@
 <resources>
     <string name="app_name">BBOXX</string>
+
+    <string name="kakao_app_key">a591a8c1ec1e7f76e15911d67b9bcde4</string>
+    <string name="google_client_id">1025445736589-81774863ramd3cablchem35050bevdg7.apps.googleusercontent.com</string>
+
+    <string name="splash_title">bboxx</string>
+    <string name="title_onboard_first">안녕? 난 네 비밀친구 빡스야.\n요즘 어떻게 지내?</string>
+    <string name="title_onboard_second">요즘 힘든 일이 참 많지?\n어딘가에 말하고 싶지 않아?</string>
+    <string name="title_onboard_third">스트레스가 너무 쌓였다면\n나한테 소리를 지르거나</string>
+    <string name="title_onboard_four">글로 네 감정을\n정리해서 나한테 버려봐</string>
+    <string name="title_onboard_five">힘든 일이 있으면\n언제든지 나를 찾아와\n내가 네 애기를 들어줄게.</string>
+    <string name="title_onboard_six">정말? 내가 네 좋은 친구가\n되어줄 수 있는데...</string>
+    <string name="title_login">아래 방법 중에 하나로 시작하면\n함께할 수 있어</string>
+    <string name="title_nickname">너를 뭐라고 부를까?</string>
+    <string name="title_nickname_change">나중에 프로필에서 다시 바꿀수 있어</string>
+
+    <string name="tab_title_mypage">내 박스</string>
+    <string name="tab_title_alarm">알림</string>
+    <string name="tab_title_alarm_remove">알림 삭제</string>
+
+    <string name="btn_onboard_next">건너뛰기</string>
+    <string name="btn_onboard_ok">응, 좋아</string>
+    <string name="btn_onboard_no">아니, 싫어</string>
+    <string name="btn_onboard_yes">알겠어</string>
+    <string name="btn_onboard_hate">그래도 싫어</string>
+    <string name="btn_again_nickname">다시 고르기</string>
+    <string name="btn_nickname_like">마음에 들어</string>
+
+    <string name="text_mypage_push_title">푸시 알림</string>
+    <string name="text_mypage_push_msg">알림을 켜면 이전 감정을 받아볼 수 있어</string>
+    <string name="text_mypage_app_version_title">앱 정보</string>
+    <string name="text_mypage_app_version_info">앱 버전 정보</string>
+    <string name="text_mypage_team_info">팀원 소개</string>
+    <string name="text_mypage_using_title">약관 및 정책</string>
+    <string name="text_mypage_using">이용약관</string>
+    <string name="text_mypage_person_info">개인정보 처리 방침</string>
+    <string name="text_mypage_nickname_title">나의 닉네임</string>
+    <string name="text_alarm_title">나의 타임머신</string>
+    <string name="text_alarm_msg">너에게 온 알림이 아직 없어.</string>
+    <string name="system_error_try_again">시스템 오류가 발생했습니다.
+\n다시 시도해주세요.</string>
 </resources>
