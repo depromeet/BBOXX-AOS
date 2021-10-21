@@ -42,6 +42,10 @@
             android:background="@drawable/bg_edit_nickname"
             android:layout_marginHorizontal="@dimen/margin_horizon_edit"
             android:layout_marginTop="58dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/text_title"
             android:text="@={vm.showNickname}"
             app:layout_constraintTop_toBottomOf="@+id/txt_nick_title_change"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +82,7 @@
             android:onClick="@{()->vm.onLikeNickname()}"
             android:layout_marginBottom="56dp"
             android:layout_marginHorizontal="@dimen/margin_horizon"
+            android:stateListAnimator="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

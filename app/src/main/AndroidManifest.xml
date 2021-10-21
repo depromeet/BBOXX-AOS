@@ -3,6 +3,8 @@
     package="com.depromeet.bboxx">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:name=".presentation.ui.AppContext"
         android:allowBackup="true"
@@ -12,10 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BBOXX">
 
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakaoa591a8c1ec1e7f76e15911d67b9bcde4" />
+            </intent-filter>
+        </activity>
         <activity android:name=".presentation.ui.splash.SplashActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
