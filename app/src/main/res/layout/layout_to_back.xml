@@ -1,91 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cl_back"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clickable="true"
-    android:background="@color/gray_4">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_back"
         android:layout_width="match_parent"
-        android:layout_height="452dp"
-        android:background="@drawable/bg_top_30"
-        android:backgroundTint="@color/white"
-        android:clickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@color/gray_4">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="128dp"
-            android:background="@color/gray_6"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="86dp"
-            android:text="돌아가면 쓰던 글이 없어져."
-            android:textColor="@color/gray_6"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="그만쓰고싶어?"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/btn_back"
-            android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="19dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_solid_10"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="452dp"
+            android:background="@drawable/bg_top_30"
             android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:text="그만쓸래"
-            android:textColor="@color/gray_6"
-            android:textSize="18dp"
-            android:textStyle="bold"
+            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/btn_cancle" />
+            app:layout_constraintLeft_toLeftOf="parent">
 
-        <TextView
-            android:id="@+id/btn_cancle"
-            android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="593dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_solid_10"
-            android:backgroundTint="@color/gray_10"
-            android:gravity="center"
-            android:text="계속쓸래"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/btn_back"
-            app:layout_constraintRight_toRightOf="parent" />
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="128dp"
+                android:background="@color/gray_6"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="86dp"
+                android:text="돌아가면 쓰던 글이 없어져."
+                android:textColor="@color/gray_6"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="그만쓰고싶어?"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_back"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_solid_10"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:text="그만쓸래"
+                android:textColor="@color/gray_6"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_cancle" />
+
+            <TextView
+                android:id="@+id/btn_cancle"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="593dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_solid_10"
+                android:backgroundTint="@color/gray_10"
+                android:gravity="center"
+                android:text="계속쓸래"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/btn_back"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

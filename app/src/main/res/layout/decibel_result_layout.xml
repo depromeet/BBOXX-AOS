@@ -1,156 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:clickable="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/close_btn"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="264dp"
-        android:background="@color/color_C4C4C4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_decibel_total"
-        android:layout_width="19dp"
-        android:layout_height="414dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginRight="44dp"
-        android:background="@drawable/bg_top_30"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_decibel_gauge"
-        android:layout_width="19dp"
-        android:layout_height="338dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginRight="44dp"
-        android:background="@drawable/bg_top_30"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/iv_decibel_total"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_write"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="34dp"
-        android:background="@drawable/bg_solid_10"
-        android:backgroundTint="@color/black_10"
-        android:gravity="center"
-        android:text="감정일기 쓰기"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/tv_share" />
-
-    <TextView
-        android:id="@+id/tv_share"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="34dp"
-        android:background="@drawable/bg_solid_10"
-        android:backgroundTint="@color/black_80"
-        android:gravity="center"
-        android:text="감정 공유하기"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tv_write"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_decibel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="40dp"
-        android:text="데시벨 측정 시작\nddd"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_resut_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="104dp"
-        android:gravity="left"
-        android:text="그동안 많이 \n힘들었겠구나."
-        android:textColor="@color/color_333333"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_resut_db"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="104dp"
-        android:gravity="left"
-        android:text="30DB"
-        android:textColor="@color/color_333333"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/tv_resut_info"
-        app:layout_constraintTop_toTopOf="parent" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="196dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true">
 
         <ImageView
-            android:id="@+id/iv_refresh"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/refresh"
-            android:backgroundTint="@color/black_60"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/close_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="264dp"
+            android:background="@color/color_C4C4C4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_decibel_total"
+            android:layout_width="19dp"
+            android:layout_height="414dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginRight="44dp"
+            android:background="@drawable/bg_top_30"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_decibel_gauge"
+            android:layout_width="19dp"
+            android:layout_height="338dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginRight="44dp"
+            android:background="@drawable/bg_top_30"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_decibel_total"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_write"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/bg_solid_10"
+            android:backgroundTint="@color/black_10"
+            android:gravity="center"
+            android:text="감정일기 쓰기"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_share" />
+
+        <TextView
+            android:id="@+id/tv_share"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/bg_solid_10"
+            android:backgroundTint="@color/black_80"
+            android:gravity="center"
+            android:text="감정 공유하기"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_write"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_decibel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="40dp"
+            android:text="데시벨 측정 시작\nddd"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_resut_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="104dp"
+            android:gravity="left"
+            android:text="그동안 많이 \n힘들었겠구나."
+            android:textColor="@color/color_333333"
+            android:textSize="28sp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_resut_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:text="다시해보기"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toRightOf="@id/iv_refresh"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="104dp"
+            android:gravity="left"
+            android:text="30DB"
+            android:textColor="@color/color_333333"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/tv_resut_info"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="196dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/refresh"
+                android:backgroundTint="@color/black_60"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="다시해보기"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@id/iv_refresh"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
