@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivitySnsLoginBinding
-import com.depromeet.bboxx.domain.enums.PlatformType
+import com.depromeet.bboxx.domain.enums.ProviderType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.ui.rxbus.RxBus
@@ -40,6 +40,7 @@ class KakaoTalkLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.act
                 Log.e("TAG1", "사용자 정보 요청 실패", error)
             } else if (user != null) {
                 var scopes = mutableListOf<String>()
+                Log.e("Kako", user.groupUserToken.toString())
 
                 if (user.kakaoAccount?.emailNeedsAgreement == true) {
                     scopes.add("account_email")
@@ -114,7 +115,7 @@ class KakaoTalkLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.act
 
         RxBus.send(
             SnsVerifyEvent(user?.kakaoAccount?.email ?: "", user?.kakaoAccount?.phoneNumber ?: "",
-            user?.id.toString(), PlatformType.KAKAO, accessToken= accessToken)
+            user?.id.toString(), ProviderType.KAKAO, accessToken= accessToken)
         )
 
     }

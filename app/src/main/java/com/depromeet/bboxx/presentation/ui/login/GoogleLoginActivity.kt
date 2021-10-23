@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivitySnsLoginBinding
-import com.depromeet.bboxx.domain.enums.PlatformType
+import com.depromeet.bboxx.domain.enums.ProviderType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.event.SnsErrorEvent
@@ -77,7 +77,7 @@ class GoogleLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.activi
             RxBus.send(
                 SnsVerifyEvent(
                     userEmail, "",
-                    socialUserId, PlatformType.GOOGLE, accessToken = ""
+                    socialUserId, ProviderType.GOOGLE, accessToken = ""
                 )
             )
             finish()

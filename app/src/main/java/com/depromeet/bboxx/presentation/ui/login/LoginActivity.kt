@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.constants.Constants.C_SUCCESS
 import com.depromeet.bboxx.databinding.ActivityLoginBinding
-import com.depromeet.bboxx.domain.enums.PlatformType
+import com.depromeet.bboxx.domain.enums.ProviderType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
 import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.dialog.SystemErrorDialog
@@ -16,40 +16,49 @@ import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
 import com.depromeet.bboxx.presentation.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
     private val loginViewModel: LoginViewModel by viewModels()
 
-    private var snsPlatformType = PlatformType.UNKNOWN
-    private var userEmail = ""
+    private var snsPlatformType = ProviderType.UNKNOWN
+    private var userToken = ""
 
     private var systemErrorDialog: SystemErrorDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initBinding()
+
+        init()
 
 
         loginViewModel.snsLoginEvent.observeNonNull(this){ paltform ->
             when(paltform){
-                "kakao" -> toKakaoLogin(this)
-                "google" -> toGoogleLogin(this)
+                "kakao" -> {
+                    snsPlatformType = ProviderType.KAKAO
+                    toKakaoLogin(this)
+                }
+                "google" -> {
+                    snsPlatformType = ProviderType.GOOGLE
+                    toGoogleLogin(this)
+                }
             }
         }
 
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
             if(result == C_SUCCESS){
-                toNickName(this)
+                toNickName(this, accessToken = userToken)
+                finish()
             }
-
         }
 
         subscribeEvent(SnsVerifyEvent::class.java, ::userSnsVerifyEvent)
         subscribeEvent(SnsErrorEvent::class.java, ::snsSignInErrorEvent)
     }
 
-    private fun initBinding() {
+    private fun init() {
         with(binding) {
             lifecycleOwner = this@LoginActivity
             vm = loginViewModel
@@ -57,10 +66,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
     }
 
     private fun userSnsVerifyEvent(event: SnsVerifyEvent) {
-        snsPlatformType = event.snsPlatformType
-        userEmail = event.email
-
-        toNickName(this)
+        userToken = event.accessToken
+        loginViewModel.signIn(event.accessToken, event.snsPlatformType.type)
     }
 
     private fun snsSignInErrorEvent(event: SnsErrorEvent) {

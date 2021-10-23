@@ -63,9 +63,9 @@ object NavigatorUI {
         }
     }
 
-    fun toNickName(context: Context){
+    fun toNickName(context: Context, accessToken: String){
         with(context){
-            startActivity(intentFor<NicknameActivity>()
+            startActivity(intentFor<NicknameActivity>(NicknameActivity.EXTRA_ACCESS_TOKEN to accessToken)
                 .clearTop()
                 .singleTop()
                 .noAnimation())
