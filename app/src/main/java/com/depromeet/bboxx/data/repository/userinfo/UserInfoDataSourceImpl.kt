@@ -1,7 +1,7 @@
 package com.depromeet.bboxx.data.repository.userinfo
 
 import com.depromeet.bboxx.data.entity.NicknameEntity
-import com.depromeet.bboxx.data.network.nickname.NicknameRemote
+import com.depromeet.bboxx.data.network.userinfo.UserInfoRemote
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,11 +10,11 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class UserInfoDataSourceImpl @Inject constructor(
-    private val nicknameRemote: NicknameRemote
+    private val userInfoRemote: UserInfoRemote
 ) : UserInfoDataSource{
 
     override fun getNickname(): Single<NicknameEntity> {
-        return nicknameRemote.getNickname()
+        return userInfoRemote.getNickname()
     }
 }
 

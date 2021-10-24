@@ -1,4 +1,4 @@
-package com.depromeet.bboxx.data.network.auth
+package com.depromeet.bboxx.data.network.authsign
 
 import com.depromeet.bboxx.data.entity.TokenEntity
 import io.reactivex.rxjava3.core.Single

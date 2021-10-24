@@ -1,7 +1,7 @@
 package com.depromeet.bboxx.data.repository.authsign
 
 import com.depromeet.bboxx.data.entity.TokenEntity
-import com.depromeet.bboxx.data.network.auth.AuthSignRemoteImpl
+import com.depromeet.bboxx.data.network.authsign.AuthSignRemoteImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
