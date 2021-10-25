@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.FragmentMainBinding
+import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
+import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
 
 
 class MainFragment : Fragment() {

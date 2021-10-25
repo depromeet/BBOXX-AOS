@@ -19,7 +19,7 @@ class OnboardRefuseActivity: BaseActivity<ActivityOnboardingRefuseBinding>(R.lay
         }
 
         binding.txtBoardHate.setOnClickListener {
-            NavigatorUI.toReRefuse(this)
+            NavigatorUI.toMain(this)
             finish()
         }
     }

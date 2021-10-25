@@ -1,6 +1,7 @@
 package com.depromeet.bboxx.presentation.ui.navigation
 
 import android.content.Context
+import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.login.GoogleLoginActivity
 import com.depromeet.bboxx.presentation.ui.login.KakaoTalkLoginActivity
 import com.depromeet.bboxx.presentation.ui.login.LoginActivity
@@ -66,6 +67,15 @@ object NavigatorUI {
     fun toNickName(context: Context, accessToken: String){
         with(context){
             startActivity(intentFor<NicknameActivity>(NicknameActivity.EXTRA_ACCESS_TOKEN to accessToken)
+                .clearTop()
+                .singleTop()
+                .noAnimation())
+        }
+    }
+
+    fun toMain(context: Context){
+        with(context){
+            startActivity(intentFor<MainActivity>()
                 .clearTop()
                 .singleTop()
                 .noAnimation())

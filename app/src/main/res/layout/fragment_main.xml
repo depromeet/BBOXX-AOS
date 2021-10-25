@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,50 +9,82 @@
         android:background="@color/white"
         android:clickable="true">
 
-        <Button
-            android:id="@+id/bt_go_to_decibel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
-            android:background="@color/deep_purple"
-            android:padding="20dp"
-            android:text="데시벨 측정하기!"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/bt_go_to_feeling_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
-            android:background="@color/deep_purple"
-            android:padding="20dp"
-            android:text="감정일기!"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
             android:id="@+id/fl_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_main_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="114dp"
+            android:src="@drawable/speech_bubble"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/img_logo_black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_main_text" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
             android:gravity="center"
-            android:padding="40dp"
-            android:text="시작 페이지 입니다!"
+            android:text="무엇을 하고싶어?"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="26dp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/iv_main_text" />
 
+
+        <TextView
+            android:id="@+id/bt_go_to_decibel"
+            android:layout_width="0dp"
+            android:layout_height="143dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/bg_button_10"
+            android:gravity="center"
+            android:text="소리치기"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/bt_go_to_feeling_note" />
+
+        <TextView
+            android:id="@+id/bt_go_to_feeling_note"
+            android:layout_width="0dp"
+            android:layout_height="143dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/bg_button_10"
+            android:gravity="center"
+            android:text="감정일기"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/bt_go_to_decibel"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+    </data>
 </layout>

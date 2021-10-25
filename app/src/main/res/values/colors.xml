@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#F1ECE9</color>
-    <color name="purple_500">#F1ECE9</color>
-    <color name="purple_700">#F1ECE9</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -34,12 +31,20 @@
     <color name="black_10">#1A000000</color>
     <color name="color_A0A0A0">#A0A0A0</color>
     <color name="color_C4C4C4">#C4C4C4</color>
+    <color name="color_6AA13D">#6AA13D</color>
+    <color name="color_A8BD28">#A8BD28</color>
+    <color name="color_EF9E24">#EF9E24</color>
+    <color name="color_E75C3D">#E75C3D</color>
+    <color name="color_D04141">#D04141</color>
+    <color name="color_EC7837">#EC7837</color>
     <color name="color_050505">#050505</color>
     <color name="color_333333">#333333</color>
     <color name="color_9D9D9D">#9D9D9D</color>
     <color name="gray_10">#2C2C2C</color>
-    <color name="gray_2">#332C2C2C</color>
-    <color name="gray_4">#662C2C2C</color>
+    <color name="gray_9">#E62C2C2C</color>
+    <color name="gray_8">#CC2C2C2C</color>
+    <color name="gray_7">#B32C2C2C</color>
     <color name="gray_6">#992C2C2C</color>
-    <color name="defalut_bg">#F1ECE9</color>
+    <color name="gray_4">#662C2C2C</color>
+    <color name="gray_2">#332C2C2C</color>
 </resources>

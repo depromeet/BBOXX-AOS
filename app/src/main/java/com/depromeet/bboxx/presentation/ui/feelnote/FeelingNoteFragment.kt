@@ -1,4 +1,4 @@
-package com.depromeet.bboxx.presentation.ui
+package com.depromeet.bboxx.presentation.ui.feelnote
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
+import com.depromeet.bboxx.presentation.ui.BackLayerFragment
+import com.depromeet.bboxx.presentation.ui.MainActivity
 
 class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
@@ -87,13 +89,16 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
             }
         })
-        binding.btnSuccess.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FF4444"))
+//        binding.btnSuccess.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FF4444"))
 
 
 
 
         binding.btnSuccess.setOnClickListener {
             //TODO HAERIN 감정 선택으로 이동
+
+            mainActivity.addFragment(FeelingNoteResultFragment(selectedFeeling))
+
             //selectedFeeling, 글쓴 내용 같이 이동
         }
         return binding.root
@@ -107,7 +112,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
     ) {
         if (isTitle && isMain) {
             binding.btnSuccess.backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor("#FF4444"))
+                ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
             isButtonActivated = true
 
         } else {

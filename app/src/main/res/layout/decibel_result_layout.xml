@@ -9,47 +9,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/black"
+        android:id="@+id/cl_bg"
         android:clickable="true">
 
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@+id/cl_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/close_btn"
+            android:layout_width="199dp"
+            android:layout_height="217dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginTop="334dp"
+            android:background="@drawable/decibel_logo"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginLeft="29dp"
-            android:layout_marginTop="264dp"
-            android:background="@color/color_C4C4C4"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_decibel_total"
-            android:layout_width="19dp"
-            android:layout_height="414dp"
-            android:layout_marginTop="104dp"
-            android:layout_marginRight="44dp"
-            android:background="@drawable/bg_top_30"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_decibel_gauge"
-            android:layout_width="19dp"
-            android:layout_height="338dp"
-            android:layout_marginTop="104dp"
-            android:layout_marginRight="44dp"
-            android:background="@drawable/bg_top_30"
-            android:backgroundTint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/iv_decibel_total"
-            app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/tv_write"
@@ -58,10 +38,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="34dp"
             android:background="@drawable/bg_solid_10"
-            android:backgroundTint="@color/black_10"
+            android:backgroundTint="@color/white"
             android:gravity="center"
             android:text="감정일기 쓰기"
-            android:textColor="@color/black"
+            android:textColor="@color/gray_4"
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -103,15 +83,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_resut_info"
+            android:id="@+id/tv_result_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="111dp"
             android:gravity="left"
             android:text="그동안 많이 \n힘들었겠구나."
-            android:textColor="@color/color_333333"
-            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -120,21 +100,31 @@
             android:id="@+id/tv_resut_db"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
-            android:layout_marginTop="104dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:text="100"
+            android:textColor="@color/white"
+            android:textSize="100sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_result_info" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="30DB"
-            android:textColor="@color/color_333333"
+            android:text="dB"
+            android:layout_marginTop="70dp"
+            android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/tv_resut_info"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toRightOf="@id/tv_resut_db"
+            app:layout_constraintTop_toTopOf="@id/tv_resut_db" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="196dp"
+            android:layout_marginTop="300dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -142,16 +132,17 @@
                 android:id="@+id/iv_refresh"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@drawable/refresh"
-                android:backgroundTint="@color/black_60"
+                android:background="@drawable/redoreturn"
+                android:backgroundTint="@color/white"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="7dp"
                 android:text="다시해보기"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toRightOf="@id/iv_refresh"
                 app:layout_constraintTop_toTopOf="parent" />

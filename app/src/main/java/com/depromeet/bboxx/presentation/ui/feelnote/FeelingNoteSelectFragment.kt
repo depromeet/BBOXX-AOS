@@ -1,4 +1,4 @@
-package com.depromeet.bboxx.presentation.ui
+package com.depromeet.bboxx.presentation.ui.feelnote
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.EmotionDiarySelectLayoutBinding
+import com.depromeet.bboxx.presentation.ui.MainActivity
 
 class FeelingNoteSelectFragment : Fragment() {
 

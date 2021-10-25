@@ -1,4 +1,4 @@
-package com.depromeet.bboxx.presentation.ui
+package com.depromeet.bboxx.presentation.ui.decibel
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,8 +7,12 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.DecibelLayoutBinding
+import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.AudioReaderJava
 
 
@@ -35,35 +39,41 @@ class DecibelFragment : Fragment() {
     }
 
 
+    @SuppressLint("ResourceType")
     fun initView(binding: DecibelLayoutBinding) {
 
         val audioReaderJava = AudioReaderJava()
 
-        binding.progressCircular.setOnClickListener {
-            binding.textCount.visibility = View.VISIBLE
-            binding.ivMic.visibility = View.GONE
+//        binding.clTopView.setBackButtonColor(resources.getString(R.color.main_bg))
+        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{
+            override fun callback() {
+                mainActivity.clearThisFragment(this@DecibelFragment)
+            }
+
+        }, resources.getString(R.color.main_bg) )
+
+        binding.ivMic.setOnClickListener {
 
             object : CountDownTimer(1000 * 3 + 500, 1000) {
                 @SuppressLint("SetTextI18n")
                 override fun onTick(p0: Long) {
                     startDecibel(audioReaderJava)
 
-                    binding.textCount.text = (p0 / 1000).toString()
                     when {
                         p0 / 1000 >= 3 -> {
-                            binding.progressCircular.progress = 30
+                            binding.ivMic.background = ContextCompat.getDrawable(mainActivity, R.drawable.decibel_3)
                         }
                         p0 / 1000 >= 2 -> {
-                            binding.progressCircular.progress = 60
+                            binding.ivMic.background = ContextCompat.getDrawable(mainActivity, R.drawable.decibel_2)
                             binding.tvDecibelInfo.text = "더 크게 네 ️감정을\n마음껏 소리쳐봐!"
 
                         }
                         p0 / 1000 >= 1 -> {
-                            binding.progressCircular.progress = 90
+                            binding.ivMic.background = ContextCompat.getDrawable(mainActivity, R.drawable.decibel_1)
                             binding.tvDecibelInfo.text = "마지막까지 네 안에 있는\n모든 감정을 털어놓아봐!"
                         }
                         else -> {
-                            binding.progressCircular.progress = 120
+                            binding.ivMic.background = ContextCompat.getDrawable(mainActivity, R.drawable.decibel_mic)
                         }
                     }
 
@@ -71,9 +81,7 @@ class DecibelFragment : Fragment() {
 
                 override fun onFinish() {
 
-                    binding.progressCircular.progress = 0
                     binding.ivMic.visibility = View.VISIBLE
-                    binding.textCount.visibility = View.GONE
                     audioReaderJava.stopReader()
 
                     mainActivity.addFragment(DecibelResultFragment(maxDecibel))
