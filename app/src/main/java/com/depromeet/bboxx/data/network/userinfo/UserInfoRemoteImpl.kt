@@ -1,6 +1,7 @@
 package com.depromeet.bboxx.data.network.userinfo
 
 import com.depromeet.bboxx.data.entity.NicknameEntity
+import com.depromeet.bboxx.data.entity.UserInfoEntity
 import com.depromeet.bboxx.data.network.api.UserInfoApis
 import dagger.Binds
 import dagger.Module
@@ -15,6 +16,12 @@ class UserInfoRemoteImpl @Inject constructor(
 
     override fun getNickname(): Single<NicknameEntity> {
         return userInfoApis.getNickName().map {
+            it.data
+        }
+    }
+
+    override fun getMyPageInfo(): Single<UserInfoEntity> {
+        return userInfoApis.getMe().map {
             it.data
         }
     }

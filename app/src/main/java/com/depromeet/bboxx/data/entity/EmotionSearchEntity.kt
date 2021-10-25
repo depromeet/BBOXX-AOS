@@ -2,9 +2,9 @@ package com.depromeet.bboxx.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchEmotionsEntity(
+data class EmotionSearchEntity(
     @SerializedName("emotionDiary")
-    val emotionDiary: List<EmotionDiaryEntity>,
+    val emotionDiary: EmotionDiaryEntity,
     @SerializedName("emotionStatuses")
     val emotionStatuses: List<EmotionStatusEntity>
 )

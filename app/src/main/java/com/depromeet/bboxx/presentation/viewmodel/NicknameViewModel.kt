@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.depromeet.bboxx.constants.Constants
 import com.depromeet.bboxx.domain.model.Nickname
 import com.depromeet.bboxx.domain.usecases.auth.AuthSignUseCase
-import com.depromeet.bboxx.domain.usecases.nickname.NicknameUseCase
+import com.depromeet.bboxx.domain.usecases.userinfo.UserInfoUseCase
 import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.ui.result.Result
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NicknameViewModel @Inject constructor(
-    private val nicknameUseCase: NicknameUseCase,
+    private val userInfoUseCase: UserInfoUseCase,
     private val authSignUseCase: AuthSignUseCase
 ) : BaseViewModel() {
 
@@ -33,7 +33,7 @@ class NicknameViewModel @Inject constructor(
 
     private fun getNickname(){
         disposable+=
-            nicknameUseCase.getNickname()
+            userInfoUseCase.getNickname()
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {

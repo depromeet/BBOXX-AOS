@@ -19,5 +19,4 @@ data class NotificationsEntity(
     val title: String,
     @SerializedName("updateAt")
     val updateAt: String
-
 )

@@ -35,6 +35,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 
 
         loginViewModel.snsLoginEvent.observeNonNull(this){ paltform ->
+            //  SNS Click Event
             when(paltform){
                 "kakao" -> {
                     snsPlatformType = ProviderType.KAKAO
@@ -45,6 +46,9 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
                     toGoogleLogin(this)
                 }
             }
+
+            // Test code
+            //  moveActivityTest()
         }
 
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
@@ -78,5 +82,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 //            })
 //        systemErrorDialog?.setCancelable(false)
 //        systemErrorDialog?.show()
+    }
+
+    private fun moveActivityTest(){
+        toNickName(this, accessToken = "userToken")
+        finish()
     }
 }

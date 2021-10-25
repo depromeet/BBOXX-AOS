@@ -1,7 +1,7 @@
 package com.depromeet.bboxx.data.repository.authsign
 
 import com.depromeet.bboxx.data.entity.TokenEntity
-import com.depromeet.bboxx.data.network.authsign.AuthSignRemoteImpl
+import com.depromeet.bboxx.data.network.authsign.AuthSignRemote
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,10 +10,10 @@ import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class AuthSignDataSourceImpl @Inject constructor(
-    private val authSignRemoteImpl: AuthSignRemoteImpl
+    private val authSignRemote: AuthSignRemote
 ) : AuthSignDataSource {
     override fun authSignIn(authData: String, providerType: String): Single<TokenEntity> {
-        return authSignRemoteImpl.getAuthSignIn(authData, providerType)
+        return authSignRemote.getAuthSignIn(authData, providerType)
     }
 
     override fun authSignUp(
@@ -21,7 +21,7 @@ class AuthSignDataSourceImpl @Inject constructor(
         nickName: String,
         providerType: String
     ): Single<TokenEntity> {
-        return authSignRemoteImpl.getAuthSignUp(authData, nickName, providerType)
+        return authSignRemote.getAuthSignUp(authData, nickName, providerType)
     }
 }
 

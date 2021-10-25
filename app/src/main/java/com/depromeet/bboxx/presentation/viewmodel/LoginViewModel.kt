@@ -22,10 +22,6 @@ class LoginViewModel @Inject constructor(
 
     val snsLoginEvent = SingleLiveEvent<String>()
 
-    private var fireBaseInstanceId: String? = ""
-    private var publicKey: String = ""
-    private var userUniqueKey : String = ""
-
     fun signIn(auth: String, providerType: String){
         disposable+=
             authSignUseCase.signIn(auth, providerType)

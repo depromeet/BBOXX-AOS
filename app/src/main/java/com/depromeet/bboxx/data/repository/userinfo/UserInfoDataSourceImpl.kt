@@ -1,6 +1,7 @@
 package com.depromeet.bboxx.data.repository.userinfo
 
 import com.depromeet.bboxx.data.entity.NicknameEntity
+import com.depromeet.bboxx.data.entity.UserInfoEntity
 import com.depromeet.bboxx.data.network.userinfo.UserInfoRemote
 import dagger.Binds
 import dagger.Module
@@ -15,6 +16,10 @@ class UserInfoDataSourceImpl @Inject constructor(
 
     override fun getNickname(): Single<NicknameEntity> {
         return userInfoRemote.getNickname()
+    }
+
+    override fun getMyPageInfo(): Single<UserInfoEntity> {
+        return userInfoRemote.getMyPageInfo()
     }
 }
 
