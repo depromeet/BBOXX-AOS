@@ -13,5 +13,5 @@ interface DecibelApis {
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @GET("api/v1/decibel")
-    fun recodeRequestDecibel(@Query("decibelId") decibelId: Int): Single<DecibelDto>
+    fun requestDecibelInfo(@Query("decibelId") decibelId: Int): Single<DecibelDto>
 }

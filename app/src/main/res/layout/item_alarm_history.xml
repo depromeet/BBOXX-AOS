@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/txt_write_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2021.10.20"
@@ -25,6 +26,7 @@
             android:textColor="@color/text_middle_title"
             />
         <TextView
+            android:id="@+id/txt_write_time_shot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -43,8 +45,10 @@
         app:srcCompat="@drawable/ic_close"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         />
     <TextView
+        android:id="@+id/txt_write_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

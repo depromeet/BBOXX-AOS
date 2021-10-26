@@ -125,6 +125,9 @@ dependencies {
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation "com.google.firebase:firebase-messaging:20.2.1"
+    implementation "com.google.firebase:firebase-config-ktx:19.1.4"
+    implementation "com.google.firebase:firebase-perf:19.0.7"
 
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:19.2.0'

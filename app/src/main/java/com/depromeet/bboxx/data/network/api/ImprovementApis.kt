@@ -1,16 +1,18 @@
 package com.depromeet.bboxx.data.network.api
 
 import com.depromeet.bboxx.data.dto.EmptyDto
-import com.depromeet.bboxx.data.entity.ImprovementDiariesEntity
+import com.depromeet.bboxx.data.dto.ImproveDiariesDto
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 interface ImprovementApis {
     @Headers("Content-type: application/json;charset=UTF-8")
     @GET("api/v1/improvement-diaries")
-    fun getImprovementDiaries(@Query("member_id") memberId: Int
-    ,@Query("month") month: Int, @Query("year") year: Int)
-    : Single<ImprovementDiariesEntity>
+    fun getImprovementDiaries()
+    : Single<ImproveDiariesDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @POST("api/v1/improvement-diaries/keep")
