@@ -1,8 +1,8 @@
 package com.depromeet.bboxx.presentation.base
 
-import android.view.View
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.extensions.LayoutContainer
 
-abstract class BaseViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-    LayoutContainer
+class BaseViewHolder<BINDING : ViewDataBinding>(val binder: BINDING) :
+    RecyclerView.ViewHolder(binder.root) {
+}

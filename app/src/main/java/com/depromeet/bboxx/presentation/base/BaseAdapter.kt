@@ -1,42 +1,21 @@
 package com.depromeet.bboxx.presentation.base
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.depromeet.bboxx.presentation.extension.getItem
-import java.util.ArrayList
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 
-abstract class BaseAdapter<D, VH : BaseViewHolder> : RecyclerView.Adapter<VH>() {
-    private var list = ArrayList<D>()
-
-    fun addItem(items: List<D>) {
-        list.addAll(items)
+abstract class BaseAdapter<E : Any>(diffCallback: DiffUtil.ItemCallback<E>) :
+    ListAdapter<E, BaseHolder<out ViewDataBinding, E>>(diffCallback) {
+    override fun onBindViewHolder(holder: BaseHolder<out ViewDataBinding, E>, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    fun removeItems() {
-        list.clear()
+    override fun onBindViewHolder(
+        holder: BaseHolder<out ViewDataBinding, E>,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        super.onBindViewHolder(holder, position, payloads)
+        holder.bind(getItem(position), payloads)
     }
-
-    abstract fun getItemViewId(): Int
-
-    abstract fun instantiateViewHolder(view: View): VH
-
-    fun getItem(position: Int): D?{
-        return list.getItem(position)
-    }
-
-    fun getItems() = list
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(getItemViewId(), parent, false)
-        return instantiateViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: VH, position: Int) = onBind(holder, position)
-    abstract fun onBind(holder: VH, position: Int)
-    override fun getItemCount() = list.size
-
-
 }
