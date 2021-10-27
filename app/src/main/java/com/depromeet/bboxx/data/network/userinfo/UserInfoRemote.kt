@@ -8,4 +8,6 @@ interface UserInfoRemote {
     fun getNickname(): Single<NicknameEntity>
 
     fun getMyPageInfo(): Single<UserInfoEntity>
+
+    fun updateNickname(memberId : Int, nickname: String): Single<UserInfoEntity>
 }

@@ -29,7 +29,7 @@ class ImprovementRemoteImpl @Inject constructor(
         title: String
     ): Single<EmptyDto> {
         val body = HashMap<String, Any>().apply {
-            put("authData", content)
+            put("content", content)
             put("emotionDiaryId", emotionDiaryId)
             put("memberId", memberId)
             put("tags", emotionTags)

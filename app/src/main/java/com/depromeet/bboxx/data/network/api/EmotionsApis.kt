@@ -21,6 +21,6 @@ interface EmotionsApis {
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @DELETE("api/v1/emotions")
-    fun deleteEmotions(@Query("emotionId") emotionId: Int): Single<EmptyDto>
+    fun deleteEmotions(@Path("emotionId") emotionId: Int): Single<EmptyDto>
 
 }

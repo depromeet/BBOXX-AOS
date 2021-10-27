@@ -16,8 +16,8 @@ interface UserInfoApis {
     fun getUserInfo(@Query("memberId") memberId: String): Single<UserInfoDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @PUT("api/v1/members")
-    fun updateNickname(@Body body: HashMap<String, Any>): Single<UserInfoDto>
+    @PUT("api/v1/members/{memberId}")
+    fun updateNickname(@Path("memberId") memberId: Int, @Field("nickname") nickname: String): Single<UserInfoDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @GET("api/v1/me")
