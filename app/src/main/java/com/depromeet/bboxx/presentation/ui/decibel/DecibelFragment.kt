@@ -4,40 +4,31 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.DecibelLayoutBinding
+import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.AudioReaderJava
+import javax.inject.Inject
 
-
-class DecibelFragment : Fragment() {
+class DecibelFragment @Inject constructor() : BaseFragment<DecibelLayoutBinding>(R.layout.decibel_layout) {
     var maxDecibel = 0
 
     lateinit var mainActivity: MainActivity
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
 
-        val binding = DecibelLayoutBinding.inflate(inflater, container, false)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView(binding)
-        return binding.root
     }
-
 
     @SuppressLint("ResourceType")
     fun initView(binding: DecibelLayoutBinding) {

@@ -17,7 +17,7 @@ class AuthSignRemoteImpl @Inject constructor(
     override fun getAuthSignIn(authData: String, providerType: String): Single<TokenEntity> {
 
         val body = HashMap<String,Any>().apply {
-            put("authdata",authData)
+            put("authData",authData)
             put("providerType",providerType)
         }
 
