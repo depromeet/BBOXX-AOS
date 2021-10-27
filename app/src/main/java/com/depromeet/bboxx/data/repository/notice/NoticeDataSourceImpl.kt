@@ -6,9 +6,10 @@ import com.depromeet.bboxx.data.network.notice.NoticeRemote
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class NoticeDataSourceImpl @Inject constructor(
     private val noticeRemote: NoticeRemote
@@ -32,8 +33,9 @@ class NoticeDataSourceImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class NoticeDataSourceModule {
     @Binds
+    @Singleton
     abstract fun bindNoticeDataSource(dataSourceImpl: NoticeDataSourceImpl): NoticeDataSource
 }

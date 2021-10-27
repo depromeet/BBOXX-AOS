@@ -7,9 +7,10 @@ import com.depromeet.bboxx.domain.model.ImprovementTags
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class ImprovementRemoteImpl @Inject constructor(
     private val improvementApis: ImprovementApis
@@ -41,8 +42,9 @@ class ImprovementRemoteImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class ImprovementRemoteModule {
     @Binds
+    @Singleton
     abstract fun bindImprovementRemote(remoteImpl: ImprovementRemoteImpl): ImprovementRemote
 }

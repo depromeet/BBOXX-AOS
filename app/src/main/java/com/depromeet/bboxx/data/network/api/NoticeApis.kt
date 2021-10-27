@@ -8,19 +8,19 @@ import retrofit2.http.*
 
 interface NoticeApis {
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/notifications")
+    @GET("notifications")
     fun getNotificationList(): Single<NotificationsListDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/push-tokens")
+    @GET("push-tokens")
     fun getPushTokens(@Query("ownerId") ownerId: Int): Single<NotificationTokenDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @POST("api/v1/push-tokens/deregister")
+    @POST("push-tokens/deregister")
     fun deregisterNotification(@Body body: HashMap<String, Any>): Single<NotificationsDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @POST("api/v1/push-tokens/register")
+    @POST("push-tokens/register")
     fun registerNotification(@Body body: HashMap<String, Any>): Single<NotificationsDto>
 
 }

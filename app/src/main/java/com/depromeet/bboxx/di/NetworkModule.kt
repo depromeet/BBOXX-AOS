@@ -2,8 +2,7 @@ package com.depromeet.bboxx.di
 
 import android.content.Context
 import com.depromeet.bboxx.constants.Constants.BASE_URL
-import com.depromeet.bboxx.data.network.api.AuthApis
-import com.depromeet.bboxx.data.network.api.UserInfoApis
+import com.depromeet.bboxx.data.network.api.*
 import com.depromeet.bboxx.presentation.ui.AppContext
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -109,4 +108,21 @@ class NetworkModule {
         return retrofit.create(AuthApis::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideNoticeApi(retrofit: Retrofit): NoticeApis {
+        return retrofit.create(NoticeApis::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideEmotionApi(retrofit: Retrofit): EmotionsApis {
+        return retrofit.create(EmotionsApis::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideImproveApi(retrofit: Retrofit): ImprovementApis {
+        return retrofit.create(ImprovementApis::class.java)
+    }
 }

@@ -8,19 +8,19 @@ import retrofit2.http.*
 interface UserInfoApis {
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @POST("api/v1/generate-member-nickname")
+    @POST("generate-member-nickname")
     fun getNickName(): Single<NicknameDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/members")
+    @GET("members")
     fun getUserInfo(@Query("memberId") memberId: String): Single<UserInfoDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @PUT("api/v1/members/{memberId}")
+    @PUT("members/{memberId}")
     fun updateNickname(@Path("memberId") memberId: Int, @Field("nickname") nickname: String): Single<UserInfoDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/me")
+    @GET("me")
     fun getMe(): Single<UserInfoDto>
 
 }

@@ -6,9 +6,10 @@ import com.depromeet.bboxx.data.network.api.DecibelApis
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class DecibelRemoteImpl @Inject constructor(
     private val decibelApis: DecibelApis
@@ -35,8 +36,9 @@ class DecibelRemoteImpl @Inject constructor(
 
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DecibelRemoteModule {
     @Binds
+    @Singleton
     abstract fun bindDecibelRemote(decibelRemoteImpl: DecibelRemoteImpl): DecibelRemote
 }

@@ -5,9 +5,10 @@ import com.depromeet.bboxx.data.network.api.AuthApis
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class AuthSignRemoteImpl @Inject constructor(
     private val authApis: AuthApis
@@ -16,7 +17,7 @@ class AuthSignRemoteImpl @Inject constructor(
     override fun getAuthSignIn(authData: String, providerType: String): Single<TokenEntity> {
 
         val body = HashMap<String,Any>().apply {
-            put("authData",authData)
+            put("authdata",authData)
             put("providerType",providerType)
         }
 
@@ -44,8 +45,9 @@ class AuthSignRemoteImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class AuthSignRemoteModule {
     @Binds
+    @Singleton
     abstract fun bindAuthSignRemote(authSignRemoteImpl: AuthSignRemoteImpl): AuthSignRemote
 }

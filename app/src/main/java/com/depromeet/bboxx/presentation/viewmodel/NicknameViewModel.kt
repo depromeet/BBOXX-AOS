@@ -2,7 +2,6 @@ package com.depromeet.bboxx.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.depromeet.bboxx.constants.Constants
 import com.depromeet.bboxx.domain.model.Nickname
 import com.depromeet.bboxx.domain.usecases.auth.AuthSignUseCase
 import com.depromeet.bboxx.domain.usecases.userinfo.UserInfoUseCase
@@ -67,10 +66,11 @@ class NicknameViewModel @Inject constructor(
             authSignUseCase.signUp(accessToken.value!! ,showNickname.value!!, providerType.value!!)
                 .onIOforMainThread()
                 .subscribeBy(
-                    onSuccess = {
-                        likeResult.value = Constants.C_SUCCESS
+                    onSuccess = { token ->
+                        likeResult.value = token.toString()
                     },
                     onError = {
+
                     }
                 )
     }
