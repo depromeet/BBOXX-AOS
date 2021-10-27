@@ -16,84 +16,69 @@ import org.jetbrains.anko.singleTop
 
 object NavigatorUI {
 
-    fun toOnboard(context: Context) {
-        with(context) {
-            startActivity(
-                intentFor<OnboardActivity>()
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toOnboard(context: Context){
+        with(context){
+            startActivity(intentFor<OnboardActivity>()
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 
-    fun toRefuse(context: Context) {
-        with(context) {
-            startActivity(
-                intentFor<OnboardRefuseActivity>()
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toRefuse(context: Context){
+        with(context){
+            startActivity(intentFor<OnboardRefuseActivity>()
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 
-    fun toReRefuse(context: Context) {
-        with(context) {
-            startActivity(
-                intentFor<OnboardRefuseReCheckActivity>()
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toReRefuse(context: Context){
+        with(context){
+            startActivity(intentFor<OnboardRefuseReCheckActivity>()
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 
-    fun toLogin(context: Context) {
-        with(context) {
-            startActivity(
-                intentFor<LoginActivity>()
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toLogin(context: Context){
+        with(context){
+            startActivity(intentFor<LoginActivity>()
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 
-    fun toGoogleLogin(context: Context) {
+    fun toGoogleLogin(context: Context){
         with(context) {
             startActivity(intentFor<GoogleLoginActivity>().noAnimation())
         }
     }
 
-    fun toKakaoLogin(context: Context) {
+    fun toKakaoLogin(context: Context){
         with(context) {
             startActivity(intentFor<KakaoTalkLoginActivity>().noAnimation())
         }
     }
 
-    fun toNickName(context: Context, accessToken: String, providerType: String) {
-        with(context) {
-            startActivity(
-                intentFor<NicknameActivity>(
-                    NicknameActivity.EXTRA_ACCESS_TOKEN to accessToken,
-                    NicknameActivity.EXTRA_PROVIDER_TYPE to providerType
-                )
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toNickName(context: Context, accessToken: String){
+        with(context){
+            startActivity(intentFor<NicknameActivity>(NicknameActivity.EXTRA_ACCESS_TOKEN to accessToken)
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 
-    fun toMain(context: Context) {
-        with(context) {
-            startActivity(
-                intentFor<MainActivity>()
-                    .clearTop()
-                    .singleTop()
-                    .noAnimation()
-            )
+    fun toMain(context: Context){
+        with(context){
+            startActivity(intentFor<MainActivity>()
+                .clearTop()
+                .singleTop()
+                .noAnimation())
         }
     }
 }

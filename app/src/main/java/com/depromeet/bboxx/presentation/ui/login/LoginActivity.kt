@@ -53,7 +53,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
             if(result == C_SUCCESS){
-                toNickName(this, accessToken = userToken, providerType = snsPlatformType.name)
+                toNickName(this, accessToken = userToken)
                 finish()
             }
         }
@@ -85,7 +85,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
     }
 
     private fun moveActivityTest(){
-        toNickName(this, accessToken = "userToken", snsPlatformType.name)
+        toNickName(this, accessToken = "userToken")
         finish()
     }
 }
