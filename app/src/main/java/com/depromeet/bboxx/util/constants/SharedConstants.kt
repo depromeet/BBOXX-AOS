@@ -6,4 +6,10 @@ object SharedConstants {
 
     const val C_USER_TOKEN_SHRED = "Token"
     const val C_USER_TOKEN_KEY = "TokenKey"
+
+    const val C_MEMBER_ID_SHRED = "MEMBERID"
+    const val C_MEMBER_ID_KEY = "MemberIdKey"
+
+    const val C_JWT_SHRED = "JWT"
+    const val C_JWT_KEY = "JWTKey"
 }

@@ -25,6 +25,12 @@ class UserInfoRemoteImpl @Inject constructor(
             it.data
         }
     }
+
+    override fun updateNickname(memberId: Int, nickname: String): Single<UserInfoEntity> {
+        return userInfoApis.updateNickname(memberId, nickname).map {
+            it.data
+        }
+    }
 }
 
 @Module
