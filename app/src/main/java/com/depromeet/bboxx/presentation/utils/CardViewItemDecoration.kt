@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
 
-class CardViewItemDecoration(context: Context) : ItemDecoration() {
+class CardViewItemDecoration(context: Context, val itemCount : Int) : ItemDecoration() {
     private val margin30: Int
     private val margin16: Int
 
@@ -17,7 +17,7 @@ class CardViewItemDecoration(context: Context) : ItemDecoration() {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             dp.toFloat(),
-            context.getResources().getDisplayMetrics()
+            context.resources.displayMetrics
         )
             .toInt()
     }
@@ -34,14 +34,18 @@ class CardViewItemDecoration(context: Context) : ItemDecoration() {
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        val position = parent.getChildAdapterPosition(view)
 
-        if (position == 0) {
-            // 첫번 째 줄 아이템
-            outRect.left = margin30
-            outRect.right = margin16
-        } else {
-            outRect.right = margin16
+        when (parent.getChildAdapterPosition(view)) {
+            0 -> {
+                outRect.left = margin30
+                outRect.right = margin16
+            }
+            itemCount - 1 -> {
+                outRect.right = margin30
+            }
+            else -> {
+                outRect.right = margin16
+            }
         }
     }
 
