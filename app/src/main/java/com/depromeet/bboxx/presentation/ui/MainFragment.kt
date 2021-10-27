@@ -2,15 +2,17 @@ package com.depromeet.bboxx.presentation.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import com.depromeet.bboxx.R
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.FragmentMainBinding
-import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
+import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteFragment
-import javax.inject.Inject
 
-class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
+
+class MainFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -19,8 +21,14 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         mainActivity = context as MainActivity
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
 
         //TODO HAERIN FRAGMNET이동
 
@@ -29,7 +37,7 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         }
         binding.btGoToFeelingNote.setOnClickListener {
 //            mainActivity.addFragment(FeelingNoteSelectFragment())
-            mainActivity.addFragment(GrowthNoteFragment())
+                        mainActivity.addFragment(GrowthNoteFragment())
 //
         }
 //        binding.btGoToDecibel.setOnClickListener {
@@ -52,6 +60,10 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
 //                }
 //            }
 //        }
+
+
+        return binding.root
     }
+
 
 }

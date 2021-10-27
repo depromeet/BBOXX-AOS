@@ -8,5 +8,5 @@ object Constants {
     const val C_MOVE_TERMS_OF_USE = "TermsOfUse"
     const val C_MOVE_PERSON_INFO = "PersonInfo"
 
-    const val BASE_URL = "http://ecs-loadbalancer-640d958083694585.elb.ap-northeast-2.amazonaws.com/api/v1/"
+    const val BASE_URL = "http://ec2-3-35-36-228.ap-northeast-2.compute.amazonaws.com/api/v1/"
 }

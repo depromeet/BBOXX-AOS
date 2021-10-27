@@ -70,7 +70,7 @@ class NicknameViewModel @Inject constructor(
                         likeResult.value = token.toString()
                     },
                     onError = {
-                        likeResult.value = it.message
+
                     }
                 )
     }

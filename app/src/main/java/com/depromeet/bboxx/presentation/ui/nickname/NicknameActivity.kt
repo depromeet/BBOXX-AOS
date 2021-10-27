@@ -38,7 +38,7 @@ class NicknameActivity : BaseActivity<ActivityNicknameBinding>(R.layout.activity
 
         nicknameViewModel.likeResult.observeNonNull(this){ token ->
             if(token.isNotBlank()){
-                //setJwtValue(token)
+                setJwtValue(token)
                 onMoveMain()
             }
         }

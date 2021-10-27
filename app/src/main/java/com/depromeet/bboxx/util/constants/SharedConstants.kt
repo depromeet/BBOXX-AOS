@@ -12,7 +12,4 @@ object SharedConstants {
 
     const val C_JWT_SHRED = "JWT"
     const val C_JWT_KEY = "JWTKey"
-
-    const val C_DECIBEL_SHRED = "DECIBEL"
-    const val C_DECIBEL_KEY = "DecibelKey"
 }

@@ -58,7 +58,7 @@ class NetworkModule {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClientBuilder = OkHttpClient().newBuilder()
-        okHttpClientBuilder.addInterceptor(AuthInterceptor())
+        //okHttpClientBuilder.addInterceptor(AuthInterceptor())
         okHttpClientBuilder.addInterceptor(httpLoggingInterceptor)
         okHttpClientBuilder.connectTimeout(CONNECTION_TIMEOUT.toLong(), TimeUnit.SECONDS)
         okHttpClientBuilder.readTimeout(READ_TIMEOUT.toLong(), TimeUnit.SECONDS)
@@ -124,11 +124,5 @@ class NetworkModule {
     @Singleton
     fun provideImproveApi(retrofit: Retrofit): ImprovementApis {
         return retrofit.create(ImprovementApis::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideDecibelApi(retrofit: Retrofit): DecibelApis {
-        return retrofit.create(DecibelApis::class.java)
     }
 }

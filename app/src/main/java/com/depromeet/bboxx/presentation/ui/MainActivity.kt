@@ -1,27 +1,16 @@
 package com.depromeet.bboxx.presentation.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
-import com.depromeet.bboxx.databinding.ActivityMainBinding
-import com.depromeet.bboxx.presentation.base.BaseActivity
-import com.depromeet.bboxx.presentation.viewmodel.DecibelViewModel
-import com.depromeet.bboxx.presentation.viewmodel.FeelingNoteViewModel
-import com.depromeet.bboxx.presentation.viewmodel.GrowthNoteViewModel
-import com.depromeet.bboxx.presentation.viewmodel.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by viewModels()
-    val decibelViewModel: DecibelViewModel by viewModels()
-    val feelingNoteVieModel : FeelingNoteViewModel by viewModels()
-    val growthViewModel : GrowthNoteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
 
 //if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -46,8 +35,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit();
 
     }
-    fun replaceFragment(replacefragment: Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.fl_main, replacefragment).commit();    }
 
     fun addTopFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
