@@ -22,6 +22,7 @@ class LoginViewModel @Inject constructor(
 
     val snsLoginEvent = SingleLiveEvent<String>()
 
+
     fun signIn(auth: String, providerType: String){
         disposable+=
             authSignUseCase.signIn(auth, providerType)

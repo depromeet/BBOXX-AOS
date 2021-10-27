@@ -14,14 +14,17 @@ class CustomTopView(context: Context, attrs: AttributeSet) : ConstraintLayout(co
 
     private var backButton: ImageView
     private var rightButton: ImageView
+    private var redoButton: ConstraintLayout
 
 
     init {
         val v = View.inflate(context, R.layout.layout_top_view, this)
         backButton = v.findViewById(R.id.btn_back)
         rightButton = v.findViewById(R.id.btn_right)
+        redoButton = v.findViewById(R.id.cl_redo)
         backButton.visibility = View.GONE
         rightButton.visibility = View.GONE
+        redoButton.visibility = View.GONE
     }
 
 
@@ -54,6 +57,12 @@ class CustomTopView(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         }
     }
 
+    fun setRedoBtn(callback: OnclickCallback){
+        redoButton.visibility = View.VISIBLE
+        redoButton.setOnClickListener {
+            callback.callback()
+        }
+    }
     interface OnclickCallback{
         fun callback()
     }

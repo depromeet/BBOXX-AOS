@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="12dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/ic_img_back"
+            android:backgroundTint="@color/color_C4C4C4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="80dp"
+            android:gravity="left"
+            android:text="네 힘든 감정을 정리해볼래?"
+            android:textColor="@color/color_333333"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="122dp"
+            android:background="@drawable/edit_text_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_main_title_01"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="28dp"
+                        android:text="오늘 학업문제로 힘들었어."
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_main_title_02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="27dp"
+                        android:text="아 정말 힘들다"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_main_title_01" />
+
+                    <TextView
+                        android:id="@+id/tv_sub_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="27dp"
+                        android:text="오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_main_title_02" />
+
+
+                    <TextView
+                        android:id="@+id/tv_feeling"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="30dp"
+                        android:text="내 감정은.."
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_sub_text" />
+
+                    <TextView
+                        android:id="@+id/btn_success"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginHorizontal="25dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/bg_solid_10"
+                        android:backgroundTint="@color/gray_10"
+                        android:gravity="center"
+                        android:text="버릴래"
+                        android:textColor="@color/white"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_goneMarginBottom="30dp"
+                        app:layout_constraintTop_toBottomOf="@id/rl_feeling"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rl_feeling"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="42dp"
+                        android:background="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_feeling"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+    </data>
+</layout>
