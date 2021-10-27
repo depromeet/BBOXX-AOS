@@ -9,9 +9,10 @@ import com.depromeet.bboxx.domain.repository.decibel.DecibelRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class DecibelRepositoryImpl @Inject constructor(
     private val decibelDataSource: DecibelDataSource,
@@ -33,8 +34,9 @@ class DecibelRepositoryImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DecibelRepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindDecibelRepository(repositoryImpl: DecibelRepositoryImpl): DecibelRepository
 }

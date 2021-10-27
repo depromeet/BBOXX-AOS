@@ -6,9 +6,10 @@ import com.depromeet.bboxx.data.network.userinfo.UserInfoRemote
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class UserInfoDataSourceImpl @Inject constructor(
     private val userInfoRemote: UserInfoRemote
@@ -24,8 +25,9 @@ class UserInfoDataSourceImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class UserInfoDataSourceModule {
     @Binds
+    @Singleton
     abstract fun bindUserInfoDataSource(dataSourceImpl: UserInfoDataSourceImpl): UserInfoDataSource
 }

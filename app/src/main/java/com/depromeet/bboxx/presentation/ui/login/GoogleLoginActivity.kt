@@ -64,27 +64,17 @@ class GoogleLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.activi
         try {
             val account = completedTask.getResult(ApiException::class.java)
             userEmail = account?.email.toString()
-            val familyName = account?.familyName.toString()
-            val givenName = account?.givenName.toString()
-            val displayName = account?.displayName.toString()
-            socialUserId = account.id
-
-            Log.d("account", userEmail)
-            Log.d("account", socialUserId)
-            Log.d("account", givenName)
-            Log.d("account", displayName)
 
             RxBus.send(
                 SnsVerifyEvent(
                     userEmail, "",
-                    socialUserId, ProviderType.GOOGLE, accessToken = ""
+                    socialUserId, ProviderType.GOOGLE, accessToken = account.idToken
                 )
             )
             finish()
 
         } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
             if(e.statusCode != GoogleSignInStatusCodes.SIGN_IN_CANCELLED){
                 RxBus.send(SnsErrorEvent)

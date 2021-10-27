@@ -8,10 +8,10 @@ import retrofit2.http.*
 interface DecibelApis {
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @POST("api/v1/decibel")
+    @POST("decibel")
     fun registerDecibel(@Body body: HashMap<String, Any>): Single<RegisterDecibelDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/decibel")
+    @GET("decibel")
     fun requestDecibelInfo(@Query("decibelId") decibelId: Int): Single<DecibelDto>
 }

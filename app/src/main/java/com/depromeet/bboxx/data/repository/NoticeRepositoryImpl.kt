@@ -9,10 +9,11 @@ import com.depromeet.bboxx.domain.repository.notice.NoticeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class NoticeRepositoryImpl @Inject constructor(
     private val noticeDataSource: NoticeDataSource,
@@ -43,8 +44,9 @@ class NoticeRepositoryImpl @Inject constructor(
 
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class NoticeRepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindNoticeRepository(repositoryImpl: NoticeRepositoryImpl): NoticeRepository
 }

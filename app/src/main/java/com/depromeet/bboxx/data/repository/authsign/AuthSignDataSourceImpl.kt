@@ -5,9 +5,10 @@ import com.depromeet.bboxx.data.network.authsign.AuthSignRemote
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class AuthSignDataSourceImpl @Inject constructor(
     private val authSignRemote: AuthSignRemote
@@ -26,8 +27,9 @@ class AuthSignDataSourceImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class AuthSignDataSourceModule {
     @Binds
+    @Singleton
     abstract fun bindAuthSignDataSource(dataSourceImpl: AuthSignDataSourceImpl): AuthSignDataSource
 }

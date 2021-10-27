@@ -1,7 +1,6 @@
 package com.depromeet.bboxx.presentation.ui.feelhistory
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,27 +9,25 @@ import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivityAlarmBinding
 import com.depromeet.bboxx.domain.model.Notifications
 import com.depromeet.bboxx.presentation.base.BaseActivity
-import com.depromeet.bboxx.presentation.extension.observeNonNull
-import com.depromeet.bboxx.presentation.viewmodel.FeelHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FeelHistoryActivity: BaseActivity<ActivityAlarmBinding>(R.layout.activity_alarm), UserClickEvent {
 
-    private val feelHistoryViewModel : FeelHistoryViewModel by viewModels()
+    //private val feelHistoryViewModel : FeelHistoryViewModel by viewModels()
 
-    @Inject
-    lateinit var feelHistoryAdapter: FeelHistoryAdapter
+    private val feelHistoryAdapter: FeelHistoryAdapter by lazy{
+        FeelHistoryAdapter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setAdapterAndRecyclerViewInit()
 
-        feelHistoryViewModel.noticeList.observeNonNull(this){
-            feelHistoryAdapter.replaceItems(it)
-        }
+//        feelHistoryViewModel.noticeList.observeNonNull(this){
+//            feelHistoryAdapter.replaceItems(it)
+//        }
     }
 
     private fun setAdapterAndRecyclerViewInit(){
@@ -61,7 +58,7 @@ class FeelHistoryActivity: BaseActivity<ActivityAlarmBinding>(R.layout.activity_
 
     override fun onItemDeleteClick(notifications: Notifications) {
         //  삭제
-        feelHistoryViewModel.deleteEmotion(notifications.emotionDiaryId)
+        //feelHistoryViewModel.deleteEmotion(notifications.emotionDiaryId)
     }
 
 

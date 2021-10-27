@@ -117,7 +117,7 @@ class KakaoTalkLoginActivity: BaseActivity<ActivitySnsLoginBinding>(R.layout.act
             SnsVerifyEvent(user?.kakaoAccount?.email ?: "", user?.kakaoAccount?.phoneNumber ?: "",
             user?.id.toString(), ProviderType.KAKAO, accessToken= accessToken)
         )
-
+        finish()
     }
 
     override fun onBackPressed() {

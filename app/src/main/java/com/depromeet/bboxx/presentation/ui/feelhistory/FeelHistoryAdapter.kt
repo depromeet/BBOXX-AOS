@@ -8,10 +8,9 @@ import com.depromeet.bboxx.databinding.ItemAlarmHistoryBinding
 import com.depromeet.bboxx.domain.model.Notifications
 import com.depromeet.bboxx.presentation.base.BaseAdapter
 import com.depromeet.bboxx.presentation.base.BaseHolder
-import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
-@FragmentScoped
+
 class FeelHistoryAdapter @Inject constructor() :
     BaseAdapter<Notifications>(NotificationItemCallback()) {
 

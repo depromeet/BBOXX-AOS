@@ -10,9 +10,10 @@ import com.depromeet.bboxx.domain.repository.emotion.EmotionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class EmotionRepositoryImpl @Inject constructor(
     private val emotionDataSource: EmotionDataSource,
@@ -54,8 +55,9 @@ class EmotionRepositoryImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class EmotionRepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindEmotionRepository(repositoryImpl: EmotionRepositoryImpl): EmotionRepository
 }

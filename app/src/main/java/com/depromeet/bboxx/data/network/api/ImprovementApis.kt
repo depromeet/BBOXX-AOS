@@ -10,12 +10,12 @@ import retrofit2.http.POST
 
 interface ImprovementApis {
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("api/v1/improvement-diaries")
+    @GET("improvement-diaries")
     fun getImprovementDiaries()
     : Single<ImproveDiariesDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @POST("api/v1/improvement-diaries/keep")
+    @POST("improvement-diaries/keep")
     fun writeImprovement(@Body body: HashMap<String, Any>): Single<EmptyDto>
 
 }

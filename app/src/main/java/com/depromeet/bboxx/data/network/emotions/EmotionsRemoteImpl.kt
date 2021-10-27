@@ -7,9 +7,10 @@ import com.depromeet.bboxx.data.network.api.EmotionsApis
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class EmotionsRemoteImpl @Inject constructor(
     private val emotionsApis: EmotionsApis
@@ -50,8 +51,9 @@ class EmotionsRemoteImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class EmotionRemoteModule {
     @Binds
+    @Singleton
     abstract fun bindEmotionRemote(remoteImpl: EmotionsRemoteImpl): EmotionsRemote
 }

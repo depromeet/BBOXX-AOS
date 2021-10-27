@@ -9,9 +9,10 @@ import com.depromeet.bboxx.domain.repository.userinfo.UserInfoRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class UserInfoRepositoryImpl @Inject constructor(
     private val userInfoDataSource: UserInfoDataSource,
@@ -32,8 +33,9 @@ class UserInfoRepositoryImpl @Inject constructor(
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class UserInfoRepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindUserInfoRepository(repositoryImpl: UserInfoRepositoryImpl): UserInfoRepository
 }

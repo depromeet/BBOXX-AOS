@@ -10,10 +10,11 @@ import com.depromeet.bboxx.domain.repository.improvement.ImprovementRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class ImprovementRepositoryImpl @Inject constructor(
     private val improvementDataSource: ImprovementDataSource,
@@ -49,8 +50,9 @@ class ImprovementRepositoryImpl @Inject constructor(
 
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class ImprovementRepositoryModule {
     @Binds
+    @Singleton
     abstract fun bindImprovementRepository(repositoryImpl: ImprovementRepositoryImpl): ImprovementRepository
 }

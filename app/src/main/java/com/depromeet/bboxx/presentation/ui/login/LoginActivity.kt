@@ -48,7 +48,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
             }
 
             // Test code
-            //  moveActivityTest()
+            //moveActivityTest()
         }
 
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
