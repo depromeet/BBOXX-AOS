@@ -12,7 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.depromeet.bboxx.databinding.EmotionDiarySelectLayoutBinding
+import com.depromeet.bboxx.databinding.FeelingNoteSelectReasonLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 
 class FeelingNoteSelectFragment : Fragment() {
@@ -32,7 +32,7 @@ class FeelingNoteSelectFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = EmotionDiarySelectLayoutBinding.inflate(inflater, container, false)
+        val binding = FeelingNoteSelectReasonLayoutBinding.inflate(inflater, container, false)
 
         if (container != null) {
             initView(binding, container.context)
@@ -43,7 +43,7 @@ class FeelingNoteSelectFragment : Fragment() {
     }
 
 
-    fun initView(binding: EmotionDiarySelectLayoutBinding, ctx: Context) {
+    fun initView(binding: FeelingNoteSelectReasonLayoutBinding, ctx: Context) {
         //TODO HAERIN Array로 빼기
         val items = arrayOf("직장문제", "학업문제", "취업문제", "가족문제", "대인관계", "다른문제", "선택하기")
 
