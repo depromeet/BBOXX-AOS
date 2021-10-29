@@ -15,7 +15,10 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
-import com.depromeet.bboxx.presentation.viewmodel.LoginViewModel
+import com.depromeet.bboxx.presentation.viewmodel.*
+import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
+import com.depromeet.bboxx.util.constants.SharedConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,14 +28,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 
     private var snsPlatformType = ProviderType.UNKNOWN
     private var userToken = ""
-
+    private var firebasetoken = ""
     private var systemErrorDialog: SystemErrorDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         init()
-
 
         loginViewModel.snsLoginEvent.observeNonNull(this){ paltform ->
             //  SNS Click Event
@@ -46,15 +48,21 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
                     toGoogleLogin(this)
                 }
             }
-
             // Test code
             //moveActivityTest()
         }
 
+        loginViewModel.token.observeNonNull(this){ token->
+            setDataStringSharedPreference(token, SharedConstants.C_JWT_KEY)
+        }
+
         loginViewModel.snsLoginResult.observeNonNull(this){ result ->
             if(result == C_SUCCESS){
-                toNickName(this, accessToken = userToken)
+                toNickName(this, accessToken = userToken, snsPlatformType.name)
                 finish()
+            }
+            else{
+                Toast.makeText(this, result, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -67,10 +75,13 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
             lifecycleOwner = this@LoginActivity
             vm = loginViewModel
         }
+
+        initSharedPreference(this, SharedConstants.C_JWT_SHRED)
     }
 
     private fun userSnsVerifyEvent(event: SnsVerifyEvent) {
         userToken = event.accessToken
+
         loginViewModel.signIn(event.accessToken, event.snsPlatformType.type)
     }
 
@@ -85,7 +96,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
     }
 
     private fun moveActivityTest(){
-        toNickName(this, accessToken = "userToken")
+        toNickName(this, accessToken = "userToken", snsPlatformType.name)
         finish()
     }
 }

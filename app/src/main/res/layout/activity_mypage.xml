@@ -14,19 +14,21 @@
         android:layout_height="match_parent"
         android:background="@color/main_bg">
 
-        <include
-            android:id="@+id/layout_title"
-            layout="@layout/layout_title_tab"
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@+id/cl_top_view"
+            android:background="@color/mypage_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_bg_board"
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@drawable/bg_mypage_round"
-            app:layout_constraintTop_toBottomOf="@+id/layout_title"
+            app:layout_constraintTop_toBottomOf="@+id/cl_top_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -39,7 +41,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="@dimen/margin_horizon"
             app:layout_constraintStart_toStartOf="@+id/img_bg_board"
-            app:layout_constraintTop_toBottomOf="@+id/layout_title"
+            app:layout_constraintTop_toBottomOf="@+id/cl_top_view"
             />
 
         <TextView
@@ -49,7 +51,6 @@
             android:layout_marginStart="@dimen/margin_horizon"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="48dp"
-            android:text="@={vm.nickname}"
             android:textSize="24dp"
             android:textStyle="bold"
             android:textColor="@color/white"

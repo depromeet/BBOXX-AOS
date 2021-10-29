@@ -10,9 +10,10 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
 import com.depromeet.bboxx.presentation.viewmodel.NicknameViewModel
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
-import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
+import com.depromeet.bboxx.util.constants.SharedConstants
 import com.depromeet.bboxx.util.constants.SharedConstants.C_JWT_KEY
-import com.depromeet.bboxx.util.constants.SharedConstants.C_JWT_SHRED
+import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_SHRED
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,8 +33,10 @@ class NicknameActivity : BaseActivity<ActivityNicknameBinding>(R.layout.activity
 
         init()
 
-        nicknameViewModel.nickName.observeNonNull(this){
+        nicknameViewModel.showNickname.observeNonNull(this){
             //  Error Exception 처리 필요
+            initSharedPreference(this, C_NICKNAME_SHRED)
+            setDataStringSharedPreference(it, C_NICKNAME_KEY)
         }
 
         nicknameViewModel.likeResult.observeNonNull(this){ token ->
@@ -50,9 +53,6 @@ class NicknameActivity : BaseActivity<ActivityNicknameBinding>(R.layout.activity
             vm = nicknameViewModel
         }
 
-        initSharedPreference(this, C_NICKNAME_SHRED)
-        initSharedPreference(this, C_JWT_SHRED)
-
         nicknameViewModel.setAccessToken(accessToken)
         nicknameViewModel.setProviderType(providerType)
         nicknameViewModel.initNickName()
@@ -60,10 +60,12 @@ class NicknameActivity : BaseActivity<ActivityNicknameBinding>(R.layout.activity
 
 
     private fun setJwtValue(token: String){
-        setDataSharedPreference(token, C_JWT_KEY)
+        initSharedPreference(this, SharedConstants.C_JWT_SHRED)
+        setDataStringSharedPreference(token, C_JWT_KEY)
     }
 
     private fun onMoveMain(){
         toMain(this)
+        finish()
     }
 }

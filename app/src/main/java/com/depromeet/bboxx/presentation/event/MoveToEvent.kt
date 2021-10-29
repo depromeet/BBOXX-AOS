@@ -1,5 +1,5 @@
 package com.depromeet.bboxx.presentation.event
 
 enum class MoveToEvent {
-    PERMISSION_GUIDE,ONBOARD,LOGIN,MAIN
+    PERMISSION_GUIDE,ONBOARD,OPEN,LOGIN,MAIN
 }

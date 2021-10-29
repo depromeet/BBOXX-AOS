@@ -22,16 +22,18 @@ class LoginViewModel @Inject constructor(
 
     val snsLoginEvent = SingleLiveEvent<String>()
 
-
+    val token = MutableLiveData<String>()
     fun signIn(auth: String, providerType: String){
         disposable+=
             authSignUseCase.signIn(auth, providerType)
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
+                        token.value = it.toString()
                         snsLoginResult.value = C_SUCCESS
                     },
                     onError = {
+                        snsLoginResult.value = it.message
                     }
                 )
 
@@ -44,4 +46,5 @@ class LoginViewModel @Inject constructor(
     fun onSnsLoginGoogle(){
         snsLoginEvent.value = "google"
     }
+
 }

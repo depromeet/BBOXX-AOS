@@ -2,25 +2,18 @@ package com.depromeet.bboxx.presentation.ui.growthNote
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.data.entity.ImprovementDiariesEntity
 import com.depromeet.bboxx.data.entity.ImprovementTagsEntity
-import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
 import com.depromeet.bboxx.databinding.GrowthDiaryBinding
-import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteResultFragment
+import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CardViewItemDecoration
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
@@ -48,12 +41,16 @@ class GrowthNoteFragment() : Fragment() {
         val binding = GrowthDiaryBinding.inflate(inflater, container, false)
 
 
+        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{
+            override fun callback() {
+                mainActivity.clearThisFragment(this@GrowthNoteFragment)
+            }
+        }, resources.getString(R.color.white) )
 
         binding.clTopView.setRightBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-                TODO("Not yet implemented")
+                mainActivity.addFragment(MyPageFragment())
             }
-
         }, R.drawable.ic_profile)
 
         binding.rlCardView.adapter = mAdapter

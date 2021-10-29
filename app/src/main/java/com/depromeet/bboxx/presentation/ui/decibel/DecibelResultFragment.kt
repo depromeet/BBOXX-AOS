@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.DecibelResultLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.MainFragment
 import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
@@ -43,7 +44,7 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
 
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
-//                TODO("Not yet implemented")
+                mainActivity.replaceFragment(MainFragment())
             }
         }, R.drawable.ic_close, resources.getString(R.color.main_bg) )
         binding.tvResutDb.text = dB.toString() + "dB"

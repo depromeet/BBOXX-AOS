@@ -16,7 +16,7 @@ class DateFormatter{
     private var simplePushFormatter =   SimpleDateFormat("MM.dd")
     private var simpleDateFormatter = DateTimeFormatter.ofPattern("MM.dd", Locale.getDefault())
     private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
-    private val simpleTimeFormatter = SimpleDateFormat("yyyy-MM-dd")
+    private val simpleTimeFormatter = SimpleDateFormat("yyyy년 MM월 dd일")
     private val simpleFullTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
     private val fullDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.getDefault())
     private val simpleDotFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd", Locale.getDefault())

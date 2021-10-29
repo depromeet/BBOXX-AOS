@@ -4,8 +4,8 @@ import com.depromeet.bboxx.domain.model.Notifications
 
 interface UserClickEvent {
 
-    fun onItemClick(notifications: Notifications)
+    fun onItemClick(notifications: Notifications, position: Long)
 
-    fun onItemDeleteClick(notifications: Notifications)
+    fun onItemDeleteClick(notifications: Notifications, position: Long)
 
 }

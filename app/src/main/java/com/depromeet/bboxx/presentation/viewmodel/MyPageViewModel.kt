@@ -6,8 +6,11 @@ import com.depromeet.bboxx.constants.Constants.C_MOVE_PERSON_INFO
 import com.depromeet.bboxx.constants.Constants.C_MOVE_TEAM
 import com.depromeet.bboxx.constants.Constants.C_MOVE_TERMS_OF_USE
 import com.depromeet.bboxx.presentation.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MyPageViewModel: BaseViewModel() {
+@HiltViewModel
+class MyPageViewModel @Inject constructor(): BaseViewModel() {
 
     private val _movePage = MutableLiveData<String>()
     val movePage : LiveData<String>
