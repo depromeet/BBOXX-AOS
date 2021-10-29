@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="feel_tag">
+        <item>나 왜그랬</item>
+        <item>지금은 행복해</item>
+        <item>나 열심히 살자</item>
+        <item>욕나온다</item>
+        <item>아직도 열받아</item>
+        <item>개웃겨</item>
+        <item>내 맘이 단단해졌어💪🏻</item>
+        <item>할많하않</item>
+        <item>미쳤다</item>
+        <item>ㅋ...</item>
+        <item>똥밞았네💩</item>
+        <item>별일 아니였어</item>
+        <item>생각보다 빡쵸</item>
+        <item>이젠 괜찮아</item>
+        <item>머리터질듯</item>
+        <item>도망갈까?도망가자</item>
+    </string-array>
+</resources>
