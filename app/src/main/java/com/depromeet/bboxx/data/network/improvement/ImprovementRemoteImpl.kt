@@ -16,8 +16,8 @@ class ImprovementRemoteImpl @Inject constructor(
     private val improvementApis: ImprovementApis
 ) : ImprovementRemote {
 
-    override fun getImproveDiaries(): Single<List<ImprovementDiariesEntity>> {
-        return improvementApis.getImprovementDiaries().map {
+    override fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiariesEntity>> {
+        return improvementApis.getImprovementDiaries(memberId, month, year).map {
             it.data
         }
     }

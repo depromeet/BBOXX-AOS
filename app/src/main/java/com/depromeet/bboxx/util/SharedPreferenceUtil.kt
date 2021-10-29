@@ -16,7 +16,7 @@ object SharedPreferenceUtil {
         }
     }
 
-    fun setDataSharedPreference(data: Int, dataKey: String){
+    fun setDataIntSharedPreference(data: Int, dataKey: String){
         pref?.let{
             it.edit().putInt(dataKey, data).commit()
         }
