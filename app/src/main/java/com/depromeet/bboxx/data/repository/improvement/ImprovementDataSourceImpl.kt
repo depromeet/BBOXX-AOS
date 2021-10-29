@@ -16,8 +16,8 @@ class ImprovementDataSourceImpl @Inject constructor(
     private val improvementRemote: ImprovementRemote
 ): ImprovementDataSource {
 
-    override fun getImproveDiaries(): Single<List<ImprovementDiariesEntity>> {
-        return improvementRemote.getImproveDiaries()
+    override fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiariesEntity>> {
+        return improvementRemote.getImproveDiaries(memberId, month, year)
     }
 
     override fun writeImproveDiaries(

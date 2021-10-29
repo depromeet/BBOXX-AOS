@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 
 interface ImprovementRemote {
 
-    fun getImproveDiaries(): Single<List<ImprovementDiariesEntity>>
+    fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiariesEntity>>
 
     fun writeImproveDiaries(
         content: String,

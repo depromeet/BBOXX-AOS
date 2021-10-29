@@ -22,8 +22,8 @@ class ImprovementRepositoryImpl @Inject constructor(
     private val improvementTagsEntityMapper: ImprovementTagsEntityMapper
 ) : ImprovementRepository{
 
-    override fun getImproveDiaries(): Single<List<ImprovementDiaries>> {
-        return improvementDataSource.getImproveDiaries().map {
+    override fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiaries>> {
+        return improvementDataSource.getImproveDiaries(memberId, month, year).map {
             Observable.fromIterable(it)
                 .map { list -> improvementDiariesEntityMapper.trans(list) }
                 .toList()

@@ -6,7 +6,7 @@ import com.depromeet.bboxx.domain.model.ImprovementTags
 import io.reactivex.rxjava3.core.Single
 
 interface ImprovementDataSource {
-    fun getImproveDiaries(): Single<List<ImprovementDiariesEntity>>
+    fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiariesEntity>>
 
     fun writeImproveDiaries(
         content: String,

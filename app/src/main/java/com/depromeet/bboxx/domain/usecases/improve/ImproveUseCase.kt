@@ -7,8 +7,8 @@ import javax.inject.Inject
 class ImproveUseCase @Inject constructor(
     private val improvementRepository: ImprovementRepository
 )  {
-    fun getImproveDiaries() =
-        improvementRepository.getImproveDiaries()
+    fun getImproveDiaries(memberId: Int, month: Int, year: Int) =
+        improvementRepository.getImproveDiaries(memberId, month, year)
 
     fun writeImproveDiaries(
         content: String,
