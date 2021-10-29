@@ -53,11 +53,14 @@ class GrowthNoteReViewFeelingNote() : Fragment() {
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.addTopFragment(BackLayerFragment(this@GrowthNoteReViewFeelingNote))
+                mainActivity.clearThisFragment(this@GrowthNoteReViewFeelingNote)
             }
         })
 
 
+        binding.btnSuccess.setOnClickListener {
+            mainActivity.addTopFragment(GrwothNoteTagFragment())
+        }
 
         return binding.root
     }

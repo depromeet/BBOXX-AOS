@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -24,6 +25,7 @@ class GrwothNoteTagFragment : BaseFragment<FragmentGrowthTagBinding>(R.layout.fr
         mainActivity = context as MainActivity
     }
 
+    @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -59,6 +61,7 @@ class GrwothNoteTagFragment : BaseFragment<FragmentGrowthTagBinding>(R.layout.fr
 
         binding.btnGrowthTag.setOnClickListener {
             // Next Fragment 이동 하여 태그 가져가면 됩니다.
+            mainActivity.addFragment(GrowthNoteWriteFragment())
             // listData 가 태그 들어가 있습니다.
         }
     }
