@@ -9,6 +9,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lay_alarm_main"
         android:layout_width="match_parent"
         android:layout_height="104dp"
         android:layout_marginHorizontal="@dimen/margin_horizon"
@@ -29,7 +30,7 @@
                 android:id="@+id/txt_write_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021.10.20"
+                android:text="@{modelItem.createAt}"
                 android:textSize="14sp"
                 android:textColor="@color/text_middle_title" />
 
@@ -38,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="1일전"
+                android:text="@{modelItem.updateAt}"
                 android:textSize="12sp"
                 android:textColor="@color/text_middle_title" />
         </LinearLayout>
@@ -62,6 +63,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/margin_alarm_item"
             android:maxLines="2"
+            android:text="@{modelItem.title}"
             android:layout_marginHorizontal="@dimen/margin_alarm_item"
             app:layout_constraintTop_toBottomOf="@+id/lay_alarm_board"
             app:layout_constraintStart_toStartOf="parent"

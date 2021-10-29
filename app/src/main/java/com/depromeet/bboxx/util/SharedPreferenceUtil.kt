@@ -10,7 +10,7 @@ object SharedPreferenceUtil {
         pref = context.getSharedPreferences(sharedKey, Context.MODE_PRIVATE)
     }
 
-    fun setDataSharedPreference(data: String, dataKey: String){
+    fun setDataStringSharedPreference(data: String, dataKey: String){
         pref?.let{
             it.edit().putString(dataKey, data).commit()
         }

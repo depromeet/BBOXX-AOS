@@ -2,20 +2,12 @@ package com.depromeet.bboxx.presentation.ui.feelnote
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
-import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
 import com.depromeet.bboxx.databinding.FragmentResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.MainFragment
@@ -43,7 +35,7 @@ class FeelingNoteCompleteFragment() : Fragment() {
 
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
-//                TODO("Not yet implemented")
+                mainActivity.replaceFragment(MainFragment())
             }
         }, R.drawable.ic_close)
 
