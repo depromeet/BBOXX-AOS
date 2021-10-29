@@ -6,82 +6,149 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/main_bg"
         android:clickable="true">
 
-
-        <FrameLayout
-            android:id="@+id/fl_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </FrameLayout>
-
-        <ImageView
-            android:id="@+id/iv_main_text"
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@+id/cl_top_view"
+            android:background="@color/main_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="114dp"
-            android:src="@drawable/speech_bubble"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_today_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/mypage_bg"
+            android:text="2021년 10월 29"
+            app:layout_constraintTop_toBottomOf="@+id/cl_top_view"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/txt_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:text="사랑스러운딸기야"
+            android:textColor="@color/mypage_bg"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_today_date"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:background="@drawable/img_logo_black"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_text" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:gravity="center"
-            android:text="무엇을 하고싶어?"
-            android:textColor="@color/black"
-            android:textSize="26dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_main_text" />
-
-
-        <TextView
-            android:id="@+id/bt_go_to_decibel"
+            android:id="@+id/img_main_icon"
             android:layout_width="0dp"
-            android:layout_height="143dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginBottom="34dp"
-            android:background="@drawable/bg_button_10"
-            android:gravity="center"
-            android:text="소리치기"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/bt_go_to_feeling_note" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_main_icon"
+            android:layout_marginTop="19dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nickname_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            android:id="@+id/bt_go_to_feeling_note"
-            android:layout_width="0dp"
-            android:layout_height="143dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="34dp"
-            android:background="@drawable/bg_button_10"
-            android:gravity="center"
-            android:text="감정일기"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/bt_go_to_decibel"
-            app:layout_constraintRight_toRightOf="parent" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_main_icon"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lay_select_by"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/select_body_bg"
+                android:paddingBottom="20dp">
+                <ImageView
+                    android:id="@+id/img_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:background="@drawable/img_main_view"
+                    app:layout_constraintTop_toTopOf="@+id/lay_select_by"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lay_go_to_decibel"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="34dp"
+                    android:background="@drawable/bg_button_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/lay_go_to_feeling_note" />
+
+                    <ImageView
+                        android:id="@+id/img_empty"
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/ic_emotion"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toTopOf="@+id/lay_go_to_decibel"
+                        app:layout_constraintEnd_toEndOf="@+id/lay_go_to_decibel"
+                        app:layout_constraintStart_toStartOf="@+id/lay_go_to_decibel"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_diary"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp"
+                        app:layout_constraintTop_toBottomOf="@+id/img_empty"
+                        app:layout_constraintEnd_toEndOf="@+id/lay_go_to_decibel"
+                        app:layout_constraintStart_toStartOf="@+id/lay_go_to_decibel"
+                        />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lay_go_to_feeling_note"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="34dp"
+                    android:background="@drawable/bg_button_20"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/lay_go_to_decibel"
+                    app:layout_constraintRight_toRightOf="parent" >
+                    <ImageView
+                        android:id="@+id/img_diary"
+                        android:layout_width="53dp"
+                        android:layout_height="53dp"
+                        android:background="@drawable/ic_diary"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintTop_toTopOf="@+id/lay_go_to_feeling_note"
+                        app:layout_constraintEnd_toEndOf="@+id/lay_go_to_feeling_note"
+                        app:layout_constraintStart_toStartOf="@+id/lay_go_to_feeling_note"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_diary"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:layout_marginTop="6dp"
+                        app:layout_constraintTop_toBottomOf="@+id/img_diary"
+                        app:layout_constraintEnd_toEndOf="@+id/lay_go_to_feeling_note"
+                        app:layout_constraintStart_toStartOf="@+id/lay_go_to_feeling_note"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>

@@ -7,6 +7,9 @@
     <color name="transparent">#000000</color>
     <color name="main_bg">#F1ECE9</color>
     <color name="mypage_bg">#2C2C2C</color>
+    <color name="item_bg">#EAE0DB</color>
+    <color name="select_bg">#745E42</color>
+    <color name="select_body_bg">#DABF9C</color>
 
     <color name="text_splash">#FF000000</color>
     <color name="text_title">#333333</color>
@@ -18,6 +21,7 @@
     <color name="btn_google_login">#EA4335</color>
     <color name="btn_kakao_login">#FEE500</color>
     <color name="btn_again_choose">#2C2C2C</color>
+    <color name="btn_main_bg">#5F5243</color>
 
     <color name="edit_nickname">#E5E5E5</color>
 

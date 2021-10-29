@@ -26,6 +26,8 @@
     <string name="btn_onboard_hate">그래도 싫어</string>
     <string name="btn_again_nickname">다시 고르기</string>
     <string name="btn_nickname_like">마음에 들어</string>
+    <string name="btn_diary">타임머신</string>
+    <string name="btn_empty">비우기</string>
 
     <string name="text_mypage_push_title">푸시 알림</string>
     <string name="text_mypage_push_msg">알림을 켜면 이전 감정을 받아볼 수 있어</string>
@@ -40,4 +42,7 @@
     <string name="text_alarm_msg">너에게 온 알림이 아직 없어.</string>
     <string name="system_error_try_again">시스템 오류가 발생했습니다.
 \n다시 시도해주세요.</string>
+    <string name="text_select_title">오늘 무슨 일 있었어?</string>
+    <string name="text_select_title_main">기분 시원하게 풀러 갈까?</string>
+    <string name="text_main_nickname_title">%1$s\n오늘도 좋은 하루 보내</string>
 </resources>

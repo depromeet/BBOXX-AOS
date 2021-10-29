@@ -33,11 +33,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity android:name=".presentation.ui.onboard.OnboardActivity"
@@ -75,7 +75,13 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing"/>
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".presentation.ui.login.GoogleLoginActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
@@ -89,6 +95,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing"/>
 
+        <activity android:name=".presentation.ui.feelhistory.FeelHistoryActivity"
+            android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing">
+
+        </activity>
         <service android:name=".presentation.ui.service.FCMMessageService"
             android:enabled="true"
             android:exported="true"

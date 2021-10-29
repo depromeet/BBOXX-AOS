@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.depromeet.bboxx.R
 
@@ -57,12 +56,24 @@ class CustomTopView(context: Context, attrs: AttributeSet) : ConstraintLayout(co
         }
     }
 
+    fun setRightBtnImageChange(drawable : Int){
+        backButton.visibility = View.GONE
+        rightButton.background = resources.getDrawable(drawable)
+    }
+
+    fun setRightBtnImageRecover(drawable: Int){
+        backButton.visibility = View.VISIBLE
+        rightButton.background = resources.getDrawable(drawable)
+    }
+
     fun setRedoBtn(callback: OnclickCallback){
         redoButton.visibility = View.VISIBLE
         redoButton.setOnClickListener {
             callback.callback()
         }
     }
+
+
     interface OnclickCallback{
         fun callback()
     }

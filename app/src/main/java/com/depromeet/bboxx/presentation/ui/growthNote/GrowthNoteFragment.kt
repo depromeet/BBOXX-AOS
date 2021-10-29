@@ -1,30 +1,20 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.data.entity.ImprovementDiariesEntity
 import com.depromeet.bboxx.data.entity.ImprovementTagsEntity
-import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
 import com.depromeet.bboxx.databinding.GrowthDiaryBinding
-import com.depromeet.bboxx.presentation.ui.BackLayerFragment
+import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteResultFragment
 import com.depromeet.bboxx.presentation.utils.CardViewItemDecoration
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
-class GrowthNoteFragment() : Fragment() {
+
+class GrowthNoteFragment : BaseFragment<GrowthDiaryBinding>(R.layout.growth_diary) {
 
     lateinit var mainActivity: MainActivity
 
@@ -37,19 +27,10 @@ class GrowthNoteFragment() : Fragment() {
         mainActivity = context as MainActivity
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val binding = GrowthDiaryBinding.inflate(inflater, container, false)
-
-
-
-        binding.clTopView.setRightBtn(object :CustomTopView.OnclickCallback{
+        binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {
                 TODO("Not yet implemented")
             }
@@ -92,8 +73,6 @@ class GrowthNoteFragment() : Fragment() {
 
             }
         }
-
-        return binding.root
     }
 
 
