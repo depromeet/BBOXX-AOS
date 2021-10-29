@@ -1,4 +1,4 @@
-package com.depromeet.bboxx.presentation.ui.feelnote
+package com.depromeet.bboxx.presentation.ui.growthNote
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,11 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
+import com.depromeet.bboxx.databinding.GrowthFeelingNoteLayoutBinding
+import com.depromeet.bboxx.databinding.GrowthNoteEditLayoutBinding
 import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
-class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
+class GrowthNoteWriteFragment() : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -37,7 +39,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = EmotionDiaryEditLayoutBinding.inflate(inflater, container, false)
+        val binding = GrowthNoteEditLayoutBinding.inflate(inflater, container, false)
 
         binding.etTitleText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -58,7 +60,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.addTopFragment(BackLayerFragment(this@FeelingNoteFragment))
+                mainActivity.addTopFragment(BackLayerFragment(this@GrowthNoteWriteFragment))
             }
         })
 
@@ -107,7 +109,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
         binding.btnSuccess.setOnClickListener {
 
-            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(selectedFeeling))
+            mainActivity.addFragment(GrowthNoteCompleteFragment())
 
 
             //selectedFeeling, 글쓴 내용 같이 이동
@@ -117,7 +119,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
 
     fun isActivatedButton(
-        binding: EmotionDiaryEditLayoutBinding
+        binding: GrowthNoteEditLayoutBinding
     ) {
         if (isTitleActivated && isMainActivated) {
             binding.btnSuccess.backgroundTintList =

@@ -3,6 +3,7 @@ package com.depromeet.bboxx.presentation.ui.feelnote
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.ItemSelectFeelingBinding
 
-class FeelingNoteSelectFeelingAdapter() : RecyclerView.Adapter<Holder>() {
+class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
+    RecyclerView.Adapter<FeelingNoteSelectFeelingAdapter.Holder>() {
     var listData = mutableListOf<FeelingNoteSelectFeelingFragment.tempFeeling>()
 
     var context: Context? = null
@@ -29,8 +31,9 @@ class FeelingNoteSelectFeelingAdapter() : RecyclerView.Adapter<Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 
         val binding =
-            ItemSelectFeelingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(binding)
+            ItemSelectFeelingBinding.inflate(LayoutInflater.from(parent.context), parent,
+                false)
+        return Holder(binding, dataCallback)
 
     }
 
@@ -77,29 +80,55 @@ class FeelingNoteSelectFeelingAdapter() : RecyclerView.Adapter<Holder>() {
     override fun getItemCount(): Int {
         return listData.size
     }
-}
 
-class Holder(val binding: ItemSelectFeelingBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun setData(data: FeelingNoteSelectFeelingFragment.tempFeeling, context: Context?) {
-        if (data.drawableid == 0) {
-            binding.clBg.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#00ff0000"))
 
-            binding.tvFeeling.visibility = View.GONE
-            binding.ivFeeling.visibility = View.GONE
-        } else {
-            binding.clBg.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#ffffff"))
+    inner class Holder(val binding: ItemSelectFeelingBinding, val callback: dataSelectCallback?) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun setData(data: FeelingNoteSelectFeelingFragment.tempFeeling, context: Context?) {
+            if (data.drawableid == 0) {
+                binding.clBg.backgroundTintList =
+                    ColorStateList.valueOf(Color.parseColor("#00ff0000"))
 
-            binding.tvFeeling.visibility = View.VISIBLE
-            binding.ivFeeling.visibility = View.VISIBLE
-            context?.let {
-                binding.ivFeeling.background = ContextCompat.getDrawable(it, data.drawableid)
+                binding.tvFeeling.visibility = View.GONE
+                binding.ivFeeling.visibility = View.GONE
+            } else {
+                binding.clBg.backgroundTintList =
+                    ColorStateList.valueOf(Color.parseColor("#ffffff"))
+
+                binding.tvFeeling.visibility = View.VISIBLE
+                binding.ivFeeling.visibility = View.VISIBLE
+                context?.let {
+                    binding.ivFeeling.background = ContextCompat.getDrawable(it, data.drawableid)
+
+                }
+                binding.tvFeeling.text = data.text
+                val position = adapterPosition
+//            itemView.isSelected
+                    itemView.setOnClickListener {
+                        binding.clBg.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#332C2C2C"))
+
+                        if(!listData[position]?.isSelected){
+                            callback?.let {
+
+                                Log.d("HAE", data.text)
+                                callback.callback(data)
+                            }
+                            listData[position]?.isSelected = true
+                        }
+
+                    }
+
 
             }
-            binding.tvFeeling.text = data.text
-        }
 
+
+        }
 
     }
 
+    interface dataSelectCallback {
+        fun callback(data: FeelingNoteSelectFeelingFragment.tempFeeling)
+    }
 }
 

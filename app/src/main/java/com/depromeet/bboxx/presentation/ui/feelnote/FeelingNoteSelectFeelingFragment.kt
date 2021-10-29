@@ -2,7 +2,10 @@ package com.depromeet.bboxx.presentation.ui.feelnote
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +14,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FeelingNoteSelectFeelingLayoutBinding
+import com.depromeet.bboxx.generated.callback.OnClickListener
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 
-class FeelingNoteSelectFeelingFragment : Fragment() {
+class FeelingNoteSelectFeelingFragment(val selectedFeeling: String) : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    val adapter = FeelingNoteSelectFeelingAdapter()
+    lateinit var adapter: FeelingNoteSelectFeelingAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
 
+    val selectFeeling = ArrayList<tempFeeling>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -34,18 +40,36 @@ class FeelingNoteSelectFeelingFragment : Fragment() {
         val binding = FeelingNoteSelectFeelingLayoutBinding.inflate(inflater, container, false)
 
 
+        adapter = FeelingNoteSelectFeelingAdapter(object :
+            FeelingNoteSelectFeelingAdapter.dataSelectCallback {
+            override fun callback(data: tempFeeling) {
+                selectFeeling.add(data)
+                setBtnActivated(binding)
+            }
+
+        })
         binding.rlGrid.adapter = adapter
 
         val layoutManager = GridLayoutManager(mainActivity, 3)
         layoutManager.orientation = RecyclerView.HORIZONTAL
         binding.rlGrid.layoutManager = layoutManager
         setAdapterData()
+
+//        binding.clTopView.setBackBtn(object : OnClickListener)
+//        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
+//            override fun callback() {
+//
+//                mainActivity.clearThisFragment(this@FeelingNoteSelectFeelingFragment)
+//            }
+//
+//        })
+
+
         return binding.root
     }
 
 
-    fun setAdapterData() {
-        //TODO HAERIN Array로 빼기
+    private fun setAdapterData() {
         val dataList = ArrayList<tempFeeling>()
         dataList.add(tempFeeling(R.drawable.feeling_1, "귀찮아"))
         dataList.add(tempFeeling(0, ""))
@@ -78,16 +102,30 @@ class FeelingNoteSelectFeelingFragment : Fragment() {
         adapter.setData(dataList)
 
 
+    }
 
+    fun setBtnActivated(binding: FeelingNoteSelectFeelingLayoutBinding) {
+        if (!selectFeeling.isNullOrEmpty()) {
+            binding.btnSuccess.backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
+            binding.btnSuccess.setTextColor(Color.parseColor("#ffffff"))
+            binding.btnSuccess.setOnClickListener {
+                selectFeeling.forEachIndexed { index, tempFeeling ->
+                    Log.d("HAE", index.toString() + "번쨰" + tempFeeling.text)
+                }
 
+                mainActivity.addFragment(FeelingNoteResultFragment(selectedFeeling, selectFeeling))
 
+            }
+
+        }
     }
 
 
-
     data class tempFeeling(
-        val drawableid : Int,
-        val text : String
+        val drawableid: Int,
+        val text: String,
+        var isSelected: Boolean = false
     )
 }
 

@@ -32,7 +32,7 @@
 
 
         <TextView
-            android:id="@+id/tv_write"
+            android:id="@+id/bt_go_to_feeling_note"
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginLeft="20dp"
@@ -64,7 +64,7 @@
             android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/tv_write"
+            app:layout_constraintLeft_toRightOf="@id/bt_go_to_feeling_note"
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView

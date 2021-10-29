@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:gravity="left"
-            android:text="지금 네 감정을 글로 써봐"
+            android:text="네 생각을 글로 담아봐"
             android:textColor="@color/color_333333"
             android:textSize="24sp"
             android:textStyle="bold"

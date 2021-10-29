@@ -82,7 +82,7 @@ class GrowthNoteFragment() : Fragment() {
         dataList.add(ImprovementDiariesEntity("", "", 1, 1, 1, tag, "타이틀5", ""))
 
         val dataList1 = ArrayList<ImprovementDiariesEntity>()
-
+        setCardView(binding, dataList1)
         binding.ivLeft.setOnClickListener {
             a++
             if (a % 2 == 0) {

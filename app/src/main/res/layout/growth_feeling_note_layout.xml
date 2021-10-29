@@ -20,25 +20,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/btn_back"-->
-<!--            android:layout_width="12dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:layout_marginLeft="16dp"-->
-<!--            android:layout_marginTop="38dp"-->
-<!--            android:background="@drawable/ic_img_back"-->
-<!--            android:backgroundTint="@color/color_C4C4C4"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
 
         <TextView
-            android:id="@+id/tv_test"
+            android:id="@+id/tv_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:gravity="left"
-            android:text="지금 네 감정을 글로 써봐"
+            android:text="예전에 네가 느낀 감정이야"
             android:textColor="@color/color_333333"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -50,22 +39,23 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="122dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/edit_text_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/tv_main">
 
-            <EditText
+            <TextView
                 android:id="@+id/et_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="61dp"
                 android:background="@null"
-                android:hint="지금 내 감정은.."
+                android:text="생각하면 우습다."
                 android:textSize="20sp"
+                android:textColor="@color/gray_9"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -76,15 +66,28 @@
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
                 android:background="@null"
                 android:gravity="top"
-                android:hint="네 감정에 대해서 써봐"
+                android:text="어린이집 교사인데 어이가 없는 게 본인은 아닌 척 하면서 진상인 부모님들 많이 봄. 감사하다고 하면 더 잘해드리고 싶고 그러는데 진짜 틈만 나면 아무것도 아닌 걸로 트집 잡고 이러면 감사한 마음 하나도 없고, 잘해드리고 싶지도 않고 진짜 의욕상실...
+우리도 돈 받고 이러는 입장에서 나름 잘하려고 하고 있는데 애가 하원 할 때 달려 나온다는 이유로 학대 의심 받고 이러면 어이도 없고, 이게 맞나 싶고 다 부질없어짐. 하원 할 때 안 달려나가는 아이들이 어디 있나 물어보고 싶음. 2학기 학부모 상담 진짜 걱정된다.
+
+어린이집 교사인데 어이가 없는 게 본인은 아닌 척 하면서 진상인 부모님들 많이 봄. 감사하다고 하면 더 잘해드리고 싶고 그러는데 진짜 틈만 나면 아무것도 아닌 걸로 트집 잡고 이러면 감사한 마음 하나도 없고, 잘해드리고 싶지도 않고 진짜 의욕상실...
+우리도 돈 받고 이러는 입장에서 나름 잘하려고 하고 있는데 애가 하원 할 때 달려 나온다는 이유로 학대 의심 받고 이러면 어이도 없고, 이게 맞나 싶고 다 부질없어짐. 하원 할 때 안 달려나가는 아이들이 어디 있나 물어보고 싶음. 2학기 학부모 상담 진짜 걱정된다."
+                android:textColor="@color/gray_9"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@id/btn_success"
+                app:layout_constraintBottom_toBottomOf="@id/btn_success"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_line" />
+                app:layout_constraintTop_toBottomOf="@id/view_line"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/growth_gradation"
+                app:layout_constraintTop_toTopOf="@id/btn_success"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="-42dp"/>
 
             <TextView
                 android:id="@+id/tv_text_count"
@@ -123,13 +126,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginHorizontal="25dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_solid_10"
+                android:backgroundTint="@color/gray_9"
+                android:gravity="center"
+                android:text="다시보니 괜찮아졌어"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/btn_go_to_trash"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_go_to_trash"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginHorizontal="25dp"
                 android:layout_marginTop="593dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_solid_10"
-                android:backgroundTint="@color/gray_2"
+                android:backgroundTint="@color/white"
                 android:gravity="center"
-                android:text="다 썼어!"
-                android:textColor="@color/white"
+                android:text="완전히 버리고싶어"
+                android:textColor="@color/gray_4"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

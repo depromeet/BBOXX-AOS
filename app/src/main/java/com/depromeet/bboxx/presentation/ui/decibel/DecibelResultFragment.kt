@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.DecibelResultLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 
@@ -77,6 +78,10 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
                 binding.tvResultInfo.text = "운석이 충돌한 줄 알았어!\n속 시원하게 다 게웠어?☄️"
             }
 
+        }
+
+        binding.btGoToFeelingNote.setOnClickListener {
+            mainActivity.addFragment(FeelingNoteSelectFragment())
         }
 //        binding.ivDecibelGauge.updateLayoutParams {
 //

@@ -14,10 +14,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
+import com.depromeet.bboxx.databinding.FragmentResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.MainFragment
+import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
+import com.depromeet.bboxx.presentation.utils.CustomTopView
 
-class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling> ) : Fragment() {
+class FeelingNoteCompleteFragment() : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -34,26 +39,22 @@ class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : A
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = EmotionDiaryResultLayoutBinding.inflate(inflater, container, false)
+        val binding = FragmentResultBinding.inflate(inflater, container, false)
 
-        binding.rlFeeling.adapter = FeelingSelectedAdapter(mainActivity).apply {
-            setData(feelingList)
+        binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
+            override fun callback() {
+//                TODO("Not yet implemented")
+            }
+        }, R.drawable.ic_close)
+
+        binding.btGoToDecibel.setOnClickListener {
+            mainActivity.addFragment(DecibelFragment())
+        }
+        binding.btGoToHome.setOnClickListener {
+            mainActivity.addFragment(MainFragment())
         }
 
-        val layoutManager = LinearLayoutManager(mainActivity)
-        layoutManager.orientation = RecyclerView.HORIZONTAL
-        binding.rlFeeling.layoutManager = layoutManager
-        val string = SpannableStringBuilder("오늘 "+selectedFeeling+"로 힘들었어.")
 
-        string.apply{
-            setSpan(StyleSpan(Typeface.BOLD), 3, 3+selectedFeeling.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
-        }
-
-        binding.btnSuccess.setOnClickListener {
-            mainActivity.addFragment(FeelingNoteCompleteFragment())
-        }
-      binding.tvMainTitle01.text =string
         return binding.root
     }
 

@@ -9,18 +9,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/main_bg"
         android:clickable="true">
 
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="38dp"
-            android:background="@drawable/ic_img_back"
-            android:backgroundTint="@color/color_C4C4C4"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@+id/cl_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
 
 
         <ImageView

@@ -8,6 +8,12 @@
         android:background="@color/main_bg"
         android:clickable="true">
 
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@id/cl_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
         <TextView
             android:id="@+id/tv_info_1"
             android:layout_width="wrap_content"

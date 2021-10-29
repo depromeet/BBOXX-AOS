@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.FeelingNoteSelectReasonLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class FeelingNoteSelectFragment : Fragment() {
 
@@ -47,6 +48,13 @@ class FeelingNoteSelectFragment : Fragment() {
         //TODO HAERIN Array로 빼기
         val items = arrayOf("직장문제", "학업문제", "취업문제", "가족문제", "대인관계", "다른문제", "선택하기")
 
+        binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
+            override fun callback() {
+
+                mainActivity.clearThisFragment(this@FeelingNoteSelectFragment)
+            }
+
+        })
 
         var isActivated = false
 

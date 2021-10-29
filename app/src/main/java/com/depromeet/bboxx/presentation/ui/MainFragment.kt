@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.FragmentMainBinding
 import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
+import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteFragment
+import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteWriteFragment
 
 
 class MainFragment : Fragment() {
@@ -35,8 +37,7 @@ class MainFragment : Fragment() {
             mainActivity.addFragment(DecibelFragment())
         }
         binding.btGoToFeelingNote.setOnClickListener {
-//            mainActivity.addFragment(FeelingNoteSelectFragment())
-            mainActivity.addFragment(GrowthNoteFragment())
+            mainActivity.addFragment(FeelingNoteSelectFragment())
 //
         }
 //        binding.btGoToDecibel.setOnClickListener {
