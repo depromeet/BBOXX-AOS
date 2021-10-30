@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 
-class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling> ) : Fragment() {
+class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling>, val title : String, val main : String ) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -44,6 +44,8 @@ class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : A
         layoutManager.orientation = RecyclerView.HORIZONTAL
         binding.rlFeeling.layoutManager = layoutManager
         val string = SpannableStringBuilder("오늘 "+selectedFeeling+"로 힘들었어.")
+        binding.tvMainTitle02.text = title
+        binding.tvSubText.text = main
 
         string.apply{
             setSpan(StyleSpan(Typeface.BOLD), 3, 3+selectedFeeling.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

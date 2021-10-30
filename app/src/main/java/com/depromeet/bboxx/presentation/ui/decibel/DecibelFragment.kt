@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,6 +86,7 @@ class DecibelFragment : Fragment() {
                     audioReaderJava.stopReader()
 
                     mainActivity.addFragment(DecibelResultFragment(maxDecibel))
+                    maxDecibel = 0
                 }
             }.start()
         }
@@ -100,6 +102,7 @@ class DecibelFragment : Fragment() {
             object : AudioReaderJava.Listener() {
                 override fun onReadComplete(dB: Int) {
                     if (dB >= maxDecibel) maxDecibel = dB
+                    Log.d("HAE", dB.toString())
                 }
 
                 override fun onReadError(error: Int) {}

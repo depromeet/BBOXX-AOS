@@ -23,6 +23,8 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
     var isTitleActivated = false
     var isMainActivated = false
 
+    var titleText = ""
+    var mainTitle = ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -46,6 +48,8 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
             }
 
             override fun afterTextChanged(s: Editable) {
+
+                titleText = binding.etTitleText.getText().toString()
 
                 if (isTitleActivated != binding.etTitleText.text.isNotEmpty()) {
                     isTitleActivated = binding.etTitleText.text.isNotEmpty()
@@ -83,6 +87,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
                 isTitleActivated = binding.etMainText.text.isNotEmpty()
                 val input: String = binding.etMainText.getText().toString()
                 binding.tvTextCount.text = input.length.toString()
+                mainTitle = input
                 when {
                     input.isEmpty() -> {
                         isMainActivated = false
@@ -107,7 +112,7 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
         binding.btnSuccess.setOnClickListener {
 
-            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(selectedFeeling))
+            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(selectedFeeling, titleText, mainTitle))
 
 
             //selectedFeeling, 글쓴 내용 같이 이동

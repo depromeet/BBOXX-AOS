@@ -19,7 +19,7 @@ import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 
-class FeelingNoteSelectFeelingFragment(val selectedFeeling: String) : Fragment() {
+class FeelingNoteSelectFeelingFragment(val selectedFeeling: String, val title : String, val main : String) : Fragment() {
 
     lateinit var mainActivity: MainActivity
     lateinit var adapter: FeelingNoteSelectFeelingAdapter
@@ -54,6 +54,7 @@ class FeelingNoteSelectFeelingFragment(val selectedFeeling: String) : Fragment()
         layoutManager.orientation = RecyclerView.HORIZONTAL
         binding.rlGrid.layoutManager = layoutManager
         setAdapterData()
+
 
 //        binding.clTopView.setBackBtn(object : OnClickListener)
 //        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
@@ -114,7 +115,7 @@ class FeelingNoteSelectFeelingFragment(val selectedFeeling: String) : Fragment()
                     Log.d("HAE", index.toString() + "번쨰" + tempFeeling.text)
                 }
 
-                mainActivity.addFragment(FeelingNoteResultFragment(selectedFeeling, selectFeeling))
+                mainActivity.addFragment(FeelingNoteResultFragment(selectedFeeling, selectFeeling, title, main))
 
             }
 
