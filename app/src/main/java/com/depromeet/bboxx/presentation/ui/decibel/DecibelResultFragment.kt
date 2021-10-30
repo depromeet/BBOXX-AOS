@@ -80,6 +80,9 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
             }
 
         }
+        binding.btnAgain.setOnClickListener {
+            mainActivity.clearThisFragment(this)
+        }
 
         binding.btGoToFeelingNote.setOnClickListener {
             mainActivity.addFragment(FeelingNoteSelectFragment())
