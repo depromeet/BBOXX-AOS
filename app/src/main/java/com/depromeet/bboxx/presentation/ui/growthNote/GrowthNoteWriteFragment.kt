@@ -4,21 +4,28 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
-import com.depromeet.bboxx.databinding.GrowthFeelingNoteLayoutBinding
 import com.depromeet.bboxx.databinding.GrowthNoteEditLayoutBinding
+import com.depromeet.bboxx.presentation.model.GrowthNoteModel
+import com.depromeet.bboxx.presentation.model.GrowthNoteTagModel
 import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
+import com.depromeet.bboxx.util.DateFormatter
+import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 
-class GrowthNoteWriteFragment() : Fragment() {
+class GrowthNoteWriteFragment(private val tagList: List<String>, private val emotionDiaryId: Int) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -32,6 +39,7 @@ class GrowthNoteWriteFragment() : Fragment() {
 
     var isButtonActivated = false
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +48,7 @@ class GrowthNoteWriteFragment() : Fragment() {
     ): View? {
 
         val binding = GrowthNoteEditLayoutBinding.inflate(inflater, container, false)
+        binding.tvTextDate.text = DateFormatter().growthNowTime()
 
         binding.etTitleText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -108,8 +117,21 @@ class GrowthNoteWriteFragment() : Fragment() {
         })
 
         binding.btnSuccess.setOnClickListener {
+            initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
+            val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
+            val tagListModel = arrayListOf<GrowthNoteTagModel>()
+            tagList.forEach{
+                tagListModel.add(GrowthNoteTagModel(it))
+            }
 
-            mainActivity.addFragment(GrowthNoteCompleteFragment())
+            val growthNoteModel = GrowthNoteModel(
+                binding.etMainText.text.toString(),
+                emotionDiaryId,
+                memberId!!,
+                tagListModel,
+                binding.etTitleText.text.toString()
+            )
+            mainActivity.addFragment(GrowthNoteCompleteFragment(growthNoteModel))
 
 
             //selectedFeeling, 글쓴 내용 같이 이동
