@@ -22,6 +22,7 @@ class DateFormatter{
     private val simpleDotFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd", Locale.getDefault())
     private val fullDateDot12Formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd a hh:mm", Locale.getDefault())
     private val fullDateDot24Formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm", Locale.getDefault())
+    private val growthTimeFormatter = SimpleDateFormat("MM. dd EE")
 
     private val calendar = Calendar.getInstance()
 
@@ -50,6 +51,9 @@ class DateFormatter{
 //        return simpleTimeFormatter.format(Calendar.getInstance().time)
     }
 
+    fun growthNowTime(): String{
+        return growthTimeFormatter.format(Date())
+    }
 
     fun simpleDotTimeFormatter(time : String) : String {
         return simpleDotFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime())

@@ -1,8 +1,10 @@
 package com.depromeet.bboxx.presentation.ui.feelhistory
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -154,9 +156,10 @@ class FeelingHistoryFragment @Inject constructor()
         }, R.drawable.ic_trash, resources.getString(R.color.main_bg))
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(notifications: NotificationModel, position: Long) {
         // 페이지 이동
-        mainActivity.addTopFragment(GrwothNoteTagFragment())
+        mainActivity.addTopFragment(GrwothNoteTagFragment(notifications.emotionDiaryId), )
 
     }
 
