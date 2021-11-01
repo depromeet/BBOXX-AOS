@@ -8,5 +8,6 @@ data class NotificationModel(
     val receiverId: Int,
     val state: String,
     val title: String,
-    val updateAt: String
+    val updateAt: String,
+    var isDelete: Boolean
 )
