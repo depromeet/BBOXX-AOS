@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.depromeet.bboxx.databinding.ItemAlarmHistoryBinding
-import com.depromeet.bboxx.domain.model.Notifications
 import com.depromeet.bboxx.presentation.base.BaseAdapter
 import com.depromeet.bboxx.presentation.base.BaseHolder
+import com.depromeet.bboxx.presentation.model.NotificationModel
 import javax.inject.Inject
 
 class FeelHistoryAdapter
 @Inject constructor() :
-    BaseAdapter<Notifications>(NotificationItemCallback()) {
+    BaseAdapter<NotificationModel>(NotificationItemCallback()) {
 
     private var onClickListener: UserClickEvent? = null
-
+    private var notificationList = mutableListOf<NotificationModel>()
     init {
         setHasStableIds(true)
     }
@@ -23,7 +23,7 @@ class FeelHistoryAdapter
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BaseHolder<out ViewDataBinding, Notifications> {
+    ): BaseHolder<out ViewDataBinding, NotificationModel> {
         return NotificationInformationHolder(
             ItemAlarmHistoryBinding.inflate(
                 LayoutInflater.from(
@@ -37,8 +37,28 @@ class FeelHistoryAdapter
         return getItem(position).id.toLong()
     }
 
-    fun replaceItems(items: List<Notifications>) {
+    fun replaceItems(items: List<NotificationModel>) {
+        notificationList.addAll(items)
         submitList(items)
+    }
+
+    fun deleteStatusVisible(){
+        deleteStatusChange(true)
+    }
+
+    fun deleteStatusGone(){
+        deleteStatusChange(false)
+    }
+
+    fun deleteStatusChange(isDelete: Boolean){
+        val renew = arrayListOf<NotificationModel>()
+
+        notificationList.forEach {
+            val notifications = NotificationModel(it.createAt,it.emotionDiaryId,it.id,it.message, it.receiverId, it.state,it.title, it.updateAt, isDelete )
+            renew.add(notifications)
+        }
+
+        submitList(renew)
     }
 
     fun setOnClickListener(onClickListener: UserClickEvent) {
@@ -46,8 +66,8 @@ class FeelHistoryAdapter
     }
 
     inner class NotificationInformationHolder(binding: ItemAlarmHistoryBinding) :
-        BaseHolder<ItemAlarmHistoryBinding, Notifications>(binding) {
-        override fun bind(element: Notifications) {
+        BaseHolder<ItemAlarmHistoryBinding, NotificationModel>(binding) {
+        override fun bind(element: NotificationModel) {
             super.bind(element)
             binding.modelItem = element
             binding.executePendingBindings()
@@ -57,17 +77,18 @@ class FeelHistoryAdapter
             }
 
             binding.btnRemove.setOnClickListener {
+                notificationList.removeAt(itemId.toInt())
                 onClickListener?.onItemDeleteClick(element, itemId)
             }
         }
     }
 
-    class NotificationItemCallback : DiffUtil.ItemCallback<Notifications>() {
-        override fun areItemsTheSame(oldItem: Notifications, newItem: Notifications): Boolean {
+    class NotificationItemCallback : DiffUtil.ItemCallback<NotificationModel>() {
+        override fun areItemsTheSame(oldItem: NotificationModel, newItem: NotificationModel): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Notifications, newItem: Notifications): Boolean {
+        override fun areContentsTheSame(oldItem: NotificationModel, newItem: NotificationModel): Boolean {
             return oldItem == newItem
         }
     }
