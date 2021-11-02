@@ -17,7 +17,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     val mainViewModel: MainViewModel by viewModels()
     val decibelViewModel: DecibelViewModel by viewModels()
-    val feelHistoryViewModel : FeelHistoryViewModel by viewModels()
+    val feelHistoryViewModel: FeelHistoryViewModel by viewModels()
 
     private lateinit var viewPager: ViewPager2
 
@@ -27,21 +27,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         init()
         setAdapter()
-
-//if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-//                != PackageManager.PERMISSION_GRANTED) {
-//
-//                ActivityCompat.requestPermissions(
-//                    this, arrayOf(
-//                        Manifest.permission.RECORD_AUDIO
-//                    ),0)
-//
-//            }else{
-//                val fragment1 = decibelFragment()
-//                childFragmentManager.be
-//                supportFragmentManager.beginTransaction().replace(R.id.fl_main, fragment1).commit();
-//            }
-
     }
 
     private fun init() {
@@ -49,19 +34,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             lifecycleOwner = this@MainActivity
             vm = mainViewModel
         }
+
+        //  OwnerId 불러오기
+        mainViewModel.getOwnerId()
     }
 
-    private fun setAdapter(){
+    private fun setAdapter() {
         viewPager = binding.vpMain
         viewPager.adapter = MainViewAdapter(this)
     }
 
     fun addFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit();
+        supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit()
 
     }
-    fun replaceFragment(replacefragment: Fragment){
-        supportFragmentManager.beginTransaction().replace(R.id.fl_main, replacefragment).commit();    }
+
+    fun replaceFragment(replacefragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fl_main, replacefragment).commit(); }
 
     fun addTopFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
@@ -74,9 +63,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        if(viewPager.currentItem == 0) {
+        if (viewPager.currentItem == 0) {
             super.onBackPressed()
-        }else {
+        } else {
             viewPager.currentItem = viewPager.currentItem - 1
         }
     }
