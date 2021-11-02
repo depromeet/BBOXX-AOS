@@ -131,7 +131,7 @@ dependencies {
 
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation "com.google.firebase:firebase-analytics-ktx:17.4.4"
 
     //  KAKAO
     implementation "com.kakao.sdk:v2-user:2.8.1" // 카카오 로그인
