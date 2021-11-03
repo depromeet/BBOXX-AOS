@@ -17,7 +17,6 @@ class GrowthNoteReViewFeelingNote() : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
-    val mAdapter = CardViewAdapter()
 
     var a = 0
 

@@ -32,7 +32,7 @@
             android:layout_marginTop="27dp"
             android:layout_marginBottom="127dp"
             android:text="오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어.. 끝나고 중요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..요한 약속이 있었는데 갑자기 일이 생겼다. 미안하다고 하고 허겁지겁 일을 끝내가려는데 갑자기 약속도 취소되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증나오늘 너무 힘들어..되고.. 왜이렇게 되는 일이 없냐 ㅠ... 진짜 짜증"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -51,14 +51,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="23dp"
-            android:text="#테스트 #테스트 #테스트 #테스트 "
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_text" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/CustomChipChoice"/>
+
         <ImageView
             android:id="@+id/iv_gradation"
             android:layout_width="match_parent"

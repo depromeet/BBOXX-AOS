@@ -26,12 +26,11 @@
             android:id="@+id/img_board_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
             app:srcCompat="@drawable/img_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_board_title" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
             android:id="@+id/txt_next_step"
             android:layout_width="wrap_content"

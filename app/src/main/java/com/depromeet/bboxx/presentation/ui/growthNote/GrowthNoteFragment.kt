@@ -21,7 +21,7 @@ class GrowthNoteFragment() : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
-    val mAdapter = CardViewAdapter()
+   lateinit var mAdapter : CardViewAdapter
 
     var a = 0
 
@@ -31,7 +31,7 @@ class GrowthNoteFragment() : Fragment() {
     }
 
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,6 +53,7 @@ class GrowthNoteFragment() : Fragment() {
             }
         }, R.drawable.ic_profile)
 
+        mAdapter = CardViewAdapter(mainActivity)
         binding.rlCardView.adapter = mAdapter
 
         binding.rlCardView.layoutManager =
@@ -82,7 +83,7 @@ class GrowthNoteFragment() : Fragment() {
         setCardView(binding, dataList1)
         binding.ivLeft.setOnClickListener {
             a++
-            if (a % 2 == 0) {
+            if (a % 2 == 1) {
                 setCardView(binding, dataList)
             } else {
                 setCardView(binding, dataList1)
