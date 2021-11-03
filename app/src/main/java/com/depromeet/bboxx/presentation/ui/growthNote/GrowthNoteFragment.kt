@@ -60,6 +60,10 @@ class GrowthNoteFragment() : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 
+        binding.tvMonth.setOnClickListener {
+            GrowthCalendarFragment.newInstance()
+                .show(childFragmentManager, GrowthCalendarFragment.TAG)
+        }
         val dataList = ArrayList<ImprovementDiariesEntity>()
         val tag = ArrayList<ImprovementTagsEntity>()
         dataList.add(
