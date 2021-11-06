@@ -8,77 +8,77 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:background="@color/color_9D9D9D">
+        app:behavior_hideable="true"
+        android:orientation="vertical"
+        app:behavior_peekHeight="200dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+        <LinearLayout
+            android:id="@+id/lay_cal_title"
+            android:layout_width="109dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_cal_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_left_large"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/txt_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:text="2021"
+                android:textColor="@color/mypage_bg"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_cal_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_right_large"
+                android:layout_weight="1" />
+        </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="357dp"
-            android:background="@drawable/bg_top_30"
-            android:backgroundTint="@color/white"
-            android:clickable="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <LinearLayout
-                android:id="@+id/lay_cal_title"
-                android:layout_width="109dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="40dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_cal_left"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_left_large"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/txt_year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:text="2021"
-                    android:textColor="@color/mypage_bg"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btn_cal_right"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_right_large"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
+            android:layout_height="315dp"
+            android:layout_marginTop="31dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lay_cal_title">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="31dp"
+                android:layout_marginTop="21dp"
                 android:layout_marginBottom="50dp"
                 android:layout_marginHorizontal="44dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lay_cal_title">
+                app:layout_constraintTop_toTopOf="parent"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal">
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/txt_one"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="1월"
@@ -91,7 +91,7 @@
 
                     <TextView
                         android:id="@+id/txt_two"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="2월"
@@ -104,7 +104,7 @@
 
                     <TextView
                         android:id="@+id/txt_three"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="3월"
@@ -117,7 +117,7 @@
 
                     <TextView
                         android:id="@+id/txt_four"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="4월"
@@ -130,13 +130,14 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/txt_five"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="5월"
@@ -149,7 +150,7 @@
 
                     <TextView
                         android:id="@+id/txt_six"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="6월"
@@ -162,7 +163,7 @@
 
                     <TextView
                         android:id="@+id/txt_seven"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="7월"
@@ -175,7 +176,7 @@
 
                     <TextView
                         android:id="@+id/txt_eight"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="8월"
@@ -188,13 +189,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    >
 
                     <TextView
                         android:id="@+id/txt_nine"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="9월"
@@ -207,7 +210,7 @@
 
                     <TextView
                         android:id="@+id/txt_ten"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="10월"
@@ -220,7 +223,7 @@
 
                     <TextView
                         android:id="@+id/txt_eleven"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="11월"
@@ -233,7 +236,7 @@
 
                     <TextView
                         android:id="@+id/txt_twelve"
-                        android:layout_height="60dp"
+                        android:layout_height="match_parent"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:text="12월"
@@ -250,4 +253,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

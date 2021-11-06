@@ -1,10 +1,10 @@
 package com.depromeet.bboxx.data.repository
 
 import com.depromeet.bboxx.data.dto.EmptyDto
-import com.depromeet.bboxx.data.mapper.EmotionSearchEntityMapper
+import com.depromeet.bboxx.data.mapper.EmotionDiaryEntityMapper
 import com.depromeet.bboxx.data.mapper.RequestEmotionEntityMapper
 import com.depromeet.bboxx.data.repository.emotion.EmotionDataSource
-import com.depromeet.bboxx.domain.model.EmotionSearch
+import com.depromeet.bboxx.domain.model.EmotionDiary
 import com.depromeet.bboxx.domain.model.RequestEmotions
 import com.depromeet.bboxx.domain.repository.emotion.EmotionRepository
 import dagger.Binds
@@ -18,7 +18,7 @@ import javax.inject.Singleton
 class EmotionRepositoryImpl @Inject constructor(
     private val emotionDataSource: EmotionDataSource,
     private val requestEmotionStatusEntityMapper: RequestEmotionEntityMapper,
-    private val emotionSearchEntityMapper: EmotionSearchEntityMapper
+    private val emotionDiaryEntityMapper: EmotionDiaryEntityMapper
 ) : EmotionRepository {
     override fun requestEmotionStatus(): Single<RequestEmotions> {
         return emotionDataSource.requestEmotionStatus().map {
@@ -42,9 +42,9 @@ class EmotionRepositoryImpl @Inject constructor(
         )
     }
 
-    override fun searchEmotion(emotionId: Int): Single<EmotionSearch> {
+    override fun searchEmotion(emotionId: Int): Single<EmotionDiary> {
         return emotionDataSource.searchEmotion(emotionId).map {
-            emotionSearchEntityMapper.trans(it)
+            emotionDiaryEntityMapper.trans(it)
         }
     }
 

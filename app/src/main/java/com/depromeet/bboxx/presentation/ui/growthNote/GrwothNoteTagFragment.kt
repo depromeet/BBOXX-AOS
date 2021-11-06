@@ -6,21 +6,48 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentGrowthTagBinding
 import com.depromeet.bboxx.presentation.base.BaseFragment
+import com.depromeet.bboxx.presentation.model.TimelineGrowthTagModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import org.jetbrains.anko.runOnUiThread
 @RequiresApi(Build.VERSION_CODES.M)
 class GrwothNoteTagFragment(private val emotionDiaryId: Int) : BaseFragment<FragmentGrowthTagBinding>(R.layout.fragment_growth_tag) {
 
     lateinit var mainActivity: MainActivity
-    var chipGroup: ChipGroup? = null
     var tagList = mutableListOf<String>()
+    private val growthTagList = mutableListOf<TimelineGrowthTagModel>()
+
+    private val growthNoteTagAdapter: GrowthNoteTagAdapter by lazy{
+        GrowthNoteTagAdapter({list ->
+            tagList.clear()
+            tagList.addAll(list)
+
+            if(tagList.size in 1..5){
+                activeBtn()
+            }
+            else {
+                disabledBtn()
+            }
+        }, {status ->
+
+            if(status){
+                onToast("최대 다섯개까지 선택 가능합니다")
+            }
+        })
+    }
+
+    private fun onToast(msg: String){
+        Toast.makeText(requireContext(), msg ,Toast.LENGTH_SHORT).show()
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,7 +58,11 @@ class GrwothNoteTagFragment(private val emotionDiaryId: Int) : BaseFragment<Frag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnGrowthTag.isClickable = false
+        bindingInit()
+
+        setAdapterInit()
+
+        setAdapterListData()
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {
@@ -39,60 +70,46 @@ class GrwothNoteTagFragment(private val emotionDiaryId: Int) : BaseFragment<Frag
             }
         }, resources.getString(R.color.mypage_bg) )
 
-
-        val growthList = resources.getStringArray(R.array.feel_tag)
-        chipGroup = binding.chipGroup
-        growthList.forEach {
-            val chip = Chip(requireContext())
-            chip.text = it
-            chip.textSize = 16F
-            chipGroup!!.addView(chip)
-            chip.setChipBackgroundColorResource(R.color.white)
-
-            chip.setOnClickListener {
-                if(tagList.size == 0)
-                    chipActivation(chip)
-                else{
-                    tagList.forEach {  tag ->
-                        if(tag == chip.text.toString()){
-                            chipDisabled(chip)
-                        }
-                        else{
-                            chipActivation(chip)
-                        }
-                    }
-                }
-            }
-        }
-
         binding.btnGrowthTag.setOnClickListener {
             // Next Fragment 이동 하여 태그 가져가면 됩니다.
-            mainActivity.addFragment(GrowthNoteWriteFragment(tagList, emotionDiaryId))
-            // listData 가 태그 들어가 있습니다.
+            if(tagList.size == 0){
+                onToast("감정을 선택해 주세요.")
+            }
+            else{
+                mainActivity.addFragment(GrowthNoteWriteFragment(tagList, emotionDiaryId))
+            }
         }
     }
 
-    private fun chipActivation(chip: Chip){
-        chip.setTextColor(Color.WHITE)
-        chip.setChipBackgroundColorResource(R.color.mypage_bg)
+    private fun bindingInit(){
+        binding.lifecycleOwner = this
+        binding.btnGrowthTag.isClickable = false
+    }
 
-        tagList.add(chip.text.toString())
+    private fun setAdapterInit(){
+        growthNoteTagAdapter.notifyDataSetChanged()
 
-        if(tagList.size <= 5){
-            activeBtn()
+        val flexboxLayoutManager = FlexboxLayoutManager(requireContext()).apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            alignItems = AlignItems.STRETCH
+        }
+
+        binding.ryGrowth.run{
+            layoutManager = flexboxLayoutManager
+            adapter = growthNoteTagAdapter
+            setHasFixedSize(false)
         }
     }
 
-    private fun chipDisabled(chip: Chip){
-        chip.setTextColor(Color.BLACK)
-        chip.setChipBackgroundColorResource(R.color.white)
-
-        tagList.remove(chip.text.toString())
-
-        if(tagList.size == 0){
-            disabledBtn()
+    private fun setAdapterListData(){
+        val growthList = resources.getStringArray(R.array.feel_tag)
+        growthList.forEach {
+            growthTagList.add(TimelineGrowthTagModel(it, false))
         }
+        growthNoteTagAdapter.setGrowthTagList(growthTagList)
     }
+
 
     private fun activeBtn(){
         binding.btnGrowthTag.isClickable = true

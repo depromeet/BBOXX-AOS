@@ -24,21 +24,25 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginBottom="107dp"
-            android:src="@drawable/feeling_img"
+            android:layout_marginStart="93dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="127dp"
+            android:background="@drawable/img_cate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-        <Spinner
+        <TextView
             android:id="@+id/sp_feeling"
             android:layout_width="213dp"
             android:layout_height="56dp"
-            android:spinnerMode="dialog"
+            android:textSize="20sp"
+            android:hint="@string/text_feeling_select_hint"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="128dp"
+            android:textColor="@color/gray_10"
+            android:gravity="center"
+            android:paddingRight="16dp"
             android:background="@drawable/bg_select_feeling"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="true"
+        android:orientation="vertical"
+        app:behavior_peekHeight="100dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/bg_bottom_30" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ry_feel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="20dp"
+                android:clipToPadding="false"
+                tools:listitem="@layout/item_trouble_name" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

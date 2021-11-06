@@ -1,7 +1,7 @@
 package com.depromeet.bboxx.data.network.emotions
 
 import com.depromeet.bboxx.data.dto.EmptyDto
-import com.depromeet.bboxx.data.entity.EmotionSearchEntity
+import com.depromeet.bboxx.data.entity.EmotionDiaryEntity
 import com.depromeet.bboxx.data.entity.RequestEmotionsEntity
 import com.depromeet.bboxx.data.network.api.EmotionsApis
 import dagger.Binds
@@ -39,7 +39,7 @@ class EmotionsRemoteImpl @Inject constructor(
         return emotionsApis.registerEmotions(body)
     }
 
-    override fun searchEmotion(emotionId: Int): Single<EmotionSearchEntity> {
+    override fun searchEmotion(emotionId: Int): Single<EmotionDiaryEntity> {
         return emotionsApis.searchRequestEmotions(emotionId).map {
             it.data
         }

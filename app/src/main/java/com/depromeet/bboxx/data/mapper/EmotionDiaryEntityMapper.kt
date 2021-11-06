@@ -6,20 +6,18 @@ import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class EmotionDiaryEntityMapper @Inject constructor(
-    private val improvementDiariesEntityMapper: ImprovementDiariesEntityMapper
+    private val emotionStatusEntityMapper: EmotionStatusEntityMapper
 ) {
     fun trans(target: EmotionDiaryEntity): EmotionDiary = with(target) {
         return EmotionDiary(
             categoryId,
             content,
             createdAt,
-            emotionStatuses,
-            id,
-            Observable.fromIterable(improvementDiaries)
-                .map { improvementDiariesEntityMapper.trans(it) }
+            Observable.fromIterable(emotionStatusList)
+                .map { emotionStatusEntityMapper.trans(it) }
                 .toList()
                 .blockingGet(),
-            isNotiSent,
+            id,
             memberId,
             title,
             updateAt

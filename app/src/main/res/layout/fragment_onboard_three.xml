@@ -24,9 +24,12 @@
 
         <ImageView
             android:id="@+id/img_board_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/img_logo"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="198dp"
+            android:layout_marginBottom="212dp"
+            android:layout_marginHorizontal="68dp"
+            android:background="@drawable/img_onboard_one"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

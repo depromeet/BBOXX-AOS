@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="feel">
+        <item>직장문제</item>
+        <item>학업문제</item>
+        <item>취업문제</item>
+        <item>가족문제</item>
+        <item>대인문제</item>
+        <item>다른문제</item>
+    </string-array>
+</resources>

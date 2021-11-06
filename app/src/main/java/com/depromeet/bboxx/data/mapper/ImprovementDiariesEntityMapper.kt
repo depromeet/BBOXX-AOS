@@ -8,19 +8,21 @@ import javax.inject.Inject
 class ImprovementDiariesEntityMapper @Inject constructor(
     private val improvementTagsEntityMapper: ImprovementTagsEntityMapper
 ) {
-    fun trans(target: ImprovementDiariesEntity): ImprovementDiaries = with(target) {
-        return ImprovementDiaries(
-            content,
-            createdAt,
-            emotionDiaryId,
-            id,
-            memberId,
-            Observable.fromIterable(tags)
-                .map { improvementTagsEntityMapper.trans(it) }
-                .toList()
-                .blockingGet(),
-            title,
-            updatedAt
-        )
+    fun trans(target: List<ImprovementDiariesEntity>): List<ImprovementDiaries> = with(target) {
+        return map { improve ->
+            ImprovementDiaries(
+                improve.content,
+                improve.createdAt,
+                improve.emotionDiaryId,
+                improve.id,
+                improve.memberId,
+                Observable.fromIterable(improve.tags)
+                    .map { improvementTagsEntityMapper.trans(it) }
+                    .toList()
+                    .blockingGet(),
+                improve.title,
+                improve.updatedAt
+            )
+        }
     }
 }
