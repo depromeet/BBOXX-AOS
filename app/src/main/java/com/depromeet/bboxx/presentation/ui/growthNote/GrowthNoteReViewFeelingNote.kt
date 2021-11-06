@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.GrowthFeelingNoteLayoutBinding
+import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
@@ -43,11 +44,15 @@ class GrowthNoteReViewFeelingNote() : Fragment() {
             }
         })
 
+
         val emotionDiaryId = 0
         binding.btnSuccess.setOnClickListener {
             mainActivity.addTopFragment(GrwothNoteTagFragment(emotionDiaryId))
         }
 
+        binding.btnDeleteAll.setOnClickListener {
+                mainActivity.addTopFragment(GrowthNoteDeleteAll())
+        }
         return binding.root
     }
 

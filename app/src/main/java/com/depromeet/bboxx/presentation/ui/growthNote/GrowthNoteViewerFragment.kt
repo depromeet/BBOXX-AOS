@@ -54,7 +54,7 @@ class GrowthNoteViewerFragment(val bgColor: Int) : Fragment() {
 
         }, resources.getString(R.color.white))
 
-        binding.svViewer.setBackgroundColor(ContextCompat.getColor(mainActivity, bgColor))
+        binding.clTopView.setBackgroundColor(ContextCompat.getColor(mainActivity, bgColor))
 
         mainActivity.setStatusBarColor(bgColor)
         return binding.root

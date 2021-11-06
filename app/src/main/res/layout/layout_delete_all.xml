@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="86dp"
-                android:text="돌아가면 쓰던 글이 없어져."
+                android:text="완전히 지우면 다시는 이 글을 볼 수 없어"
                 android:textColor="@color/gray_6"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="그만쓰고싶어?"
+                android:text="이전 감정을 완전히 지울까?"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/btn_back"
+                android:id="@+id/btn_cancle"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:layout_marginLeft="24dp"
@@ -64,17 +64,17 @@
                 android:background="@drawable/bg_solid_10"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
-                android:text="그만쓸래"
+                android:text="아냐, 냅둘래"
                 android:textColor="@color/gray_6"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/btn_cancle" />
+                app:layout_constraintRight_toLeftOf="@id/btn_delete_all" />
 
             <TextView
-                android:id="@+id/btn_cancle"
+                android:id="@+id/btn_delete_all"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="593dp"
@@ -83,12 +83,12 @@
                 android:background="@drawable/bg_solid_10"
                 android:backgroundTint="@color/gray_10"
                 android:gravity="center"
-                android:text="계속쓸래"
+                android:text="응, 지워줘"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/btn_back"
+                app:layout_constraintLeft_toRightOf="@id/btn_cancle"
                 app:layout_constraintRight_toRightOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

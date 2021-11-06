@@ -135,11 +135,11 @@
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/btn_go_to_trash"
+                app:layout_constraintBottom_toTopOf="@id/btn_delete_all"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <TextView
-                android:id="@+id/btn_go_to_trash"
+                android:id="@+id/btn_delete_all"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginHorizontal="25dp"
