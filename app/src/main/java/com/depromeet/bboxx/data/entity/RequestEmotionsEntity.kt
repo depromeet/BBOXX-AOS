@@ -3,6 +3,6 @@ package com.depromeet.bboxx.data.entity
 import com.google.gson.annotations.SerializedName
 
 data class RequestEmotionsEntity(
-    @SerializedName("emotionStatuses")
+    @SerializedName("emotions")
     val emotionStatuses: List<EmotionStatusEntity>
 )

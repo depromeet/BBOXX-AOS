@@ -43,6 +43,18 @@ class MainViewModel @Inject constructor(
                 )
     }
 
+    private fun saveUserId(userInfo: UserInfo) {
+        ownerId = userInfo.id
+        AppContext.applicationContext()?.let {
+            initSharedPreference(it, C_MEMBER_ID_SHRED)
+            setDataIntSharedPreference(userInfo.id, C_MEMBER_ID_KEY)
+        }
+    }
+
+
+    /**
+     *  해당 로직은 추후 위치 수정 예정 from. 중근
+     */
     private fun getFCMToken(): String {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -71,16 +83,5 @@ class MainViewModel @Inject constructor(
                     onError = {
                     }
                 )
-    }
-
-    // FCM Token 을 여기서 처리 해야됨
-    private fun saveUserId(userInfo: UserInfo) {
-        ownerId = userInfo.id
-        AppContext.applicationContext()?.let {
-            initSharedPreference(it, C_MEMBER_ID_SHRED)
-            setDataIntSharedPreference(userInfo.id, C_MEMBER_ID_KEY)
-        }
-
-        getFCMToken()
     }
 }

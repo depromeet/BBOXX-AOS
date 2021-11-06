@@ -9,6 +9,7 @@ import com.depromeet.bboxx.databinding.ActivityMainBinding
 import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.viewmodel.DecibelViewModel
 import com.depromeet.bboxx.presentation.viewmodel.FeelHistoryViewModel
+import com.depromeet.bboxx.presentation.viewmodel.FeelingNoteViewModel
 import com.depromeet.bboxx.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     val mainViewModel: MainViewModel by viewModels()
     val decibelViewModel: DecibelViewModel by viewModels()
     val feelHistoryViewModel: FeelHistoryViewModel by viewModels()
+    val feelingNoteViewModel: FeelingNoteViewModel by viewModels()
 
     private lateinit var viewPager: ViewPager2
 

@@ -23,7 +23,7 @@ class EmotionDataSourceImpl @Inject constructor(
     override fun registerEmotion(
         categoryId: Int,
         content: String,
-        emotionStatuses: String,
+        emotionStatuses: List<Int>,
         memberId: Int,
         title: String
     ): Single<EmptyDto> {

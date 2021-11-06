@@ -40,9 +40,9 @@ class GrwothNoteTagFragment(private val emotionDiaryId: Int) : BaseFragment<Frag
         }, resources.getString(R.color.mypage_bg) )
 
 
-        val dummyTexts = resources.getStringArray(R.array.feel_tag)
+        val growthList = resources.getStringArray(R.array.feel_tag)
         chipGroup = binding.chipGroup
-        dummyTexts.forEach {
+        growthList.forEach {
             val chip = Chip(requireContext())
             chip.text = it
             chip.textSize = 16F
