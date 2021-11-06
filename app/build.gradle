@@ -136,4 +136,6 @@ dependencies {
     //  KAKAO
     implementation "com.kakao.sdk:v2-user:2.8.1" // 카카오 로그인
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 }

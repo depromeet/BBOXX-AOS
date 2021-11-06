@@ -9,14 +9,10 @@ data class EmotionDiaryEntity(
     val content: String,
     @SerializedName("createdAt")
     val createdAt: String,
-    @SerializedName("emotionStatuses")
-    val emotionStatuses: String,
+    @SerializedName("emotionStatusList")
+    val emotionStatusList: List<EmotionStatusEntity>,
     @SerializedName("id")
     val id: Int,
-    @SerializedName("improvementDiaries")
-    val improvementDiaries: List<ImprovementDiariesEntity>,
-    @SerializedName("isNotiSent")
-    val isNotiSent: Boolean,
     @SerializedName("memberId")
     val memberId: Int,
     @SerializedName("title")

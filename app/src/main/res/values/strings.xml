@@ -8,9 +8,10 @@
     <string name="title_onboard_first">안녕? 난 네 비밀친구 빡스야.\n요즘 어떻게 지내?</string>
     <string name="title_onboard_second">요즘 힘든 일이 참 많지?\n어딘가에 말하고 싶지 않아?</string>
     <string name="title_onboard_third">스트레스가 너무 쌓였다면\n나한테 소리를 지르거나</string>
-    <string name="title_onboard_four">글로 네 감정을\n정리해서 나한테 버려봐</string>
-    <string name="title_onboard_five">힘든 일이 있으면\n언제든지 나를 찾아와\n내가 네 애기를 들어줄게.</string>
+    <string name="title_onboard_four">감정일기로 네 감정을\n정리해서 나한테 버려봐</string>
+    <string name="title_onboard_five">언제든지 나를 찾아와\n내가 네 애기를 들어줄게</string>
     <string name="title_onboard_six">정말? 내가 네 좋은 친구가\n되어줄 수 있는데...</string>
+    <string name="title_onboard_seven">나중에 성장일기를 통해\n다시 네 감정을 정리할 수 있어</string>
     <string name="title_login">아래 방법 중에 하나로 시작하면\n함께할 수 있어</string>
     <string name="title_nickname">너를 뭐라고 부를까?</string>
     <string name="title_nickname_change">나중에 프로필에서 다시 바꿀수 있어</string>
@@ -48,4 +49,6 @@
     <string name="text_main_nickname_title">%1$s\n오늘도 좋은 하루 보내</string>
     <string name="text_growth_my_feel_title">지금 내 감정은...</string>
     <string name="text_growth_my_feel_choice">최대 다섯개까지 선택해봐.</string>
+
+    <string name="text_feeling_select_hint">선택하기</string>
 </resources>

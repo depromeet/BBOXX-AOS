@@ -13,6 +13,9 @@
         <item name="chipIconTint">@color/white</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
     </style>
 
     <style name="TitleTextView" parent="@android:style/Widget.TextView">
@@ -42,7 +45,7 @@
 
     <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/white</item>
-        <item name="android:textColor">@color/mypage_bg</item>
+        <item name="android:textColor">@color/gray_10</item>
     </style>
 
     <style name="LoginButtonStyle" parent="@android:style/Widget.Button"/>
@@ -75,4 +78,20 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
 </resources>

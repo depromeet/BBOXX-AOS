@@ -11,7 +11,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -20,14 +19,15 @@ class ImprovementRepositoryImpl @Inject constructor(
     private val improvementDataSource: ImprovementDataSource,
     private val improvementDiariesEntityMapper: ImprovementDiariesEntityMapper,
     private val improvementTagsEntityMapper: ImprovementTagsEntityMapper
-) : ImprovementRepository{
+) : ImprovementRepository {
 
-    override fun getImproveDiaries(memberId: Int, month: Int, year: Int): Single<List<ImprovementDiaries>> {
+    override fun getImproveDiaries(
+        memberId: Int,
+        month: Int,
+        year: Int
+    ): Single<List<ImprovementDiaries>> {
         return improvementDataSource.getImproveDiaries(memberId, month, year).map {
-            Observable.fromIterable(it)
-                .map { list -> improvementDiariesEntityMapper.trans(list) }
-                .toList()
-                .blockingGet()
+            improvementDiariesEntityMapper.trans(it)
         }
     }
 
@@ -38,7 +38,7 @@ class ImprovementRepositoryImpl @Inject constructor(
         emotionTags: List<ImprovementTags>,
         title: String
     ): Single<EmptyDto> {
-        return  improvementDataSource.writeImproveDiaries(
+        return improvementDataSource.writeImproveDiaries(
             content,
             emotionDiaryId,
             memberId,
