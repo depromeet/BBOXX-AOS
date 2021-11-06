@@ -25,14 +25,14 @@ class EmotionsRemoteImpl @Inject constructor(
     override fun registerEmotion(
         categoryId: Int,
         content: String,
-        emotionStatuses: String,
+        emotionStatuses: List<Int>,
         memberId: Int,
         title: String
     ): Single<EmptyDto> {
         val body = HashMap<String, Any>().apply {
             put("categoryId", categoryId)
             put("content", content)
-            put("emotionStatuses", emotionStatuses)
+            put("emotionStatusList", emotionStatuses)
             put("memberId", memberId)
             put("title", title)
         }

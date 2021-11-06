@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FeelingNoteSelectFeelingLayoutBinding
-import com.depromeet.bboxx.generated.callback.OnClickListener
+import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 
 class FeelingNoteSelectFeelingFragment(val selectedFeeling: String, val title : String, val main : String) : Fragment() {
@@ -29,6 +28,11 @@ class FeelingNoteSelectFeelingFragment(val selectedFeeling: String, val title : 
     }
 
     val selectFeeling = ArrayList<tempFeeling>()
+
+    init {
+        //  감정일기 이모션 불러오기
+        mainActivity.feelingNoteViewModel.getFeeling()
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -55,6 +59,10 @@ class FeelingNoteSelectFeelingFragment(val selectedFeeling: String, val title : 
         binding.rlGrid.layoutManager = layoutManager
         setAdapterData()
 
+        //  Emotion API 작업중 from.중근
+        mainActivity.feelingNoteViewModel.feelingEmotionList.observeNonNull(this){
+
+        }
 
 //        binding.clTopView.setBackBtn(object : OnClickListener)
 //        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {

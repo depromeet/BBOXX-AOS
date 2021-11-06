@@ -9,7 +9,7 @@ class EmotionUseCase @Inject constructor(
     fun requestEmotionStatus() =
         emotionRepository.requestEmotionStatus()
 
-    fun registerEmotion(categoryId: Int, content: String, emotionStatuses: String, memberId: Int, title: String) =
+    fun registerEmotion(categoryId: Int, content: String, emotionStatuses: List<Int>, memberId: Int, title: String) =
         emotionRepository.registerEmotion(categoryId, content, emotionStatuses, memberId, title)
 
     fun searchEmotion(emotionId: Int) =
