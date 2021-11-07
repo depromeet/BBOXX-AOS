@@ -33,11 +33,13 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         super.onViewCreated(view, savedInstanceState)
 
         //TODO HAERIN FRAGMNET이동
+
+        val today = DateFormatter().formatNowTime()
+        binding.txtTodayDate.text = today
+
         initSharedPreference(mainActivity.applicationContext, C_NICKNAME_SHRED)
         val nickName = SharedPreferenceUtil.getDataStringSharedPreference(C_NICKNAME_KEY)
         binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName)
-        val today = DateFormatter().formatNowTime()
-        binding.txtTodayDate.text = today
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {

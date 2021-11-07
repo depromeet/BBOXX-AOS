@@ -29,9 +29,9 @@ class FeelHistoryViewModel @Inject constructor(
     }
 
 
-    fun getNoticeList() {
+    fun getNoticeList(memberId: Int) {
         disposable +=
-            noticeUseCase.getNotificationInfoList()
+            noticeUseCase.getNotificationInfoList(1)
                 .map(notificationsMapper::trans)
                 .onIOforMainThread()
                 .subscribeBy(

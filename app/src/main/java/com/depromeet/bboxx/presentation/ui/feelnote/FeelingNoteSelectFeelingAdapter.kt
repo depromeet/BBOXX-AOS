@@ -12,15 +12,25 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.ItemSelectFeelingBinding
+import com.depromeet.bboxx.presentation.model.FeelingEmotionModel
 
 class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
     RecyclerView.Adapter<FeelingNoteSelectFeelingAdapter.Holder>() {
     var listData = mutableListOf<FeelingNoteSelectFeelingFragment.tempFeeling>()
 
     var context: Context? = null
+
+    var listFeel = mutableListOf<FeelingEmotionModel>()
+
     fun setData(dataList: ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling>) {
         listData.clear()
         listData.addAll(dataList)
+        notifyDataSetChanged()
+    }
+
+    fun setFeelData(dataList: ArrayList<FeelingEmotionModel>){
+        listFeel.clear()
+        listFeel.addAll(dataList)
         notifyDataSetChanged()
     }
 
@@ -37,9 +47,13 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
 
     }
 
-
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val member = listData[position]
+        //val member = listData[position]
+        val member = listFeel[position]
+        holder.apply {
+            bind(member)
+        }
+
         val relativeParams = LinearLayout.LayoutParams(
             dpToPx(160),
             dpToPx(160)
@@ -48,24 +62,25 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
             0 -> {
 
                 relativeParams.setMargins(20, 0, 0, 0) // left, top, right, bottom
-                holder.itemView.setLayoutParams(relativeParams)
+                holder.itemView.layoutParams = relativeParams
             }
             1 -> {
 
                 relativeParams.setMargins(20, -50, 0, 0) // left, top, right, bottom
 
-                holder.itemView.setLayoutParams(relativeParams)
+                holder.itemView.layoutParams = relativeParams
             }
             2 -> {
 
                 relativeParams.setMargins(20, -100, 0, 0) // left, top, right, bottom
 
-                holder.itemView.setLayoutParams(relativeParams)
+                holder.itemView.layoutParams = relativeParams
             }
         }
 
+        holder.setBindData(member, context)
 
-        holder.setData(member, context)
+       // holder.setData(member, context)
     }
 
     private fun dpToPx(dp: Int): Int {
@@ -77,13 +92,57 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
             .toInt()
     }
 
-    override fun getItemCount(): Int {
-        return listData.size
-    }
+//    override fun getItemCount(): Int {
+//        return listData.size
+//    }
+
+    override fun getItemCount() = listFeel.size
 
 
     inner class Holder(val binding: ItemSelectFeelingBinding, val callback: dataSelectCallback?) :
         RecyclerView.ViewHolder(binding.root) {
+
+        //  From 중근
+        fun bind(feelEmotionItem: FeelingEmotionModel){
+            binding.apply {
+                feelItem = feelEmotionItem
+                executePendingBindings()
+            }
+        }
+        //  From 중근
+        fun setBindData(data: FeelingEmotionModel, context: Context?){
+            if (data.drawableid == 0) {
+                binding.clBg.backgroundTintList =
+                    ColorStateList.valueOf(Color.parseColor("#00ff0000"))
+
+                binding.tvFeeling.visibility = View.GONE
+                binding.ivFeeling.visibility = View.GONE
+            } else {
+                binding.clBg.backgroundTintList =
+                    ColorStateList.valueOf(Color.parseColor("#ffffff"))
+
+                binding.tvFeeling.visibility = View.VISIBLE
+                binding.ivFeeling.visibility = View.VISIBLE
+
+                binding.tvFeeling.text = data.text
+                val position = adapterPosition
+//            itemView.isSelected
+                itemView.setOnClickListener {
+                    binding.clBg.backgroundTintList =
+                        ColorStateList.valueOf(Color.parseColor("#332C2C2C"))
+
+                    if(!listData[position].isSelected){
+                        callback?.let {
+
+                            Log.d("HAE", data.text)
+                            callback.callFeelback(data)
+                        }
+                        listData[position].isSelected = true
+                    }
+                }
+            }
+        }
+
         fun setData(data: FeelingNoteSelectFeelingFragment.tempFeeling, context: Context?) {
             if (data.drawableid == 0) {
                 binding.clBg.backgroundTintList =
@@ -108,13 +167,13 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
                         binding.clBg.backgroundTintList =
                             ColorStateList.valueOf(Color.parseColor("#332C2C2C"))
 
-                        if(!listData[position]?.isSelected){
+                        if(!listData[position].isSelected){
                             callback?.let {
 
                                 Log.d("HAE", data.text)
                                 callback.callback(data)
                             }
-                            listData[position]?.isSelected = true
+                            listData[position].isSelected = true
                         }
 
                     }
@@ -129,6 +188,8 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
 
     interface dataSelectCallback {
         fun callback(data: FeelingNoteSelectFeelingFragment.tempFeeling)
+
+        fun callFeelback(data: FeelingEmotionModel)
     }
 }
 

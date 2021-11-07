@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.depromeet.bboxx.R
-import com.depromeet.bboxx.constants.Constants.C_SUCCESS
 import com.depromeet.bboxx.databinding.ActivityLoginBinding
 import com.depromeet.bboxx.domain.enums.ProviderType
 import com.depromeet.bboxx.domain.enums.SnsVerifyEvent
@@ -14,6 +13,7 @@ import com.depromeet.bboxx.presentation.event.SnsErrorEvent
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
+import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
 import com.depromeet.bboxx.presentation.viewmodel.*
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
@@ -53,17 +53,17 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
         }
 
         loginViewModel.token.observeNonNull(this){ token->
-            setDataStringSharedPreference(token, SharedConstants.C_JWT_KEY)
-        }
-
-        loginViewModel.snsLoginResult.observeNonNull(this){ result ->
-            if(result == C_SUCCESS){
-                toNickName(this, accessToken = userToken, snsPlatformType.name)
+            if(token.isNotBlank()){
+                initSharedPreference(this, SharedConstants.C_JWT_SHRED)
+                setDataStringSharedPreference(token, SharedConstants.C_JWT_KEY)
+                toMain(this)
                 finish()
             }
             else{
-                Toast.makeText(this, result, Toast.LENGTH_LONG).show()
+                toNickName(this, accessToken = userToken, snsPlatformType.name)
+                finish()
             }
+
         }
 
         subscribeEvent(SnsVerifyEvent::class.java, ::userSnsVerifyEvent)
@@ -75,8 +75,6 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
             lifecycleOwner = this@LoginActivity
             vm = loginViewModel
         }
-
-        initSharedPreference(this, SharedConstants.C_JWT_SHRED)
     }
 
     private fun userSnsVerifyEvent(event: SnsVerifyEvent) {

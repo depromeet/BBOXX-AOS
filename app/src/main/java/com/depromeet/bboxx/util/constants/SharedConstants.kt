@@ -15,4 +15,10 @@ object SharedConstants {
 
     const val C_DECIBEL_SHRED = "DECIBEL"
     const val C_DECIBEL_KEY = "DecibelKey"
+
+    const val C_FIRST_INSTALL_SHRED = "FIRST"
+    const val C_FIRST_INSTALL_KEY = "FIRSTKey"
+
+    const val C_FCM_TOKEN_SHRED = "FCMTOKEN"
+    const val C_FCM_TOKEN_KEY = "FCMTokenKey"
 }

@@ -14,7 +14,7 @@ import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.MainFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
-class GrowthNoteCompleteFragment(private val growthNoteModel : GrowthNoteModel) : Fragment() {
+class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteModel) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -23,6 +23,7 @@ class GrowthNoteCompleteFragment(private val growthNoteModel : GrowthNoteModel) 
         mainActivity = context as MainActivity
     }
 
+    private lateinit var growthNoteModel: GrowthNoteModel
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -33,18 +34,38 @@ class GrowthNoteCompleteFragment(private val growthNoteModel : GrowthNoteModel) 
 
         val binding = GrowthNoteCompleteLayoutBinding.inflate(inflater, container, false)
 
-        binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
+        binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
                 mainActivity.replaceFragment(MainFragment())
             }
         }, R.drawable.ic_close)
 
+        modelDataInit()
+
+        writeGrowth()
+
         binding.btGoToCardView.setOnClickListener {
             mainActivity.addFragment(GrowthNoteFragment())
         }
+
         return binding.root
     }
 
+    private fun modelDataInit() {
+        growthNoteModel = growthNoteModelData
+    }
+
+    //  성장일기 쓰기 API call
+    private fun writeGrowth() {
+        if (::growthNoteModel.isInitialized) {
+            mainActivity.growthNoteViewModel.writeGrowth(
+                growthNoteModel.content,
+                growthNoteModel.emotionDiaryId,
+                growthNoteModel.tags,
+                growthNoteModel.title
+            )
+        }
+    }
 
 
 }

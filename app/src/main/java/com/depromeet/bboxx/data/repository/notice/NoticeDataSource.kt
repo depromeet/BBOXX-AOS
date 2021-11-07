@@ -5,7 +5,7 @@ import com.depromeet.bboxx.data.entity.NotificationsEntity
 import io.reactivex.rxjava3.core.Single
 
 interface NoticeDataSource {
-    fun getNotificationList(): Single<List<NotificationsEntity>>
+    fun getNotificationList(receiverId: Int): Single<List<NotificationsEntity>>
 
     fun getNotificationInfo(ownerId: Int): Single<NotificationTokenEntity>
 

@@ -12,7 +12,7 @@ interface ImprovementDataSource {
         content: String,
         emotionDiaryId: Int,
         memberId: Int,
-        emotionTags: List<ImprovementTags>,
+        emotionTags: List<String>,
         title: String
     ): Single<EmptyDto>
 }

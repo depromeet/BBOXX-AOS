@@ -12,7 +12,7 @@ import com.depromeet.bboxx.databinding.BottomFeelingNoteSelectBinding
 import com.depromeet.bboxx.presentation.model.FeelingName
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class FeelingNoteSelectBottomFragment(val item: (String)-> Unit): BottomSheetDialogFragment(){
+class FeelingNoteSelectBottomFragment(val item: (String)-> Unit, val categoryId: (Int) -> Unit): BottomSheetDialogFragment(){
 
     private val feelingNoteAdapter: FeelingNoteSelectBottomAdapter by lazy{
         FeelingNoteSelectBottomAdapter{

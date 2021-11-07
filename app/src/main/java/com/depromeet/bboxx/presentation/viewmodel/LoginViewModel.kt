@@ -1,7 +1,6 @@
 package com.depromeet.bboxx.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.depromeet.bboxx.constants.Constants.C_SUCCESS
 import com.depromeet.bboxx.domain.usecases.auth.AuthSignUseCase
 import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
@@ -29,8 +28,7 @@ class LoginViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
-                        token.value = it.toString()
-                        snsLoginResult.value = C_SUCCESS
+                        token.value = it.token
                     },
                     onError = {
                         snsLoginResult.value = it.message

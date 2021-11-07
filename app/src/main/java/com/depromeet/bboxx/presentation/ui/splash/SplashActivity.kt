@@ -15,12 +15,13 @@ import com.depromeet.bboxx.presentation.event.MoveToEvent
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.viewmodel.SplashViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.Observables
 import io.reactivex.rxjava3.kotlin.toObservable
 
-
+@AndroidEntryPoint
 class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
 
     private val splashViewModel: SplashViewModel by viewModels()
@@ -48,6 +49,8 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
                 MoveToEvent.OPEN -> {
                     reqPermissions(this, getPermissionList(permissions))
                 }
+                MoveToEvent.LOGIN -> NavigatorUI.toLogin(this)
+                else -> NavigatorUI.toMain(this)
             }
         }
 

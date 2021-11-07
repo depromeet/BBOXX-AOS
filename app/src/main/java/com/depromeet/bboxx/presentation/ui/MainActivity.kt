@@ -7,10 +7,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivityMainBinding
 import com.depromeet.bboxx.presentation.base.BaseActivity
-import com.depromeet.bboxx.presentation.viewmodel.DecibelViewModel
-import com.depromeet.bboxx.presentation.viewmodel.FeelHistoryViewModel
-import com.depromeet.bboxx.presentation.viewmodel.FeelingNoteViewModel
-import com.depromeet.bboxx.presentation.viewmodel.MainViewModel
+import com.depromeet.bboxx.presentation.extension.observeNonNull
+import com.depromeet.bboxx.presentation.model.NotificationModel
+import com.depromeet.bboxx.presentation.viewmodel.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,8 +19,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     val decibelViewModel: DecibelViewModel by viewModels()
     val feelHistoryViewModel: FeelHistoryViewModel by viewModels()
     val feelingNoteViewModel: FeelingNoteViewModel by viewModels()
+    val growthNoteViewModel: GrowthNoteViewModel by viewModels()
 
     private lateinit var viewPager: ViewPager2
+
+    private lateinit var noticeModel: List<NotificationModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         init()
         setAdapter()
+
+        feelHistoryViewModel.noticeList.observeNonNull(this){
+            noticeModel = it
+        }
     }
 
     private fun init() {
@@ -36,9 +42,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             lifecycleOwner = this@MainActivity
             vm = mainViewModel
         }
+    }
 
-        //  OwnerId 불러오기
-        mainViewModel.getOwnerId()
+    fun getEmotionListImage(){
+        //  감정일기 이모션 불러오기
+        feelingNoteViewModel.getFeeling()
     }
 
     private fun setAdapter() {

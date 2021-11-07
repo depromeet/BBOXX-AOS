@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface NoticeApis {
     @Headers("Content-type: application/json;charset=UTF-8")
     @GET("notifications")
-    fun getNotificationList(): Single<NotificationsListDto>
+    fun getNotificationList(@Query("receiver_id") recevierId: Int): Single<NotificationsListDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @GET("push-tokens")

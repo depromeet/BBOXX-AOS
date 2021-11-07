@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_nic"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:text="@{vm.troubleName}"
             android:layout_marginTop="8dp"

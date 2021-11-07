@@ -11,13 +11,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.constants.SharedConstants
 
-class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling>, val title : String, val main : String ) : Fragment() {
+class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String, val feelingList : ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling>, val title : String, val main : String ) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -59,6 +60,19 @@ class FeelingNoteResultFragment(val selectedFeeling: String, val feelingList : A
         return binding.root
     }
 
+    /**
+     *  예제 코드 입니다.
+     */
+    private fun writeFeelingNote(){
+        // emotionList는 FeelingEmotionModel id 값을 기준으로 선택한 감정 리스트를 전달해줍니다.
+        val tempEmotionList = arrayListOf<Int>(1,2,3)
+        var memberId = -1
+
+        SharedPreferenceUtil.initSharedPreference(requireContext(), SharedConstants.C_MEMBER_ID_SHRED)
+        memberId = SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)!!
+
+        mainActivity.feelingNoteViewModel.writeFeeling(categoryId, main, tempEmotionList, memberId, title)
+    }
 
 
 }

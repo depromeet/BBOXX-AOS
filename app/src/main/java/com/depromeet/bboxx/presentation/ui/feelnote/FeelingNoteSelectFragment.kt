@@ -23,6 +23,7 @@ class FeelingNoteSelectFragment : Fragment() {
         mainActivity = context as MainActivity
     }
 
+    private var categoryId: Int = -1
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -37,7 +38,6 @@ class FeelingNoteSelectFragment : Fragment() {
             initView(binding, container.context)
         }
 
-
         return binding.root
     }
 
@@ -48,26 +48,26 @@ class FeelingNoteSelectFragment : Fragment() {
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-
                 mainActivity.clearThisFragment(this@FeelingNoteSelectFragment)
             }
 
         })
 
         binding.spFeeling.setOnClickListener {
-            val bottomNote = FeelingNoteSelectBottomFragment {
+            val bottomNote = FeelingNoteSelectBottomFragment ({
                 binding.spFeeling.text = it
                 selectedFeeling = it
                 isActivated = true
                 setBtn(binding.btnSuccess)
-            }
+            },{
+                categoryId = it+1
+            })
             bottomNote.show(childFragmentManager, bottomNote.tag)
         }
 
         binding.btnSuccess.setOnClickListener {
             if (isActivated) {
-
-                mainActivity.addFragment(FeelingNoteFragment(selectedFeeling))
+                mainActivity.addFragment(FeelingNoteFragment(categoryId, selectedFeeling))
             }
         }
 

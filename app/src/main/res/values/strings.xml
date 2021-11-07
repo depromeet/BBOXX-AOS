@@ -51,4 +51,7 @@
     <string name="text_growth_my_feel_choice">최대 다섯개까지 선택해봐.</string>
 
     <string name="text_feeling_select_hint">선택하기</string>
+
+    <string name="notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="notice">타임라인</string>
 </resources>

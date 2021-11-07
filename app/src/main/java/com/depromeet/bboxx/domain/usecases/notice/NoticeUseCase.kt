@@ -9,8 +9,8 @@ import javax.inject.Inject
 class NoticeUseCase @Inject constructor(
     private val noticeRepository: NoticeRepository
 ) {
-    fun getNotificationInfoList() =
-        noticeRepository.getNotificationList()
+    fun getNotificationInfoList(receiverId: Int) =
+        noticeRepository.getNotificationList(receiverId)
 
     fun getNotificationInfo(ownerId: Int) =
         noticeRepository.getNotificationInfo(ownerId)

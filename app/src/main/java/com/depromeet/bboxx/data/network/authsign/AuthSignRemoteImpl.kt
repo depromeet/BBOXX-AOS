@@ -1,6 +1,7 @@
 package com.depromeet.bboxx.data.network.authsign
 
 import com.depromeet.bboxx.data.entity.TokenEntity
+import com.depromeet.bboxx.data.entity.TokenValidEntity
 import com.depromeet.bboxx.data.network.api.AuthApis
 import dagger.Binds
 import dagger.Module
@@ -39,6 +40,16 @@ class AuthSignRemoteImpl @Inject constructor(
         }
 
         return authApis.getSignUp(body).map {
+            it.data
+        }
+    }
+
+    override fun validToken(token: String): Single<TokenValidEntity> {
+        val body = HashMap<String, Any>().apply {
+            put("jwt", token)
+        }
+
+        return  authApis.getValidateJwt(body).map {
             it.data
         }
     }

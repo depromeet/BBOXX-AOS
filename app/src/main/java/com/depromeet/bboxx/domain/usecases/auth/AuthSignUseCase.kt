@@ -11,4 +11,7 @@ class AuthSignUseCase @Inject constructor(
 
     fun signUp(authData: String, nickName: String, providerType: String) =
         authSignRepository.signUp(authData, nickName, providerType)
+
+    fun validToken(token: String) =
+        authSignRepository.validToken(token)
 }
