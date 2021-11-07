@@ -5,7 +5,6 @@ import com.depromeet.bboxx.data.mapper.ImprovementDiariesEntityMapper
 import com.depromeet.bboxx.data.mapper.ImprovementTagsEntityMapper
 import com.depromeet.bboxx.data.repository.improvement.ImprovementDataSource
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
-import com.depromeet.bboxx.domain.model.ImprovementTags
 import com.depromeet.bboxx.domain.repository.improvement.ImprovementRepository
 import dagger.Binds
 import dagger.Module
@@ -35,7 +34,7 @@ class ImprovementRepositoryImpl @Inject constructor(
         content: String,
         emotionDiaryId: Int,
         memberId: Int,
-        emotionTags: List<ImprovementTags>,
+        emotionTags: List<String>,
         title: String
     ): Single<EmptyDto> {
         return improvementDataSource.writeImproveDiaries(

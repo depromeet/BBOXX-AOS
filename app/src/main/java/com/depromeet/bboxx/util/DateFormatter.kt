@@ -24,6 +24,9 @@ class DateFormatter{
     private val fullDateDot24Formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm", Locale.getDefault())
     private val growthTimeFormatter = SimpleDateFormat("MM. dd EE")
 
+    private val monthTimeFormatter = SimpleDateFormat("MM")
+    private val yearTimeFormatter = SimpleDateFormat("yyyy")
+
     private val calendar = Calendar.getInstance()
 
     fun formatSimplePushTime(time : Date) : String {
@@ -53,6 +56,14 @@ class DateFormatter{
 
     fun growthNowTime(): String{
         return growthTimeFormatter.format(Date())
+    }
+
+    fun formatNowMonth(): String{
+        return monthTimeFormatter.format(Date())
+    }
+
+    fun formatNowYear(): String{
+        return yearTimeFormatter.format(Date())
     }
 
     fun simpleDotTimeFormatter(time : String) : String {

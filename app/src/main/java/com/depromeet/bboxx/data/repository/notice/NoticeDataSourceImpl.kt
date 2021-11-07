@@ -15,8 +15,8 @@ class NoticeDataSourceImpl @Inject constructor(
     private val noticeRemote: NoticeRemote
 ): NoticeDataSource {
 
-    override fun getNotificationList(): Single<List<NotificationsEntity>> {
-        return noticeRemote.getNotificationList()
+    override fun getNotificationList(receiverId: Int): Single<List<NotificationsEntity>> {
+        return noticeRemote.getNotificationList(receiverId)
     }
 
     override fun getNotificationInfo(ownerId: Int): Single<NotificationTokenEntity> {

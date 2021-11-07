@@ -16,7 +16,7 @@ import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
-class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
+class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -25,6 +25,9 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
     var titleText = ""
     var mainTitle = ""
+
+    private var tempSaveCategoryId: Int = -1
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -59,6 +62,8 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
 
             }
         })
+
+        tempSaveCategoryId = categoryId
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
@@ -111,11 +116,8 @@ class FeelingNoteFragment(val selectedFeeling: String) : Fragment() {
         })
 
         binding.btnSuccess.setOnClickListener {
-
-            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(selectedFeeling, titleText, mainTitle))
-
-
-            //selectedFeeling, 글쓴 내용 같이 이동
+            //  생명주기에 따라 categoryId 가 있을지 없을지.. 확인해봐야 할것 같습니다.
+            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(tempSaveCategoryId, selectedFeeling, titleText, mainTitle))
         }
         return binding.root
     }

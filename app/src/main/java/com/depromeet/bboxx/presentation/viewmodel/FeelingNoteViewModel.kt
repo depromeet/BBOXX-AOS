@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.depromeet.bboxx.domain.usecases.emotion.EmotionUseCase
@@ -31,6 +32,7 @@ class FeelingNoteViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         _feelingEmotionList.value = it
+                                Log.d("FEEL", it.toString())
                     },
                     onError = {
                     }

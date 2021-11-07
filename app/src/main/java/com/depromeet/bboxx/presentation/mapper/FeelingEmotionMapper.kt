@@ -9,6 +9,7 @@ class FeelingEmotionMapper @Inject constructor() {
         return target.emotionStatuses.map{
             FeelingEmotionModel(
                 it.emotionUrl,
+                drawableid = 0,
                 it.id,
                 it.status,
                 isSelected = false

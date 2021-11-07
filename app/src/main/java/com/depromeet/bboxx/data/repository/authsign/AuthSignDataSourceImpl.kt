@@ -1,6 +1,7 @@
 package com.depromeet.bboxx.data.repository.authsign
 
 import com.depromeet.bboxx.data.entity.TokenEntity
+import com.depromeet.bboxx.data.entity.TokenValidEntity
 import com.depromeet.bboxx.data.network.authsign.AuthSignRemote
 import dagger.Binds
 import dagger.Module
@@ -23,6 +24,10 @@ class AuthSignDataSourceImpl @Inject constructor(
         providerType: String
     ): Single<TokenEntity> {
         return authSignRemote.getAuthSignUp(authData, nickName, providerType)
+    }
+
+    override fun validToken(token: String): Single<TokenValidEntity> {
+        return authSignRemote.validToken(token)
     }
 }
 

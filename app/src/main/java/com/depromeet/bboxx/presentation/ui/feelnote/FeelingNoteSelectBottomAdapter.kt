@@ -1,5 +1,7 @@
 package com.depromeet.bboxx.presentation.ui.feelnote
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -21,6 +23,8 @@ class FeelingNoteSelectBottomAdapter(val itemClick: (String)-> Unit): RecyclerVi
         )
     ).apply {
         itemView.setOnClickListener {
+            it.backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
             itemClick(troubleList[adapterPosition].troubleName)
         }
     }

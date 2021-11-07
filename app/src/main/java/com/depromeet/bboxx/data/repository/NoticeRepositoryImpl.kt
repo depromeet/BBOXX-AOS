@@ -20,8 +20,8 @@ class NoticeRepositoryImpl @Inject constructor(
     private val noticeEntityMapper: NoticeEntityMapper,
     private val notificationTokenEntityMapper: NotificationTokenEntityMapper
 ): NoticeRepository {
-    override fun getNotificationList(): Single<List<Notifications>> {
-        return noticeDataSource.getNotificationList().map {
+    override fun getNotificationList(receiverId: Int): Single<List<Notifications>> {
+        return noticeDataSource.getNotificationList(receiverId).map {
             Observable.fromIterable(it)
                 .map { list -> noticeEntityMapper.trans(list) }
                 .toList()

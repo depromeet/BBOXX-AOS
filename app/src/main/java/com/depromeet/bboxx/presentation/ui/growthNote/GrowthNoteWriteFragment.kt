@@ -25,7 +25,8 @@ import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 
-class GrowthNoteWriteFragment(private val tagList: List<String>, private val emotionDiaryId: Int) : Fragment() {
+class GrowthNoteWriteFragment(private val tagList: List<String>, private val emotionDiaryId: Int) :
+    Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -67,13 +68,13 @@ class GrowthNoteWriteFragment(private val tagList: List<String>, private val emo
             }
         })
 
-        binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
+        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
                 mainActivity.addTopFragment(BackLayerFragment(this@GrowthNoteWriteFragment))
             }
         })
 
-        binding.clTopView.setRedoBtn(object :CustomTopView.OnclickCallback{
+        binding.clTopView.setRedoBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
                 binding.etTitleText.text = null
                 binding.etMainText.text = null
@@ -92,7 +93,7 @@ class GrowthNoteWriteFragment(private val tagList: List<String>, private val emo
 
             override fun afterTextChanged(s: Editable) {
                 isTitleActivated = binding.etMainText.text.isNotEmpty()
-                val input: String = binding.etMainText.getText().toString()
+                val input: String = binding.etMainText.text.toString()
                 binding.tvTextCount.text = input.length.toString()
                 when {
                     input.isEmpty() -> {
@@ -120,7 +121,7 @@ class GrowthNoteWriteFragment(private val tagList: List<String>, private val emo
             initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
             val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
             val tagListModel = arrayListOf<GrowthNoteTagModel>()
-            tagList.forEach{
+            tagList.forEach {
                 tagListModel.add(GrowthNoteTagModel(it))
             }
 

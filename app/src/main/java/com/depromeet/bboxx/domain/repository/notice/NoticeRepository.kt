@@ -5,7 +5,7 @@ import com.depromeet.bboxx.domain.model.Notifications
 import io.reactivex.rxjava3.core.Single
 
 interface NoticeRepository {
-    fun getNotificationList(): Single<List<Notifications>>
+    fun getNotificationList(receiverId: Int): Single<List<Notifications>>
 
     fun getNotificationInfo(ownerId: Int): Single<NotificationToken>
 

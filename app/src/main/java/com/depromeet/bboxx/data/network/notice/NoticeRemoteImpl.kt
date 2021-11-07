@@ -15,8 +15,8 @@ class NoticeRemoteImpl @Inject constructor(
     private val noticeApi: NoticeApis
 ) : NoticeRemote{
 
-    override fun getNotificationList(): Single<List<NotificationsEntity>> {
-        return noticeApi.getNotificationList().map {
+    override fun getNotificationList(receiverId: Int): Single<List<NotificationsEntity>> {
+        return noticeApi.getNotificationList(receiverId).map {
             it.data
         }
     }

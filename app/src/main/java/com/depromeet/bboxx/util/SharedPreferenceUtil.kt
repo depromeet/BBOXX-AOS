@@ -22,9 +22,15 @@ object SharedPreferenceUtil {
         }
     }
 
-    fun setDataSharedPreference(data: Boolean, dataKey: String){
+    fun setDataBooleanSharedPreference(data: Boolean, dataKey: String){
         pref?.let{
             it.edit().putBoolean(dataKey, data).commit()
+        }
+    }
+
+    fun setFirstRunSharedFix(dataKey: String){
+        pref?.let{
+            it.edit().putBoolean(dataKey, false).apply()
         }
     }
 
@@ -40,8 +46,9 @@ object SharedPreferenceUtil {
 
     fun getDataBooleanSharedPreference(dataKey: String): Boolean?
     {
-        return pref?.getBoolean(dataKey, false)
+        return pref?.getBoolean(dataKey, true)
     }
+
 
     fun delSharedPreference(sharedKey: String){
         pref?.edit()?.clear()?.apply()

@@ -10,9 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:behavior_hideable="true"
-        android:orientation="vertical"
-        app:behavior_peekHeight="200dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <LinearLayout
@@ -50,204 +47,32 @@
                 android:background="@drawable/ic_right_large"
                 android:layout_weight="1" />
         </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="315dp"
-            android:layout_marginTop="31dp"
+            android:layout_height="375dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginHorizontal="38dp"
+            android:layout_marginBottom="44dp"
+            android:layout_gravity="center_horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lay_cal_title">
-            <LinearLayout
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_calendar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="21dp"
-                android:layout_marginBottom="50dp"
-                android:layout_marginHorizontal="44dp"
-                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                tools:listitem="@layout/item_calendar"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txt_one"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="1월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:layout_marginEnd="16dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_1"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_two"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="2월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_2"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_three"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="3월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_3"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_four"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="4월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_4"
-                        android:background="@drawable/bg_select_feeling_circle" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/txt_five"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="5월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:layout_marginEnd="16dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_5"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_six"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="6월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_6"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_seven"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="7월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_7"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_eight"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="8월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_8"
-                        android:background="@drawable/bg_select_feeling_circle" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
-                    android:layout_weight="1"
-                    >
-
-                    <TextView
-                        android:id="@+id/txt_nine"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="9월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:layout_marginEnd="16dp"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_9"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_ten"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="10월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_10"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_eleven"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="11월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="16dp"
-                        android:backgroundTint="@color/card_view_11"
-                        android:background="@drawable/bg_select_feeling_circle" />
-
-                    <TextView
-                        android:id="@+id/txt_twelve"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="12월"
-                        android:textSize="16sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:backgroundTint="@color/card_view_12"
-                        android:background="@drawable/bg_select_feeling_circle" />
-                </LinearLayout>
-
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

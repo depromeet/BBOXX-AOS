@@ -67,7 +67,7 @@ class NicknameViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = { token ->
-                        likeResult.value = token.toString()
+                        likeResult.value = token.token
                     },
                     onError = {
                         likeResult.value = it.message
