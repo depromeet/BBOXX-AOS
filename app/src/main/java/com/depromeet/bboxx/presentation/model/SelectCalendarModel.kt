@@ -1,6 +1,6 @@
 package com.depromeet.bboxx.presentation.model
 
-import android.support.annotation.ColorRes
+import androidx.annotation.ColorRes
 
 data class SelectCalendarModel(
     val monthData: String,

@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.depromeet.bboxx.presentation.model.SelectCalendarModel
+import com.depromeet.bboxx.presentation.utils.GlideApp
 
 fun Context.inflateLayout(layoutResId: Int, parent: ViewGroup, attachToRoot: Boolean): View {
     return inflateView(this, layoutResId, parent, attachToRoot)
 }
+
 private fun inflateView(
     context: Context,
     layoutResId: Int,
@@ -25,18 +27,24 @@ private fun inflateView(
 
 @BindingAdapter("ImageDrawable")
 fun imageViewAdapter(view: ImageView, res: String?) {
-    Glide.with(view.context)
-        .load(res)
-        .into(view)
+    if(res.isNotBlank()){
+        GlideApp.with(view.context)
+            .load(res)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(view)
+    }
+}
 
+fun ImageView.loadUrl(url: String){
+    GlideApp.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(this)
 }
 
 @BindingAdapter("CalendarBackTint")
-fun calendarTint(textView: TextView, model: SelectCalendarModel){
-    textView.backgroundTintList = ColorStateList.valueOf(textView.resources.getColor( model.color))
+fun calendarTint(textView: TextView, model: SelectCalendarModel) {
+    textView.backgroundTintList = ColorStateList.valueOf(textView.resources.getColor(model.color))
 }
 
 @BindingAdapter("CalendarTextColor")
-fun calendarTextColor(textView: TextView, model: SelectCalendarModel){
+fun calendarTextColor(textView: TextView, model: SelectCalendarModel) {
     textView.setTextColor(ColorStateList.valueOf(textView.resources.getColor(model.textColor)))
 }

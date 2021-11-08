@@ -3,16 +3,17 @@ package com.depromeet.bboxx.presentation.ui.feelnote
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.ItemResultSelectedFeelingBinding
+import com.depromeet.bboxx.presentation.extension.loadUrl
+import com.depromeet.bboxx.presentation.model.SelectFeelingEmotionModel
 
 
 class FeelingSelectedAdapter(val context: Context) :
     RecyclerView.Adapter<FeelingSelectedAdapter.Holder>() {
-    var listData = mutableListOf<FeelingNoteSelectFeelingFragment.tempFeeling>()
+    var listData = mutableListOf<SelectFeelingEmotionModel>()
 
-    fun setData(dataList: ArrayList<FeelingNoteSelectFeelingFragment.tempFeeling>) {
+    fun setData(dataList: ArrayList<SelectFeelingEmotionModel>) {
         listData.clear()
         listData.addAll(dataList)
         notifyDataSetChanged()
@@ -42,8 +43,8 @@ class FeelingSelectedAdapter(val context: Context) :
 
     inner class Holder(val binding: ItemResultSelectedFeelingBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun setData(data: FeelingNoteSelectFeelingFragment.tempFeeling) {
-            binding.ivFeeling.background = ContextCompat.getDrawable(context, data.drawableid)
+        fun setData(data: SelectFeelingEmotionModel) {
+            binding.ivFeeling.loadUrl(data.emotionUrl)
         }
 
     }
