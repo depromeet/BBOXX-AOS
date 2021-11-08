@@ -18,10 +18,12 @@ import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteReViewFeelingNote
 import com.depromeet.bboxx.presentation.ui.growthNote.GrwothNoteTagFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
+import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.constants.SharedConstants
 import org.jetbrains.anko.runOnUiThread
 import javax.inject.Inject
 
-//  프래그먼트로 전환 예정
+
 class FeelingHistoryFragment @Inject constructor() :
     BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm), UserClickEvent {
 
@@ -48,103 +50,100 @@ class FeelingHistoryFragment @Inject constructor() :
         topViewInit()
 
 
-        val notifications1 = NotificationModel(
-            "10.23",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "7일전",
-            false
-        )
-
-        val notifications2 = NotificationModel(
-            "10.24",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "6일전",
-            false
-        )
-
-        val notifications3 = NotificationModel(
-            "10.25",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "5일전",
-            false
-        )
-
-        val notifications4 = NotificationModel(
-            "10.26",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "4일전",
-            false
-        )
-
-        val notifications5 = NotificationModel(
-            "10.27",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "3일전",
-            false
-        )
-
-        val notifications6 = NotificationModel(
-            "10.28",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "2일전",
-            false
-        )
-
-        val notifications7 = NotificationModel(
-            "10.29",
-            0,
-            0,
-            "string",
-            0,
-            "SENT",
-            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-            "1일전",
-            false
-        )
-
-        dataList.add(notifications1)
-        dataList.add(notifications2)
-        dataList.add(notifications3)
-        dataList.add(notifications4)
-        dataList.add(notifications5)
-        dataList.add(notifications6)
-        dataList.add(notifications7)
-        mainActivity.feelHistoryViewModel.setNotificationList(dataList)
-
-        //feelHistoryAdapter.replaceItems(dataList)
-        //binding.rvAlarmHistory.isVisible = true
-        //binding.txtAlarmTitle.isVisible = false
-        // binding.imgAlarmNo.isVisible = false
+//        val notifications1 = NotificationModel(
+//            "10.23",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "7일전",
+//            false
+//        )
+//
+//        val notifications2 = NotificationModel(
+//            "10.24",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "6일전",
+//            false
+//        )
+//
+//        val notifications3 = NotificationModel(
+//            "10.25",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "5일전",
+//            false
+//        )
+//
+//        val notifications4 = NotificationModel(
+//            "10.26",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "4일전",
+//            false
+//        )
+//
+//        val notifications5 = NotificationModel(
+//            "10.27",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "3일전",
+//            false
+//        )
+//
+//        val notifications6 = NotificationModel(
+//            "10.28",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "2일전",
+//            false
+//        )
+//
+//        val notifications7 = NotificationModel(
+//            "10.29",
+//            0,
+//            0,
+//            "string",
+//            0,
+//            "SENT",
+//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
+//            "1일전",
+//            false
+//        )
+//
+//        dataList.add(notifications1)
+//        dataList.add(notifications2)
+//        dataList.add(notifications3)
+//        dataList.add(notifications4)
+//        dataList.add(notifications5)
+//        dataList.add(notifications6)
+//        dataList.add(notifications7)
+//        mainActivity.feelHistoryViewModel.setNotificationList(dataList)
+//
+        requestFeelHistoryList()
 
         mainActivity.feelHistoryViewModel.noticeList.observeNonNull(this) {
             if (it.isNotEmpty()) {
@@ -209,6 +208,14 @@ class FeelingHistoryFragment @Inject constructor() :
                 isDelete = !isDelete
             }
         }, R.drawable.ic_trash, resources.getString(R.color.main_bg))
+    }
+
+    private fun requestFeelHistoryList(){
+        SharedPreferenceUtil.initSharedPreference(requireContext(), SharedConstants.C_MEMBER_ID_SHRED)
+        val memberId =
+            SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
+
+        mainActivity.feelHistoryViewModel.getNoticeList(memberId!!)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
