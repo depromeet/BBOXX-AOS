@@ -59,7 +59,6 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
                     isActivatedButton(binding)
 
                 }
-
             }
         })
 
