@@ -43,7 +43,6 @@ class FeelingNoteSelectFragment : Fragment() {
 
 
     fun initView(binding: FeelingNoteSelectReasonLayoutBinding, ctx: Context) {
-        //TODO HAERIN Array로 빼기
         var isActivated = false
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{

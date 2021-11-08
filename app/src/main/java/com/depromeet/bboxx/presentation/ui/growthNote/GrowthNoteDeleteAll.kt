@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.LayoutDeleteAllBinding
 import com.depromeet.bboxx.databinding.LayoutToBackBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class GrowthNoteDeleteAll() : Fragment() {
+class GrowthNoteDeleteAll() : BottomSheetDialogFragment() {
 
     lateinit var mainActivity: MainActivity
     override fun onAttach(context: Context) {
@@ -42,11 +43,11 @@ class GrowthNoteDeleteAll() : Fragment() {
         }
 
         binding.btnDeleteAll.setOnClickListener {
-            mainActivity.clearThisFragment(this)
-            //완전히 지워졌어 화면 추가
+            this.dismiss()
+            mainActivity.addFragment(GrowthNoteDeleteCompletelyFragment())
         }
         binding.btnCancle.setOnClickListener {
-            mainActivity.clearThisFragment(this)
+            this.dismiss()
         }
 
     }

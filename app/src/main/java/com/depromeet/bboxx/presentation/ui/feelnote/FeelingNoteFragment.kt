@@ -67,7 +67,12 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
 
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.addTopFragment(BackLayerFragment(this@FeelingNoteFragment))
+
+
+                val bottomNote = BackLayerFragment(this@FeelingNoteFragment)
+                bottomNote.show(childFragmentManager, bottomNote.tag)
+
+
             }
         })
 

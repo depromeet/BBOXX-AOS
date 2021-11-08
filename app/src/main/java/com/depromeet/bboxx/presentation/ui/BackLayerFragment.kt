@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.LayoutToBackBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class BackLayerFragment(val bottomFragment: Fragment) : Fragment() {
+class BackLayerFragment(val bottomFragment: Fragment) : BottomSheetDialogFragment() {
 
     lateinit var mainActivity: MainActivity
     override fun onAttach(context: Context) {
@@ -34,16 +35,17 @@ class BackLayerFragment(val bottomFragment: Fragment) : Fragment() {
     private fun initView(binding: LayoutToBackBinding) {
 
 
+
         binding.clBack.setOnClickListener {
             mainActivity.clearThisFragment(this)
         }
 
         binding.btnBack.setOnClickListener {
-            mainActivity.clearThisFragment(this)
+            this.dismiss()
             mainActivity.clearThisFragment(bottomFragment)
         }
         binding.btnCancle.setOnClickListener {
-            mainActivity.clearThisFragment(this)
+            this.dismiss()
         }
 
     }

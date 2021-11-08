@@ -63,26 +63,12 @@ class GrowthCalendarFragment(val itemClick: (String)-> Unit): BottomSheetDialogF
             )
         )!!
 
+
         binding.lifecycleOwner = this
 
         onViewSetting()
 
         return binding.root
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-
-        dialog.setOnShowListener {
-            val bottomSheet = dialog.findViewById<FrameLayout>(R.id.design_bottom_sheet)
-
-            bottomSheet?.let { sheet ->
-                dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-                sheet.parent.parent.requestLayout()
-            }
-        }
-
-        return dialog
     }
 
 

@@ -51,7 +51,8 @@ class GrowthNoteReViewFeelingNote() : Fragment() {
         }
 
         binding.btnDeleteAll.setOnClickListener {
-                mainActivity.addTopFragment(GrowthNoteDeleteAll())
+            val bottomNote = GrowthNoteDeleteAll()
+            bottomNote.show(childFragmentManager, bottomNote.tag)
         }
         return binding.root
     }

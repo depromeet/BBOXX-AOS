@@ -70,7 +70,9 @@ class GrowthNoteWriteFragment(private val tagList: List<String>, private val emo
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.addTopFragment(BackLayerFragment(this@GrowthNoteWriteFragment))
+
+                val bottomNote = BackLayerFragment(this@GrowthNoteWriteFragment)
+                bottomNote.show(childFragmentManager, bottomNote.tag)
             }
         })
 
