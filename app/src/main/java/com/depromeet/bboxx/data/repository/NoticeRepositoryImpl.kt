@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.data.repository
 
+import com.depromeet.bboxx.data.dto.EmptyDto
 import com.depromeet.bboxx.data.mapper.NoticeEntityMapper
 import com.depromeet.bboxx.data.mapper.NotificationTokenEntityMapper
 import com.depromeet.bboxx.data.repository.notice.NoticeDataSource
@@ -19,7 +20,7 @@ class NoticeRepositoryImpl @Inject constructor(
     private val noticeDataSource: NoticeDataSource,
     private val noticeEntityMapper: NoticeEntityMapper,
     private val notificationTokenEntityMapper: NotificationTokenEntityMapper
-): NoticeRepository {
+) : NoticeRepository {
     override fun getNotificationList(receiverId: Int): Single<List<Notifications>> {
         return noticeDataSource.getNotificationList(receiverId).map {
             Observable.fromIterable(it)
@@ -30,7 +31,8 @@ class NoticeRepositoryImpl @Inject constructor(
     }
 
     override fun getNotificationInfo(ownerId: Int): Single<NotificationToken> {
-        return noticeDataSource.getNotificationInfo(ownerId).map(notificationTokenEntityMapper::trans)
+        return noticeDataSource.getNotificationInfo(ownerId)
+            .map(notificationTokenEntityMapper::trans)
     }
 
     override fun deRegisterNotification(ownerId: Int): Single<Notifications> {
@@ -39,6 +41,10 @@ class NoticeRepositoryImpl @Inject constructor(
 
     override fun registerNotification(ownerId: Int, token: String): Single<Notifications> {
         return noticeDataSource.registerNotification(ownerId, token).map(noticeEntityMapper::trans)
+    }
+
+    override fun sendNotificationTest(emotionId: Int, ownerId: Int): Single<EmptyDto> {
+        return noticeDataSource.sendNotificationTest(emotionId, ownerId)
     }
 }
 

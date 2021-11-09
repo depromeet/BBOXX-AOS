@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.data.network.api
 
+import com.depromeet.bboxx.data.dto.EmptyDto
 import com.depromeet.bboxx.data.dto.NotificationTokenDto
 import com.depromeet.bboxx.data.dto.NotificationsDto
 import com.depromeet.bboxx.data.dto.NotificationsListDto
@@ -23,4 +24,7 @@ interface NoticeApis {
     @POST("push-tokens/register")
     fun registerNotification(@Body body: HashMap<String, Any>): Single<NotificationsDto>
 
+    @Headers("Content-type: application/json;charset=UTF-8")
+    @POST("notifications/send")
+    fun sendNotificationTest(@Body body: HashMap<String, Any>): Single<EmptyDto>
 }

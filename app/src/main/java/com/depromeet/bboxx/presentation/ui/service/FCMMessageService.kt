@@ -27,7 +27,9 @@ class FCMMessageService: FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        super.onMessageReceived(remoteMessage)
+        remoteMessage.run{
+            saveFcmMessage(this)
+        }
     }
 
     private fun saveFcmMessage(message: RemoteMessage){

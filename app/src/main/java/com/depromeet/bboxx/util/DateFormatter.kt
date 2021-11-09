@@ -2,11 +2,7 @@ package com.depromeet.bboxx.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.depromeet.bboxx.presentation.extension.isNotBlank
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -26,12 +22,8 @@ class DateFormatter{
 
     private val monthTimeFormatter = SimpleDateFormat("MM")
     private val yearTimeFormatter = SimpleDateFormat("yyyy")
-
+    private val calendarTimeFormatter = SimpleDateFormat("yyyy년 MM월")
     private val calendar = Calendar.getInstance()
-
-    fun formatSimplePushTime(time : Date) : String {
-        return simplePushFormatter.format(time)
-    }
 
 
     fun formatFormatterCalc(date : String) : String {
@@ -66,67 +58,7 @@ class DateFormatter{
         return yearTimeFormatter.format(Date())
     }
 
-    fun simpleDotTimeFormatter(time : String) : String {
-        return simpleDotFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime())
+    fun calendarNowTime(): String{
+        return calendarTimeFormatter.format(Date())
     }
-
-    fun formatSimpleDateTime(time : String) : String {
-        return simpleDateFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime())
-    }
-
-    fun formatTime(time: String): String{
-        return dateFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime())
-    }
-
-    fun formatSimpleNowTime(time : Date) : String {
-        return simpleTimeFormatter.format(time)
-    }
-
-    fun formatSimpleFullNowTime(time : Date) : String {
-        return simpleFullTimeFormatter.format(time)
-    }
-
-
-    fun formatFullTime(time: String): String{
-        return if (time.isNotBlank()) {
-            fullDateFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime())
-        } else {
-            ""
-        }
-    }
-
-    fun formatDepositTime(time : String) : String {
-        return fullDateFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().plusHours(6))
-    }
-
-    fun formatDepositGlobalTime(time: String): String {
-        return fullDateFormatter.format(ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime().plusHours(24))
-    }
-
-    fun formatIsUnlimited(time: String?): Boolean {
-        return time.isNullOrEmpty() ||  ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault())
-            .toLocalDateTime().year < 1970
-    }
-
-    fun formatParseToLocalDateTime(time: String) : LocalDateTime {
-        return ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault())
-            .toLocalDateTime()
-    }
-
-    fun formatForEffectiveDate(is24Hour: Boolean, time: String): String  {
-        val dateTime = ZonedDateTime.parse(time).withZoneSameInstant(ZoneId.systemDefault())
-            .toLocalDateTime()
-
-        return if(dateTime.hour == 0 && dateTime.minute == 0) {
-            simpleDotFormatter.format(dateTime)
-        } else {
-            if(is24Hour) {
-                fullDateDot24Formatter.format(dateTime)
-            } else {
-                fullDateDot12Formatter.format(dateTime)
-            }
-
-        }
-    }
-
 }
