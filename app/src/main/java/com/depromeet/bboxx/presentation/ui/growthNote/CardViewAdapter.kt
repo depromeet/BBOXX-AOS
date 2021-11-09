@@ -1,28 +1,37 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
-import com.depromeet.bboxx.presentation.base.BaseAdapter
-import com.depromeet.bboxx.data.entity.ImprovementDiariesEntity
 import com.depromeet.bboxx.databinding.LayoutFeelingCardViewBinding
+import com.depromeet.bboxx.domain.model.ImprovementDiaries
+import com.depromeet.bboxx.domain.model.ImprovementTags
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.google.android.material.chip.Chip
 
 
-class CardViewAdapter(val context : MainActivity) : RecyclerView.Adapter<CardViewAdapter.Holder>() {
-    var listData = mutableListOf<ImprovementDiariesEntity>()
+class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardViewAdapter.Holder>() {
+    var listData = mutableListOf<ImprovementDiaries>()
 
-    val bgList = arrayOf(R.color.card_view_1, R.color.card_view_2, R.color.card_view_3, R.color.card_view_4,R.color.card_view_5,R.color.card_view_6,R.color.card_view_7,R.color.card_view_8,R.color.card_view_9,R.color.card_view_10,R.color.card_view_11)
-    fun setData(dataList: ArrayList<ImprovementDiariesEntity>) {
+    val bgList = arrayOf(
+        R.color.card_view_1,
+        R.color.card_view_2,
+        R.color.card_view_3,
+        R.color.card_view_4,
+        R.color.card_view_5,
+        R.color.card_view_6,
+        R.color.card_view_7,
+        R.color.card_view_8,
+        R.color.card_view_9,
+        R.color.card_view_10,
+        R.color.card_view_11
+    )
+
+    fun setData(dataList: ArrayList<ImprovementDiaries>) {
         listData.clear()
         listData.addAll(dataList)
         notifyDataSetChanged()
@@ -33,10 +42,7 @@ class CardViewAdapter(val context : MainActivity) : RecyclerView.Adapter<CardVie
         val binding =
             LayoutFeelingCardViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
-
-
     }
-
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val member = listData[position]
@@ -46,31 +52,30 @@ class CardViewAdapter(val context : MainActivity) : RecyclerView.Adapter<CardVie
     override fun getItemCount(): Int {
         return listData.size
     }
-    inner class Holder(val binding: LayoutFeelingCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setData(data: ImprovementDiariesEntity, color: Int) {
+
+    inner class Holder(val binding: LayoutFeelingCardViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun setData(data: ImprovementDiaries, color: Int) {
             binding.tvTitle.text = data.title
             binding.tvMainText.text = data.content
 
             binding.clBg.backgroundTintList =
-                ColorStateList.valueOf(ContextCompat.getColor(context,  color))
+                ColorStateList.valueOf(ContextCompat.getColor(context, color))
 
             binding.ivGradation.backgroundTintList =
-                ColorStateList.valueOf(ContextCompat.getColor(context,  color))
+                ColorStateList.valueOf(ContextCompat.getColor(context, color))
 
-            val dummyTexts = arrayListOf<String>("나 왜그랬지", "이불킥 각", "개웃겨", "용기파워","난 너무 멋져")
-
-            dummyTexts.forEach {
-
-
-                    val chip = Chip(context)
-                    chip.text = it
-                    chip.textSize = 14F
-                    chip.setTextColor(Color.parseColor("#ffffff"))
-                    chip.chipBackgroundColor =
-                        ColorStateList.valueOf(ContextCompat.getColor(context, R.color.gray_10))
-
-                    binding.chipGroup.addView(chip)
-
+            //val dummyTexts = arrayListOf<String>("나 왜그랬지", "이불킥 각", "개웃겨", "용기파워","난 너무 멋져")
+            val tagList = arrayListOf<ImprovementTags>()
+            tagList.addAll(data.tags)
+            tagList.forEach {
+                val chip = Chip(context)
+                chip.text = it.tags
+                chip.textSize = 14F
+                chip.setTextColor(Color.parseColor("#ffffff"))
+                chip.chipBackgroundColor =
+                    ColorStateList.valueOf(ContextCompat.getColor(context, R.color.gray_10))
+                binding.chipGroup.addView(chip)
             }
 
             binding.clBg.setOnClickListener {

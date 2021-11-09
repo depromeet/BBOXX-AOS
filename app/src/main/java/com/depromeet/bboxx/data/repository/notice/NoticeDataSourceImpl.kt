@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.data.repository.notice
 
+import com.depromeet.bboxx.data.dto.EmptyDto
 import com.depromeet.bboxx.data.entity.NotificationTokenEntity
 import com.depromeet.bboxx.data.entity.NotificationsEntity
 import com.depromeet.bboxx.data.network.notice.NoticeRemote
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 
 class NoticeDataSourceImpl @Inject constructor(
     private val noticeRemote: NoticeRemote
-): NoticeDataSource {
+) : NoticeDataSource {
 
     override fun getNotificationList(receiverId: Int): Single<List<NotificationsEntity>> {
         return noticeRemote.getNotificationList(receiverId)
@@ -28,7 +29,11 @@ class NoticeDataSourceImpl @Inject constructor(
     }
 
     override fun registerNotification(ownerId: Int, token: String): Single<NotificationsEntity> {
-        return noticeRemote.registerNotification(ownerId,token)
+        return noticeRemote.registerNotification(ownerId, token)
+    }
+
+    override fun sendNotificationTest(emotionId: Int, ownerId: Int): Single<EmptyDto> {
+        return noticeRemote.sendNotificationTest(emotionId, ownerId)
     }
 }
 

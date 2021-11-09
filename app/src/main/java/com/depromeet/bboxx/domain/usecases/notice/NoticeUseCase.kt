@@ -21,7 +21,7 @@ class NoticeUseCase @Inject constructor(
     fun registerNotification(ownerId: Int, token: String) =
         noticeRepository.registerNotification(ownerId, token)
 
-    fun getFirebaseToken(): String{
+    fun getFirebaseToken(): String {
         var token: String = ""
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
@@ -40,5 +40,8 @@ class NoticeUseCase @Inject constructor(
         })
         return token
     }
+
+    fun sendNotificationTest(emotionId: Int, ownerId: Int) =
+        noticeRepository.sendNotificationTest(emotionId, ownerId)
 
 }

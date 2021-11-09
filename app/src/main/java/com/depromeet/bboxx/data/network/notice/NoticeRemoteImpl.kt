@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.data.network.notice
 
+import com.depromeet.bboxx.data.dto.EmptyDto
 import com.depromeet.bboxx.data.entity.NotificationTokenEntity
 import com.depromeet.bboxx.data.entity.NotificationsEntity
 import com.depromeet.bboxx.data.network.api.NoticeApis
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 
 class NoticeRemoteImpl @Inject constructor(
     private val noticeApi: NoticeApis
-) : NoticeRemote{
+) : NoticeRemote {
 
     override fun getNotificationList(receiverId: Int): Single<List<NotificationsEntity>> {
         return noticeApi.getNotificationList(receiverId).map {
@@ -46,6 +47,15 @@ class NoticeRemoteImpl @Inject constructor(
         return noticeApi.registerNotification(body).map {
             it.data
         }
+    }
+
+    override fun sendNotificationTest(emotionId: Int, ownerId: Int): Single<EmptyDto> {
+        val body = HashMap<String, Any>().apply {
+            put("ownerId", ownerId)
+            put("emotionId", emotionId)
+        }
+
+        return noticeApi.sendNotificationTest(body)
     }
 }
 

@@ -1,6 +1,5 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
-import android.app.Dialog
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -8,25 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.BottomCalendarViewBinding
 import com.depromeet.bboxx.presentation.model.SelectCalendarModel
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class GrowthCalendarFragment(val itemClick: (String)-> Unit): BottomSheetDialogFragment() {
+class GrowthCalendarFragment: BottomSheetDialogFragment() {
 
     companion object {
         val TAG = this::class.java.name
 
-        fun newInstance(month: List<String>, year: String): GrowthCalendarFragment {
-            return GrowthCalendarFragment {
-                it
-            }.apply {
+        fun newInstance(listener: GrowthMonthListener,  month: List<String>, year: String): GrowthCalendarFragment {
+            return GrowthCalendarFragment().apply{
+                this.monthListener = listener
                 this.yearTitle = year
                 this.usingMonth = month as MutableList<String>
             }
@@ -37,10 +32,13 @@ class GrowthCalendarFragment(val itemClick: (String)-> Unit): BottomSheetDialogF
     private var yearTitle: String = ""
     private var usingMonth = mutableListOf<String>()
     private var calendarList = mutableListOf<SelectCalendarModel>()
+    private var monthListener: GrowthMonthListener? = null
 
     private val growthCalendarAdapter: GrowthCalendarAdapter by lazy{
         GrowthCalendarAdapter({
-            itemClick(it)
+            monthListener?.run {
+                clickMonth(it)
+            }
             dismiss()
         },{ isClicked ->
             // 클릭 안되는거에 대한 예외 처리 필요

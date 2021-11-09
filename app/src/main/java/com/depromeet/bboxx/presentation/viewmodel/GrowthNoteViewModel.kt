@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
 import com.depromeet.bboxx.domain.usecases.improve.ImproveUseCase
+import com.depromeet.bboxx.domain.usecases.notice.NoticeUseCase
 import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.model.GrowthNoteTagModel
@@ -18,27 +19,32 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GrowthNoteViewModel @Inject constructor(
-    private val improveUseCase: ImproveUseCase
-):BaseViewModel() {
+    private val improveUseCase: ImproveUseCase,
+    private val noticeUseCase: NoticeUseCase
+) : BaseViewModel() {
     private val _growthList = MutableLiveData<List<ImprovementDiaries>>()
-    val growthList : LiveData<List<ImprovementDiaries>>
+    val growthList: LiveData<List<ImprovementDiaries>>
         get() = _growthList
 
-    fun getGrowthList(memberId: Int, month: Int, year: Int){
-        disposable+=
+    fun getGrowthList(memberId: Int, month: Int, year: Int) {
+        disposable +=
             improveUseCase.getImproveDiaries(memberId, month, year)
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
-                        it.also {
-                            Log.d("IMPROVE", it.toString())}
+                        _growthList.value = it
                     },
                     onError = {
                     }
                 )
     }
 
-    fun writeGrowth(content: String, emotionDiaryId: Int, tagList: List<GrowthNoteTagModel>, title:String){
+    fun writeGrowth(
+        content: String,
+        emotionDiaryId: Int,
+        tagList: List<GrowthNoteTagModel>,
+        title: String
+    ) {
         AppContext.applicationContext()?.let {
             SharedPreferenceUtil.initSharedPreference(it, SharedConstants.C_MEMBER_ID_SHRED)
         }
@@ -52,12 +58,26 @@ class GrowthNoteViewModel @Inject constructor(
         val memberId =
             SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
 
-        disposable+=
-            improveUseCase.writeImproveDiaries(content,emotionDiaryId, memberId!!, tag, title)
+        disposable +=
+            improveUseCase.writeImproveDiaries(content, emotionDiaryId, memberId!!, tag, title)
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
-                       Log.d("IMPROVE", "SUCCESS")
+                        Log.d("IMPROVE", "SUCCESS")
+                    },
+                    onError = {
+                    }
+                )
+    }
+
+
+    fun testSendNotification(emotionDiaryId: Int, ownerId: Int) {
+        disposable +=
+            noticeUseCase.sendNotificationTest(emotionDiaryId, ownerId)
+                .onIOforMainThread()
+                .subscribeBy(
+                    onSuccess = {
+
                     },
                     onError = {
                     }
