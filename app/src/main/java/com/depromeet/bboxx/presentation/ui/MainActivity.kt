@@ -7,9 +7,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivityMainBinding
 import com.depromeet.bboxx.presentation.base.BaseActivity
-import com.depromeet.bboxx.presentation.extension.observeNonNull
-import com.depromeet.bboxx.presentation.model.NotificationModel
 import com.depromeet.bboxx.presentation.viewmodel.*
+import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.constants.SharedConstants
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,8 +24,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var viewPager: ViewPager2
 
-    private lateinit var noticeModel: List<NotificationModel>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,9 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         init()
         setAdapter()
 
-        feelHistoryViewModel.noticeList.observeNonNull(this){
-            noticeModel = it
-        }
     }
 
     private fun init() {
@@ -44,9 +40,47 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
     }
 
+    /**
+     *  감정일기에 쓸 이모션 불러오기
+     */
     fun getEmotionListImage(){
         //  감정일기 이모션 불러오기
         feelingNoteViewModel.getFeeling()
+    }
+
+    /**
+     *  타임라인 보기
+     */
+    fun requestFeelHistoryList(){
+        SharedPreferenceUtil.initSharedPreference(this, C_MEMBER_ID_SHRED)
+        val memberId =
+            SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
+
+        feelHistoryViewModel.getNoticeList(memberId!!)
+    }
+
+
+    /**
+     *  성장일기 리스트 보
+     */
+    fun getGrowthList(yearNow: String, monthNow: String) {
+        SharedPreferenceUtil.initSharedPreference(this, C_MEMBER_ID_SHRED)
+        val memberId =
+            SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
+
+        growthNoteViewModel.getGrowthList(
+            memberId!!,
+            monthNow.toInt(),
+            yearNow.toInt()
+        )
+    }
+
+    fun searchFeelingContent(emotionDiaryId: Int){
+        feelingNoteViewModel.searchFeelings(emotionDiaryId)
+    }
+
+    fun beforeFeelingContent(emotionDiaryId: Int){
+        feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
     private fun setAdapter() {

@@ -65,6 +65,7 @@ class FeelingNoteViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
+                        Log.d("searchFeelings", it.toString())
                         _emotionDiary.value = it
                     },
                     onError = {

@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.depromeet.bboxx.domain.usecases.emotion.EmotionUseCase
@@ -36,6 +37,7 @@ class FeelHistoryViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
+                        Log.d("_noticeList", it.toString())
                         _noticeList.value = it
                     },
                     onError = {

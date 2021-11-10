@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.LayoutFeelingCardViewBinding
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
-import com.depromeet.bboxx.domain.model.ImprovementTags
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.google.android.material.chip.Chip
 
@@ -31,7 +30,7 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
         R.color.card_view_11
     )
 
-    fun setData(dataList: ArrayList<ImprovementDiaries>) {
+    fun setData(dataList: List<ImprovementDiaries>) {
         listData.clear()
         listData.addAll(dataList)
         notifyDataSetChanged()
@@ -66,11 +65,11 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
                 ColorStateList.valueOf(ContextCompat.getColor(context, color))
 
             //val dummyTexts = arrayListOf<String>("나 왜그랬지", "이불킥 각", "개웃겨", "용기파워","난 너무 멋져")
-            val tagList = arrayListOf<ImprovementTags>()
+            val tagList = arrayListOf<String>()
             tagList.addAll(data.tags)
             tagList.forEach {
                 val chip = Chip(context)
-                chip.text = it.tags
+                chip.text = it
                 chip.textSize = 14F
                 chip.setTextColor(Color.parseColor("#ffffff"))
                 chip.chipBackgroundColor =
@@ -79,7 +78,7 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
             }
 
             binding.clBg.setOnClickListener {
-                context.addFragment(GrowthNoteViewerFragment(color))
+                context.addFragment(GrowthNoteViewerFragment(color, data.emotionDiaryId))
 
             }
         }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.GrowthFeelingNoteLayoutBinding
 import com.depromeet.bboxx.presentation.extension.observeNonNull
-import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
@@ -23,7 +23,6 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.M)
@@ -41,7 +40,10 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
             }
         })
 
-        val emotionDiaryId = 0
+        val emotionDiaryId = emotionId
+
+        mainActivity.searchFeelingContent(emotionDiaryId)
+
         binding.btnSuccess.setOnClickListener {
             mainActivity.addTopFragment(GrwothNoteTagFragment(emotionDiaryId))
         }
@@ -54,16 +56,11 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
 
         mainActivity.feelingNoteViewModel.emotionDiary.observeNonNull(this){
             //  여기에서 감정일기 요청한 데이터 화면에 뿌려주시는 작업하시면 될것 같습니다.
+            Log.d("FELJG", it.toString())
         }
 
         return binding.root
     }
 
-    fun getFeeling(){
-        // Test EmotionId 해당 ID는 감정일기를 쓰면 1씩 증가되니깐 실제적으로 값을 받아오는지 보실려면
-        //  감정일기 쓰고 값을 1 증가 시켜서 서버로 부터 데이터 받아오는지 봐주시면 될것 같습니다.
-        val emotionId: Int = 0
-        mainActivity.feelingNoteViewModel.searchFeelings(emotionId)
-    }
 
 }

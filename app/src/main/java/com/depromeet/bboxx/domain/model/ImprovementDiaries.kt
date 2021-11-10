@@ -6,7 +6,7 @@ data class ImprovementDiaries(
     val emotionDiaryId: Int,
     val id: Int,
     val memberId: Int,
-    val tags: List<ImprovementTags>,
+    val tags: List<String>,
     val title: String,
     val updatedAt: String
 )

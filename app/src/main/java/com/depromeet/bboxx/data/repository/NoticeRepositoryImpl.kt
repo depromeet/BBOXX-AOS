@@ -11,7 +11,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,13 +20,9 @@ class NoticeRepositoryImpl @Inject constructor(
     private val noticeEntityMapper: NoticeEntityMapper,
     private val notificationTokenEntityMapper: NotificationTokenEntityMapper
 ) : NoticeRepository {
+
     override fun getNotificationList(receiverId: Int): Single<List<Notifications>> {
-        return noticeDataSource.getNotificationList(receiverId).map {
-            Observable.fromIterable(it)
-                .map { list -> noticeEntityMapper.trans(list) }
-                .toList()
-                .blockingGet()
-        }
+        return noticeDataSource.getNotificationList(receiverId).map(noticeEntityMapper::transList)
     }
 
     override fun getNotificationInfo(ownerId: Int): Single<NotificationToken> {

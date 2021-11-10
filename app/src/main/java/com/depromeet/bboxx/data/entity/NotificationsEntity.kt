@@ -3,7 +3,7 @@ package com.depromeet.bboxx.data.entity
 import com.google.gson.annotations.SerializedName
 
 data class NotificationsEntity(
-    @SerializedName("createAt")
+    @SerializedName("createdAt")
     val createAt: String,
     @SerializedName("emotionDiaryId")
     val emotionDiaryId: Int,
@@ -17,6 +17,6 @@ data class NotificationsEntity(
     val state: String,
     @SerializedName("title")
     val title: String,
-    @SerializedName("updateAt")
+    @SerializedName("updatedAt")
     val updateAt: String
 )

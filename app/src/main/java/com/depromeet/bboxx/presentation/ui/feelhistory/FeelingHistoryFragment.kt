@@ -4,28 +4,26 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentAlarmBinding
-import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.model.NotificationModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteReViewFeelingNote
 import com.depromeet.bboxx.presentation.ui.growthNote.GrwothNoteTagFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
-import com.depromeet.bboxx.util.SharedPreferenceUtil
-import com.depromeet.bboxx.util.constants.SharedConstants
 import org.jetbrains.anko.runOnUiThread
-import javax.inject.Inject
 
 
-class FeelingHistoryFragment @Inject constructor() :
-    BaseFragment<FragmentAlarmBinding>(R.layout.fragment_alarm), UserClickEvent {
+class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
     lateinit var mainActivity: MainActivity
 
@@ -40,110 +38,27 @@ class FeelingHistoryFragment @Inject constructor() :
         FeelHistoryAdapter()
     }
 
-    private val dataList = ArrayList<NotificationModel>()
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentAlarmBinding.inflate(inflater, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        mainActivity.requestFeelHistoryList()
 
-        setAdapterAndRecyclerViewInit()
+        if (container != null) {
+            initView(binding, container.context)
+        }
 
-        topViewInit()
+        return binding.root
+    }
 
+    fun initView(binding: FragmentAlarmBinding, ctx: Context){
 
-//        val notifications1 = NotificationModel(
-//            "10.23",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "7일전",
-//            false
-//        )
-//
-//        val notifications2 = NotificationModel(
-//            "10.24",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "6일전",
-//            false
-//        )
-//
-//        val notifications3 = NotificationModel(
-//            "10.25",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "5일전",
-//            false
-//        )
-//
-//        val notifications4 = NotificationModel(
-//            "10.26",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "4일전",
-//            false
-//        )
-//
-//        val notifications5 = NotificationModel(
-//            "10.27",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "3일전",
-//            false
-//        )
-//
-//        val notifications6 = NotificationModel(
-//            "10.28",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "2일전",
-//            false
-//        )
-//
-//        val notifications7 = NotificationModel(
-//            "10.29",
-//            0,
-//            0,
-//            "string",
-//            0,
-//            "SENT",
-//            "자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬 한번 읽어볼래? 자이언트펭귄! 한달 전(2021년 10월 20일)에 쓴 일기가 도착했어 📬한번 읽어볼래",
-//            "1일전",
-//            false
-//        )
-//
-//        dataList.add(notifications1)
-//        dataList.add(notifications2)
-//        dataList.add(notifications3)
-//        dataList.add(notifications4)
-//        dataList.add(notifications5)
-//        dataList.add(notifications6)
-//        dataList.add(notifications7)
-//        mainActivity.feelHistoryViewModel.setNotificationList(dataList)
-//
-        requestFeelHistoryList()
+        topViewInit(binding)
+        setAdapterAndRecyclerViewInit(binding)
 
         mainActivity.feelHistoryViewModel.noticeList.observeNonNull(this) {
             if (it.isNotEmpty()) {
@@ -155,7 +70,7 @@ class FeelingHistoryFragment @Inject constructor() :
         }
     }
 
-    private fun setAdapterAndRecyclerViewInit() {
+    private fun setAdapterAndRecyclerViewInit(binding: FragmentAlarmBinding) {
         binding.rvAlarmHistory.run {
             adapter = feelHistoryAdapter
             setHasFixedSize(false)
@@ -182,7 +97,7 @@ class FeelingHistoryFragment @Inject constructor() :
     }
 
     @SuppressLint("ResourceType")
-    private fun topViewInit() {
+    private fun topViewInit(binding: FragmentAlarmBinding) {
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
                 mainActivity.clearThisFragment(this@FeelingHistoryFragment)
@@ -210,13 +125,6 @@ class FeelingHistoryFragment @Inject constructor() :
         }, R.drawable.ic_trash, resources.getString(R.color.main_bg))
     }
 
-    private fun requestFeelHistoryList(){
-        SharedPreferenceUtil.initSharedPreference(requireContext(), SharedConstants.C_MEMBER_ID_SHRED)
-        val memberId =
-            SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
-
-         mainActivity.feelHistoryViewModel.getNoticeList(memberId!!)
-    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(notifications: NotificationModel, position: Long) {

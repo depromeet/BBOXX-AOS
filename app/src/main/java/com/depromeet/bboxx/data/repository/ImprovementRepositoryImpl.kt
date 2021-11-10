@@ -2,7 +2,6 @@ package com.depromeet.bboxx.data.repository
 
 import com.depromeet.bboxx.data.dto.EmptyDto
 import com.depromeet.bboxx.data.mapper.ImprovementDiariesEntityMapper
-import com.depromeet.bboxx.data.mapper.ImprovementTagsEntityMapper
 import com.depromeet.bboxx.data.repository.improvement.ImprovementDataSource
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
 import com.depromeet.bboxx.domain.repository.improvement.ImprovementRepository
@@ -16,8 +15,7 @@ import javax.inject.Singleton
 
 class ImprovementRepositoryImpl @Inject constructor(
     private val improvementDataSource: ImprovementDataSource,
-    private val improvementDiariesEntityMapper: ImprovementDiariesEntityMapper,
-    private val improvementTagsEntityMapper: ImprovementTagsEntityMapper
+    private val improvementDiariesEntityMapper: ImprovementDiariesEntityMapper
 ) : ImprovementRepository {
 
     override fun getImproveDiaries(

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.depromeet.bboxx.R
@@ -30,6 +31,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
     lateinit var mAdapter: CardViewAdapter
     private var nowYear: String = ""
     private var nowMonth: String = ""
+    private lateinit var binding : GrowthDiaryBinding
     var a = 0
 
     override fun onAttach(context: Context) {
@@ -48,7 +50,14 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
         nowYear = DateFormatter().formatNowYear()
         nowMonth = DateFormatter().formatNowMonth()
 
-        val binding = GrowthDiaryBinding.inflate(inflater, container, false)
+        binding =
+            DataBindingUtil.bind(
+                inflater.inflate(
+                    R.layout.growth_diary,
+                    container,
+                    false
+                )
+            )!!
 
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
@@ -73,7 +82,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
             }
         }
 
-        getGrowthList(nowYear, nowMonth)
+        mainActivity.getGrowthList(nowYear, nowMonth)
 
         binding.tvMonth.setOnClickListener {
 
@@ -84,24 +93,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
                 .show(childFragmentManager, GrowthCalendarFragment.TAG)
 
         }
-//        val dataList = ArrayList<ImprovementDiariesEntity>()
-//        val tag = ArrayList<ImprovementTagsEntity>()
-//        dataList.add(
-//            ImprovementDiariesEntity(
-//                "지난 두 달간 써온 회고일기를 오늘 다시 읽어보았다. 얼핏 일기와 비슷해보이긴 하지만 조금 더 객관적이고 디테일하다는 측면에서 확연히 다르다. 나의 복잡다단한 감정을 쏟아내는 내면일기가 아니라, 명확한 질문을 두고 ‘나’ 라는 청자에게 쓰는 외면일기에 가깝다. 내가 무엇을 잘했고 부족했는지, 다음 단계로 나가기 위해서는 어떻게 해야하는지. 몇 주간의 기록을 쭉 훑어보니, 내가 일과 삶에 어떤 방향성을 지니고 싶어하는지가 보이고, 그러기 위해 노력하는 모습도 보여서 뿌듯했다.",
-//                "",
-//                1,
-//                1,
-//                1,
-//                tag,
-//                "타이틀1",
-//                ""
-//            )
-//        )
-//        dataList.add(ImprovementDiariesEntity("", "", 1, 1, 1, tag, "타이틀2", ""))
-//        dataList.add(ImprovementDiariesEntity("", "", 1, 1, 1, tag, "타이틀3", ""))
-//        dataList.add(ImprovementDiariesEntity("", "", 1, 1, 1, tag, "타이틀4", ""))
-//        dataList.add(ImprovementDiariesEntity("", "", 1, 1, 1, tag, "타이틀5", ""))
 
         val dataList1 = ArrayList<ImprovementDiaries>()
         setCardView(binding, dataList1)
@@ -119,30 +110,27 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
             initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
             val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
 
-            mainActivity.growthNoteViewModel.testSendNotification(2, memberId!!)
+            //mainActivity.growthNoteViewModel.testSendNotification(1, memberId!!)
         }
 
-        mainActivity.growthNoteViewModel.growthList.observeNonNull(this) {
 
-        }
         return binding.root
 
     }
 
-    /**
-     *  성장일기 오늘 기준으로 성장일기 가져오는 함수입니다.
-     */
-    @SuppressLint("NewApi")
-    private fun getGrowthList(yearNow: String, monthNow: String) {
-        initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
-        val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        mainActivity.growthNoteViewModel.getGrowthList(
-            memberId!!,
-            monthNow.toInt(),
-            yearNow.toInt()
-        )
+        mainActivity.growthNoteViewModel.growthList.observeNonNull(this) {
+            if(it.isNotEmpty()){
+                binding.emptyView.isVisible = false
+                binding.rlCardView.isVisible =true
+                mAdapter.setData(it)
+            }
+        }
+
     }
+
 
     fun setCardView(binding: GrowthDiaryBinding, dataList: ArrayList<ImprovementDiaries>) {
 
@@ -162,6 +150,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
     }
 
     override fun clickMonth(year: String, month: String) {
-        getGrowthList(year, month)
+        mainActivity.getGrowthList(year, month)
     }
 }

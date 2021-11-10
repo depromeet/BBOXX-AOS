@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="@{modelItem.updateAt}"
+                android:text="@{modelItem.beforeDate}"
                 android:textSize="12sp"
                 android:textColor="@color/text_middle_title" />
         </LinearLayout>
@@ -64,7 +64,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/margin_alarm_item"
             android:maxLines="2"
-            android:text="@{modelItem.title}"
+            android:text="@{modelItem.message}"
             android:layout_marginHorizontal="@dimen/margin_alarm_item"
             app:layout_constraintTop_toBottomOf="@+id/lay_alarm_board"
             app:layout_constraintStart_toStartOf="parent"
