@@ -51,8 +51,8 @@ class NoticeRemoteImpl @Inject constructor(
 
     override fun sendNotificationTest(emotionId: Int, ownerId: Int): Single<EmptyDto> {
         val body = HashMap<String, Any>().apply {
-            put("ownerId", ownerId)
-            put("emotionId", emotionId)
+            put("receiverId", ownerId)
+            put("emotionDiaryId", emotionId)
         }
 
         return noticeApi.sendNotificationTest(body)

@@ -215,7 +215,7 @@ class FeelingHistoryFragment @Inject constructor() :
         val memberId =
             SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
 
-        mainActivity.feelHistoryViewModel.getNoticeList(memberId!!)
+         mainActivity.feelHistoryViewModel.getNoticeList(memberId!!)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

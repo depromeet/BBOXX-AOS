@@ -10,8 +10,12 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.depromeet.bboxx.R
+import com.depromeet.bboxx.presentation.ui.AppContext
 import com.depromeet.bboxx.presentation.ui.feelhistory.FeelingHistoryFragment
+import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
 import com.depromeet.bboxx.util.VersionUtils
+import com.depromeet.bboxx.util.constants.SharedConstants
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.text.SimpleDateFormat
@@ -19,10 +23,17 @@ import java.util.*
 
 class FCMMessageService: FirebaseMessagingService() {
 
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
 
-        val fcmToken = token
+        AppContext.applicationContext()?.let{
+            initSharedPreference(it, SharedConstants.C_FCM_TOKEN_SHRED)
+            setDataStringSharedPreference(
+                token,
+                SharedConstants.C_FCM_TOKEN_KEY
+            )
+        }
 
     }
 

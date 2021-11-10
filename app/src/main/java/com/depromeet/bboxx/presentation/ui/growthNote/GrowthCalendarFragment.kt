@@ -37,7 +37,7 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
     private val growthCalendarAdapter: GrowthCalendarAdapter by lazy{
         GrowthCalendarAdapter({
             monthListener?.run {
-                clickMonth(it)
+                clickMonth(yearTitle, it)
             }
             dismiss()
         },{ isClicked ->
@@ -45,6 +45,9 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
         })
     }
 
+    /**
+     *  구현 필요한거 왼쪽, 오른쪽 갈수 있게 로직 구현
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

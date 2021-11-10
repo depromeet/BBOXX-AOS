@@ -77,22 +77,29 @@ class MainViewModel @Inject constructor(
      *  해당 로직은 추후 위치 수정 예정 from. 중근
      */
     private fun getFCMToken(): String {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
+        AppContext.applicationContext()?.let{
+            initSharedPreference(it, C_FCM_TOKEN_SHRED)
+        }
 
-            // Get new FCM registration token
-            token = task.result.toString()
+        val fcmToken = getDataStringSharedPreference(C_FCM_TOKEN_KEY)
+        if(fcmToken == null){
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
+                }
 
-            AppContext.applicationContext()?.let{
-                initSharedPreference(it, C_FCM_TOKEN_SHRED)
+                // Get new FCM registration token
+                token = task.result.toString()
+
                 setDataStringSharedPreference(token, C_FCM_TOKEN_KEY)
-            }
-            // Log and toast
-            Log.d("TAG", token)
-        })
+                // Log and toast
+                Log.d("TAG", token)
+            })
+        }
+        else{
+            return fcmToken
+        }
 
         return token
     }

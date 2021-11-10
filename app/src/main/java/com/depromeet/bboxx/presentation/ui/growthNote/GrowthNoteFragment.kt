@@ -166,7 +166,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
 
     }
 
-    override fun clickMonth(month: String) {
-        getGrowthList(nowYear, month)
+    override fun clickMonth(year: String, month: String) {
+        getGrowthList(year, month)
     }
 }
