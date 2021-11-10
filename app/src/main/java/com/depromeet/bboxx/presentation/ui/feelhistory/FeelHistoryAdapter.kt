@@ -54,7 +54,7 @@ class FeelHistoryAdapter
         val renew = arrayListOf<NotificationModel>()
 
         notificationList.forEach {
-            val notifications = NotificationModel(it.createAt,it.emotionDiaryId,it.id,it.message, it.receiverId, it.state,it.title, it.updateAt, isDelete )
+            val notifications = NotificationModel(it.createAt,it.emotionDiaryId,it.id,it.message, it.receiverId, it.state,it.title, it.updateAt, isDelete, it.beforeDate)
             renew.add(notifications)
         }
 

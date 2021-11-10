@@ -9,5 +9,6 @@ data class NotificationModel(
     val state: String,
     val title: String,
     val updateAt: String,
-    var isDelete: Boolean
-)
+    var isDelete: Boolean,
+    var beforeDate: String
+):ViewTypeModel

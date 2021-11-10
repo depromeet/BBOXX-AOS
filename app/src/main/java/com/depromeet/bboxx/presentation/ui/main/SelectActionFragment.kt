@@ -9,6 +9,7 @@ import com.depromeet.bboxx.presentation.base.BaseFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
 import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
+import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteReViewFeelingNote
 import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import javax.inject.Inject
@@ -32,7 +33,8 @@ class SelectActionFragment @Inject constructor()
         }
 
         binding.btnFeel.setOnClickListener {
-            mainActivity.addFragment(FeelingNoteSelectFragment())
+           mainActivity.addFragment(FeelingNoteSelectFragment())
+           // mainActivity.addFragment(GrowthNoteReViewFeelingNote(1))
         }
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{

@@ -6,6 +6,7 @@
         android:id="@+id/cl_bg"
         android:layout_width="315dp"
         android:layout_height="450dp"
+        android:layout_marginHorizontal="15dp"
         android:background="@drawable/bg_cardview"
         android:clickable="true">
 

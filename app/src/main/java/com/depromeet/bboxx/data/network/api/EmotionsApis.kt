@@ -16,8 +16,8 @@ interface EmotionsApis {
     fun registerEmotions(@Body body: HashMap<String, Any>): Single<EmptyDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @GET("emotions")
-    fun searchRequestEmotions(@Query("emotionId") emotionId: Int) : Single<SearchEmotionDto>
+    @GET("emotions/{emotionId}")
+    fun searchRequestEmotions(@Path("emotionId") emotionId: Int) : Single<SearchEmotionDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
     @DELETE("emotions")

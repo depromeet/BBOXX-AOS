@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.data.entity
 
+import com.depromeet.bboxx.domain.model.ImprovementTags
 import com.google.gson.annotations.SerializedName
 
 data class ImprovementDiariesEntity(
@@ -14,9 +15,11 @@ data class ImprovementDiariesEntity(
     @SerializedName("memberId")
     val memberId: Int,
     @SerializedName("tags")
-    val tags: List<ImprovementTagsEntity>,
+    val tags: List<String>,
     @SerializedName("title")
     val title: String,
+    @SerializedName("keptAt")
+    val keptAt: String,
     @SerializedName("updatedAt")
     val updatedAt: String
 )
