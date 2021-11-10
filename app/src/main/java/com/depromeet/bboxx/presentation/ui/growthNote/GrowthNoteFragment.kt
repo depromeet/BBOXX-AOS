@@ -50,11 +50,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
 
         val binding = GrowthDiaryBinding.inflate(inflater, container, false)
 
-        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
-            override fun callback() {
-                mainActivity.clearThisFragment(this@GrowthNoteFragment)
-            }
-        }, resources.getString(R.color.white))
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {

@@ -3,6 +3,7 @@ package com.depromeet.bboxx.presentation.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.depromeet.bboxx.domain.model.EmotionDiary
 import com.depromeet.bboxx.domain.usecases.emotion.EmotionUseCase
 import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
@@ -24,6 +25,10 @@ class FeelingNoteViewModel @Inject constructor(
     val feelingEmotionList: LiveData<List<FeelingEmotionModel>>
         get() = _feelingEmotionList
 
+    private val _emotionDiary = MutableLiveData<EmotionDiary>()
+    val emotionDiary: LiveData<EmotionDiary>
+        get() = _emotionDiary
+
     fun getFeeling(){
         disposable+=
             emotionUseCase.requestEmotionStatus()
@@ -32,7 +37,7 @@ class FeelingNoteViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         _feelingEmotionList.value = it
-                                Log.d("FEEL", it.toString())
+                        Log.d("FEEL", it.toString())
                     },
                     onError = {
                     }
@@ -54,15 +59,29 @@ class FeelingNoteViewModel @Inject constructor(
                 )
     }
 
-    fun searchFeelings(memberId: Int){
+    fun searchFeelings(emotionId: Int){
         disposable+=
-            emotionUseCase.searchEmotion(memberId)
+            emotionUseCase.searchEmotion(emotionId)
+                .onIOforMainThread()
+                .subscribeBy(
+                    onSuccess = {
+                        _emotionDiary.value = it
+                    },
+                    onError = {
+                    }
+                )
+    }
+
+    fun deleteFeelings(emotionId: Int){
+        disposable+=
+            emotionUseCase.deleteEmotion(emotionId)
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
 
                     },
                     onError = {
+
                     }
                 )
     }

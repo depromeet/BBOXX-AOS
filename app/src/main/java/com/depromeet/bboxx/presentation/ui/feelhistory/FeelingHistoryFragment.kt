@@ -227,7 +227,7 @@ class FeelingHistoryFragment @Inject constructor() :
             if (isDelete) {
                 feelHistoryAdapter.notifyItemRemoved(position.toInt())
             } else {
-                mainActivity.addFragment(GrowthNoteReViewFeelingNote())
+                mainActivity.addFragment(GrowthNoteReViewFeelingNote(notifications.emotionDiaryId))
             }
         }
 

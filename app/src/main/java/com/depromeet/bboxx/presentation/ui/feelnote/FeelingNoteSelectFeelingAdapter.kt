@@ -110,7 +110,6 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
                     binding.tvFeeling.setTextColor(Color.WHITE)
                     if(!listFeel[position].isSelected){
                         callback?.let {
-                            Log.d("HAE", data.text)
                             callback.callback(data)
                         }
                         listFeel[position].isSelected = true
