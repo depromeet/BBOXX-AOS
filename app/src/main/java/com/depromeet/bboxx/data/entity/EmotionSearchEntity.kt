@@ -17,6 +17,6 @@ data class EmotionSearchEntity(
     val memberId: Int,
     @SerializedName("title")
     val title: String,
-    @SerializedName("updateAt")
+    @SerializedName("updatedAt")
     val updateAt: String
 )

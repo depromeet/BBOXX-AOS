@@ -3,7 +3,10 @@ package com.depromeet.bboxx.presentation.ui
 import android.app.Application
 import android.content.Context
 import com.depromeet.bboxx.R
+import com.depromeet.bboxx.constants.Constants.REMOTE_CONFIG_CACHE_EXPIRATON
 import com.google.firebase.FirebaseApp
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.kakao.sdk.common.KakaoSdk
 import dagger.hilt.android.HiltAndroidApp
 
@@ -32,6 +35,15 @@ class AppContext : Application() {
     }
 
     private fun initFirebase(){
+
         FirebaseApp.initializeApp(this)
+
+        val firebaseRemoteConfigSetting = FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(1).build()
+        val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+        firebaseRemoteConfig.setConfigSettingsAsync(firebaseRemoteConfigSetting)
+        firebaseRemoteConfig.fetch(REMOTE_CONFIG_CACHE_EXPIRATON.toLong()).addOnSuccessListener {
+            firebaseRemoteConfig.activate()
+        }
+
     }
 }

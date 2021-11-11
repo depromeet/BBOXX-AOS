@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.LayoutGrowthNoteViewerBinding
+import com.depromeet.bboxx.domain.model.ImprovementDiaries
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
 
-class GrowthNoteViewerFragment(val bgColor: Int, val emotionDiaryId: Int) : Fragment() {
+class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDiaries) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -26,6 +28,7 @@ class GrowthNoteViewerFragment(val bgColor: Int, val emotionDiaryId: Int) : Frag
         mainActivity = context as MainActivity
     }
 
+    private lateinit var improveModel: ImprovementDiaries
 
     @SuppressLint("ClickableViewAccessibility", "ResourceType", "NewApi")
     override fun onCreateView(
@@ -34,11 +37,19 @@ class GrowthNoteViewerFragment(val bgColor: Int, val emotionDiaryId: Int) : Frag
         savedInstanceState: Bundle?
     ): View? {
 
+        improveModelInit()
+
         val binding = LayoutGrowthNoteViewerBinding.inflate(inflater, container, false)
 
         //  이전 감정 보기
         binding.clSetFold.setOnClickListener {
-            mainActivity.beforeFeelingContent(emotionDiaryId)
+            if(!binding.clHistory.isVisible){
+                mainActivity.beforeFeelingContent(improveData.emotionDiaryId)
+            }
+            else{
+                binding.arrowDown.rotation = 270f
+                binding.clHistory.visibility = View.GONE
+            }
         }
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
@@ -49,8 +60,9 @@ class GrowthNoteViewerFragment(val bgColor: Int, val emotionDiaryId: Int) : Frag
         }, resources.getString(R.color.white))
 
         binding.clTopView.setBackgroundColor(ContextCompat.getColor(mainActivity, bgColor))
-
         mainActivity.setStatusBarColor(bgColor)
+
+        setImproveData(binding)
 
         mainActivity.feelingNoteViewModel.emotionDiary.observeNonNull(this){
             if (it.content.isNotBlank()) {
@@ -68,5 +80,18 @@ class GrowthNoteViewerFragment(val bgColor: Int, val emotionDiaryId: Int) : Frag
         return binding.root
     }
 
+    private fun improveModelInit(){
+        improveModel = improveData
+    }
+
+    private fun setImproveData( binding: LayoutGrowthNoteViewerBinding){
+        if(::improveModel.isInitialized){
+            improveModel.run {
+                binding.tvDate.text = improveData.createdAt
+                binding.tvTitle.text = improveData.title
+                binding.tvMainText.text = improveData.content
+            }
+        }
+    }
 
 }

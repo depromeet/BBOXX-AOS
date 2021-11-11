@@ -10,4 +10,6 @@ object Constants {
     //const val BASE_URL = "https://7006-183-98-56-105.ngrok.io/api/v1/"
     //const val BASE_URL = "https://f183-218-156-6-100.ngrok.io/api/v1/"
     const val BASE_URL = "http://ecs-loadbalancer-640d958083694585.elb.ap-northeast-2.amazonaws.com/api/v1/"
+
+    val REMOTE_CONFIG_CACHE_EXPIRATON = 1000
 }

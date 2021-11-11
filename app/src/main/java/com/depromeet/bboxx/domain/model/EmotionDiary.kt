@@ -8,5 +8,5 @@ data class EmotionDiary(
     val id: Int,
     val memberId: Int,
     val title: String,
-    val updateAt: String
+    val updatedAt: String
 )

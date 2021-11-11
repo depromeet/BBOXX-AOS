@@ -78,7 +78,7 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
             }
 
             binding.clBg.setOnClickListener {
-                context.addFragment(GrowthNoteViewerFragment(color, data.emotionDiaryId))
+                context.addFragment(GrowthNoteViewerFragment(color, data))
 
             }
         }

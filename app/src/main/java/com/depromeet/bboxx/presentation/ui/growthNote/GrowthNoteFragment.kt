@@ -110,12 +110,17 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
             initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
             val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
 
-            //mainActivity.growthNoteViewModel.testSendNotification(1, memberId!!)
+            mainActivity.growthNoteViewModel.testSendNotification(1, memberId!!)
         }
 
 
         return binding.root
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.setStatusBarColor(R.color.main_bg)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
