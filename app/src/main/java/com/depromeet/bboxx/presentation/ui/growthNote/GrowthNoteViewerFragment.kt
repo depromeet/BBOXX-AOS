@@ -2,6 +2,8 @@ package com.depromeet.bboxx.presentation.ui.growthNote
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
+import com.google.android.material.chip.Chip
 
 class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDiaries) : Fragment() {
 
@@ -71,6 +74,7 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
                 binding.tvDateFeel.text = DateFormatter().formatFormatterEmotion(it.createdAt)
                 binding.etTitleText.text = it.title
                 binding.etMainText.text = it.content
+
             } else {
                 binding.arrowDown.rotation = 270f
                 binding.clHistory.visibility = View.GONE
@@ -90,6 +94,18 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
                 binding.tvDate.text = improveData.createdAt
                 binding.tvTitle.text = improveData.title
                 binding.tvMainText.text = improveData.content
+
+                val tagList = arrayListOf<String>()
+                tagList.addAll(improveData.tags)
+                tagList.forEach {
+                    val chip = Chip(context)
+                    chip.text = it
+                    chip.textSize = 14F
+                    chip.setTextColor(Color.parseColor("#ffffff"))
+                    chip.chipBackgroundColor =
+                        ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_10))
+                    binding.chipGroup.addView(chip)
+                }
             }
         }
     }
