@@ -52,7 +52,7 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
 
             override fun afterTextChanged(s: Editable) {
 
-                titleText = binding.etTitleText.getText().toString()
+                titleText = binding.etTitleText.text.toString()
 
                 if (isTitleActivated != binding.etTitleText.text.isNotEmpty()) {
                     isTitleActivated = binding.etTitleText.text.isNotEmpty()
@@ -64,18 +64,14 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
 
         tempSaveCategoryId = categoryId
 
-        binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
+        binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-
-
                 val bottomNote = BackLayerFragment(this@FeelingNoteFragment)
                 bottomNote.show(childFragmentManager, bottomNote.tag)
-
-
             }
         })
 
-        binding.clTopView.setRedoBtn(object :CustomTopView.OnclickCallback{
+        binding.clTopView.setRedoBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
                 binding.etTitleText.text = null
                 binding.etMainText.text = null
@@ -94,7 +90,7 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
 
             override fun afterTextChanged(s: Editable) {
                 isTitleActivated = binding.etMainText.text.isNotEmpty()
-                val input: String = binding.etMainText.getText().toString()
+                val input: String = binding.etMainText.text.toString()
                 binding.tvTextCount.text = input.length.toString()
                 mainTitle = input
                 when {
@@ -121,7 +117,14 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
 
         binding.btnSuccess.setOnClickListener {
             //  생명주기에 따라 categoryId 가 있을지 없을지.. 확인해봐야 할것 같습니다.
-            mainActivity.addFragment(FeelingNoteSelectFeelingFragment(tempSaveCategoryId, selectedFeeling, titleText, mainTitle))
+            mainActivity.addFragment(
+                FeelingNoteSelectFeelingFragment(
+                    tempSaveCategoryId,
+                    selectedFeeling,
+                    titleText,
+                    mainTitle
+                )
+            )
         }
         return binding.root
     }

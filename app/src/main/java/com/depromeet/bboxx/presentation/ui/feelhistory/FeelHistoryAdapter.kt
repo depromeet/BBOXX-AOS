@@ -37,9 +37,9 @@ class FeelHistoryAdapter
         return getItem(position).id.toLong()
     }
 
-    fun replaceItems(items: List<NotificationModel>) {
-        notificationList.addAll(items)
-        submitList(items)
+    fun replaceItems(items: MutableList<NotificationModel>) {
+        notificationList.addAll(items.sortedByDescending { it.id })
+        submitList(items.sortedByDescending { it.id })
     }
 
     fun deleteStatusVisible(){

@@ -62,7 +62,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
         mainActivity.feelHistoryViewModel.noticeList.observeNonNull(this) {
             if (it.isNotEmpty()) {
-                feelHistoryAdapter.replaceItems(it)
+                feelHistoryAdapter.replaceItems(it.toMutableList())
                 binding.rvAlarmHistory.isVisible = true
                 binding.txtAlarmTitle.isVisible = false
                 binding.imgAlarmNo.isVisible = false
