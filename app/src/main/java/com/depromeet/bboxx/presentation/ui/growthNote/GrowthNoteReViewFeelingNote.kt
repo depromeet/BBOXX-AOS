@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,8 +54,9 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
         }
 
         mainActivity.feelingNoteViewModel.emotionDiary.observeNonNull(this){
-            //  여기에서 감정일기 요청한 데이터 화면에 뿌려주시는 작업하시면 될것 같습니다.
-            Log.d("FELJG", it.toString())
+            binding.tvDate.text = it.createdAt
+            binding.etTitleText.text = it.title
+            binding.etMainText.setText(it.content)
         }
 
         return binding.root
