@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="18dp"
             android:background="@color/mypage_bg"
-            android:onClick="@{()->vm.updateNickname()}"
             app:layout_constraintBottom_toBottomOf="@+id/txt_nickname"
             app:layout_constraintEnd_toEndOf="@+id/img_bg_board"
             app:layout_constraintTop_toTopOf="@+id/txt_nickname"
@@ -110,11 +109,11 @@
                 android:gravity="right">
 
                 <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_push"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     style="@style/Widget.App.Switch"
-                    android:layout_gravity="center"
-                    android:checked="@={vm.isPushStatus}"/>
+                    android:layout_gravity="center"/>
             </LinearLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -170,7 +169,6 @@
                         android:id="@+id/txt_app_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@={vm.version}"
                         android:gravity="right"
                         android:textSize="16sp"
                         android:textColor="@color/text_middle_title" />
@@ -192,10 +190,11 @@
                     android:textColor="@color/text_middle_title" />
 
                 <LinearLayout
+                    android:id="@+id/ly_team_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:onClick="@{()->vm.moveTeamInfo()}">
+                    >
 
                     <ImageView
                         android:id="@+id/btn_team_intro"
@@ -238,10 +237,11 @@
                     android:textColor="@color/text_middle_title" />
 
                 <LinearLayout
+                    android:id="@+id/ly_using"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:onClick="@{()->vm.moveTermOfUse()}">
+                    >
 
                     <ImageView
                         android:id="@+id/btn_using"
@@ -266,10 +266,11 @@
                     android:textColor="@color/text_middle_title" />
 
                 <LinearLayout
+                    android:id="@+id/ly_person_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:onClick="@{()->vm.movePersonInfo()}">
+                    >
 
                     <ImageView
                         android:id="@+id/btn_person_info"

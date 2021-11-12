@@ -61,7 +61,17 @@ class MyPageFragment @Inject constructor() : BaseFragment<ActivityMypageBinding>
         }, resources.getString(R.color.white) )
 
         binding.imgBgBoard.setOnClickListener {
-            Toast.makeText(requireContext(),"아직 준비 중입니다.",Toast.LENGTH_SHORT).show()
+            onToast()
+        }
+
+        binding.lyUsing.setOnClickListener {
+            onToast()
+        }
+        binding.lyPersonInfo.setOnClickListener {
+            onToast()
+        }
+        binding.lyTeamInfo.setOnClickListener {
+            onToast()
         }
 
         binding.txtNickname.text = nickName
@@ -69,7 +79,27 @@ class MyPageFragment @Inject constructor() : BaseFragment<ActivityMypageBinding>
 
         initSharedPreference(requireContext(), C_PUSH_STATUS_SHRED)
         val pushStatus = getDataBooleanSharedPreference(C_PUSH_STATUS_KEY)
+        if (pushStatus != null) {
+            binding.switchPush.isChecked = pushStatus
+        }
 
+        binding.switchPush.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                mainActivity.mainViewModel.pushRegister()
+            }
+            else{
+                mainActivity.mainViewModel.pushDeRegister()
+            }
+        }
+    }
+
+    private fun onToast(){
+        Toast.makeText(requireContext(), "아직 준비중 입니다.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.main_bg)
     }
 
 }
