@@ -2,24 +2,16 @@ package com.depromeet.bboxx.presentation.ui.decibel
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.DecibelResultLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.MainFragment
-import com.depromeet.bboxx.presentation.ui.feelhistory.FeelingHistoryFragment
 import com.depromeet.bboxx.presentation.ui.feelnote.FeelingNoteSelectFragment
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toLogin
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 
@@ -40,7 +32,6 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
 
         val binding = DecibelResultLayoutBinding.inflate(inflater, container, false)
 
-
         initView(binding)
         return binding.root
     }
@@ -51,9 +42,7 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
 
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.finish()
-                toMain(mainActivity)
-
+                mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close, resources.getString(R.color.main_bg) )
         binding.tvResutDb.text = dB.toString() + "dB"
@@ -66,34 +55,36 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
                 binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_6AA13D)))
                 binding.tvResultInfo.text = "내가 너의 말을 들어 줄 수 있는\n친구가 되어 줄게🍃"
                 binding.imgLogo.background = mainActivity.getDrawable(R.drawable.decibel_0_50)
+                mainActivity.setStatusBarColor(R.color.color_6AA13D)
             }
             in 51..69 -> {
                 binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_A8BD28)))
                 binding.tvResultInfo.text = "괜찮아 괜찮아 \n그럴 떄도 있는거야☁️"
                 binding.imgLogo.background = mainActivity.getDrawable(R.drawable.decibel_51_69)
-
+                mainActivity.setStatusBarColor(R.color.color_A8BD28)
             }
             in 70..89 -> {
-
                 binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_EF9E24)))
                 binding.tvResultInfo.text = "좀더 크게 감정을 표현하고 나면\n기분이 나아질꺼야💥"
                 binding.imgLogo.background = mainActivity.getDrawable(R.drawable.decibel_70_89)
-
+                mainActivity.setStatusBarColor(R.color.color_EF9E24)
             }
             in 90..99 -> {
                 binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_EF9E24)))
                 binding.tvResultInfo.text = "잘했어. 속에 있는 건 다 풀어야해.\n불족어때?🔥"
                 binding.imgLogo.background = mainActivity.getDrawable(R.drawable.decibel_90_99)
-
+                mainActivity.setStatusBarColor(R.color.color_EF9E24)
             }
             in 100..119  -> {
             binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_EF9E24)))
             binding.tvResultInfo.text = "와, 마음 속에 허리케인이\n몰아치고 갔었네🌪"
+                mainActivity.setStatusBarColor(R.color.color_EF9E24)
             }
             else -> {
                 binding.clBg.setBackgroundColor(Color.parseColor(resources.getString(R.color.color_D04141)))
                 binding.tvResultInfo.text = "운석이 충돌한 줄 알았어!\n속 시원하게 다 게웠어?☄️"
                 binding.imgLogo.background = mainActivity.getDrawable(R.drawable.decibel_120)
+                mainActivity.setStatusBarColor(R.color.color_D04141)
             }
 
         }
@@ -105,6 +96,11 @@ class DecibelResultFragment(val dB: Int) : Fragment() {
             mainActivity.addFragment(FeelingNoteSelectFragment())
         }
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.main_bg)
     }
 
 }

@@ -45,7 +45,8 @@ class DecibelFragment : Fragment() {
 
         val audioReaderJava = AudioReaderJava()
 
-//        binding.clTopView.setBackButtonColor(resources.getString(R.color.main_bg))
+        mainActivity.setStatusBarColor(R.color.black_80)
+
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {
                 mainActivity.clearThisFragment(this@DecibelFragment)

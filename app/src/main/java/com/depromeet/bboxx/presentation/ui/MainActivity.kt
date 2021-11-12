@@ -12,13 +12,10 @@ import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import dagger.hilt.android.AndroidEntryPoint
-import android.content.Intent
-
-
 
 
 @AndroidEntryPoint
-class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     val mainViewModel: MainViewModel by viewModels()
     val decibelViewModel: DecibelViewModel by viewModels()
@@ -27,6 +24,7 @@ class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
     val growthNoteViewModel: GrowthNoteViewModel by viewModels()
 
     private lateinit var viewPager: ViewPager2
+    private var fragmentlist = mutableListOf<Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,9 +59,8 @@ class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
         feelHistoryViewModel.getNoticeList(memberId!!)
     }
 
-
     /**
-     *  성장일기 리스트 보
+     *  성장일기 리스트 보기
      */
     fun getGrowthList(yearNow: String, monthNow: String) {
         SharedPreferenceUtil.initSharedPreference(this, C_MEMBER_ID_SHRED)
@@ -77,15 +74,17 @@ class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
         )
     }
 
+    /**
+     *  감정일기 삭제
+     */
     fun deleteFeelData(emotionId: Int) {
         feelingNoteViewModel.deleteFeelings(emotionId)
     }
 
+    /**
+     *  감정일기 조회
+     */
     fun searchFeelingContent(emotionDiaryId: Int) {
-        feelingNoteViewModel.searchFeelings(emotionDiaryId)
-    }
-
-    fun beforeFeelingContent(emotionDiaryId: Int) {
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
@@ -94,15 +93,12 @@ class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
         viewPager.adapter = MainViewAdapter(this).apply {
             createFragment(position)
         }
-
     }
 
     fun addFragment(fragment: Fragment) {
+        fragmentlist.add(fragment)
         supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit()
     }
-
-    fun replaceFragment(replacefragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_main, replacefragment).commit(); }
 
     fun addTopFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
@@ -111,7 +107,26 @@ class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
     }
 
     fun clearThisFragment(fragment: Fragment) {
+        fragmentlist.forEach {
+            if(it == fragment){
+                fragmentlist.remove(it)
+            }
+        }
         supportFragmentManager.beginTransaction().remove(fragment).commit()
+    }
+
+    fun allClearFragment(){
+        fragmentlist.forEach {
+            supportFragmentManager.beginTransaction().remove(it).commit()
+        }
+    }
+
+    fun allClearAndGrowth(){
+        fragmentlist.forEach {
+            supportFragmentManager.beginTransaction().remove(it).commit()
+        }
+        setAdapter(intent.getIntExtra("position", 1))
+        viewPager.adapter?.notifyDataSetChanged()
     }
 
     override fun onBackPressed() {

@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.MainFragment
 import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class FeelingNoteCompleteFragment() : Fragment() {
@@ -36,8 +34,7 @@ class FeelingNoteCompleteFragment() : Fragment() {
 
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.finish()
-                NavigatorUI.toMain(mainActivity)
+                mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close)
 
@@ -45,7 +42,7 @@ class FeelingNoteCompleteFragment() : Fragment() {
             mainActivity.addFragment(DecibelFragment())
         }
         binding.btGoToHome.setOnClickListener {
-            mainActivity.addFragment(MainFragment())
+            mainActivity.allClearFragment()
         }
 
 

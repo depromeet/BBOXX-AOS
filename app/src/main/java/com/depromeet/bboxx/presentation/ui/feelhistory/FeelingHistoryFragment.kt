@@ -18,7 +18,6 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.model.NotificationModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteReViewFeelingNote
-import com.depromeet.bboxx.presentation.ui.growthNote.GrwothNoteTagFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import org.jetbrains.anko.runOnUiThread
 
@@ -134,6 +133,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
             //  상세 보기
             if (isDelete) {
                 feelHistoryAdapter.notifyItemRemoved(position.toInt())
+                feelHistoryAdapter.notifyDataSetChanged()
             } else {
                 mainActivity.addFragment(GrowthNoteReViewFeelingNote(notifications.emotionDiaryId))
             }
@@ -141,6 +141,6 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
         override fun onItemDeleteClick(notifications: NotificationModel, position: Long) {
             feelHistoryAdapter.notifyItemRemoved(position.toInt())
-
+            feelHistoryAdapter.notifyDataSetChanged()
         }
     }
