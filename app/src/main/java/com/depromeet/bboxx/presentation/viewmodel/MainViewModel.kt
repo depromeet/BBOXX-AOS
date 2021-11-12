@@ -74,7 +74,7 @@ class MainViewModel @Inject constructor(
             setDataBooleanSharedPreference(true, C_PUSH_STATUS_KEY)
         }
 
-        pushFCMToken()
+        pushRegister()
     }
 
 
@@ -109,7 +109,10 @@ class MainViewModel @Inject constructor(
         return token
     }
 
-    fun pushFCMToken() {
+    /**
+     *  푸쉬 알림 등록
+     */
+    fun pushRegister() {
         var memberId = -1
         var fcmToken = ""
 
@@ -123,6 +126,29 @@ class MainViewModel @Inject constructor(
 
         disposable +=
             notificationUseCase.registerNotification(memberId, fcmToken)
+                .onIOforMainThread()
+                .subscribeBy(
+                    onSuccess = {
+
+                    },
+                    onError = {
+                    }
+                )
+    }
+
+    /**
+     *  푸쉬 알림 해제
+     */
+    fun pushDeRegister(){
+        var memberId = -1
+
+        AppContext.applicationContext()?.let {
+            initSharedPreference(it, C_MEMBER_ID_SHRED)
+            memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)!!
+        }
+
+        disposable +=
+            notificationUseCase.deRegisterNotification(memberId)
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
