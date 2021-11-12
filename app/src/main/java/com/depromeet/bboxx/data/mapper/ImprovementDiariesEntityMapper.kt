@@ -7,9 +7,10 @@ import javax.inject.Inject
 class ImprovementDiariesEntityMapper @Inject constructor() {
     fun trans(target: List<ImprovementDiariesEntity>): List<ImprovementDiaries> = with(target) {
         return map { improve ->
+            val createDate = improve.createdAt.substring(0, improve.createdAt.indexOf("."))
             ImprovementDiaries(
                 improve.content,
-                improve.createdAt,
+                createDate,
                 improve.emotionDiaryId,
                 improve.id,
                 improve.memberId,

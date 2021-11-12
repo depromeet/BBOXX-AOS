@@ -65,13 +65,13 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
         binding.clTopView.setBackgroundColor(ContextCompat.getColor(mainActivity, bgColor))
         mainActivity.setStatusBarColor(bgColor)
 
-        setImproveData(binding)
+        setImproveData(binding, bgColor)
 
         mainActivity.feelingNoteViewModel.emotionDiary.observeNonNull(this){
             if (it.content.isNotBlank()) {
                 binding.arrowDown.rotation = 90f
                 binding.clHistory.visibility = View.VISIBLE
-                binding.tvDateFeel.text = DateFormatter().formatFormatterEmotion(it.createdAt)
+                binding.tvDateFeel.text = it.createdAt
                 binding.etTitleText.text = it.title
                 binding.etMainText.text = it.content
 
@@ -88,10 +88,12 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
         improveModel = improveData
     }
 
-    private fun setImproveData( binding: LayoutGrowthNoteViewerBinding){
+    @SuppressLint("NewApi")
+    private fun setImproveData(binding: LayoutGrowthNoteViewerBinding, bgColor: Int){
         if(::improveModel.isInitialized){
             improveModel.run {
-                binding.tvDate.text = improveData.createdAt
+                binding.clBg.setBackgroundColor(ContextCompat.getColor(requireContext(), bgColor))
+                binding.tvDate.text = DateFormatter().formatFormatterEmotion(improveData.createdAt)
                 binding.tvTitle.text = improveData.title
                 binding.tvMainText.text = improveData.content
 
@@ -110,4 +112,8 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 }
