@@ -10,7 +10,6 @@ import com.depromeet.bboxx.presentation.ui.AppContext
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataStringSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
-import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataBooleanSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataIntSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
 import com.depromeet.bboxx.util.constants.SharedConstants.C_FCM_TOKEN_KEY
@@ -19,8 +18,6 @@ import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_SHRED
-import com.depromeet.bboxx.util.constants.SharedConstants.C_PUSH_STATUS_KEY
-import com.depromeet.bboxx.util.constants.SharedConstants.C_PUSH_STATUS_SHRED
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,11 +66,9 @@ class MainViewModel @Inject constructor(
 
             initSharedPreference(it, C_NICKNAME_SHRED)
             setDataStringSharedPreference(userInfo.nickname, C_NICKNAME_KEY)
-
-            initSharedPreference(it, C_PUSH_STATUS_SHRED)
-            setDataBooleanSharedPreference(true, C_PUSH_STATUS_KEY)
         }
 
+        // Test 중
         pushFCMToken()
     }
 

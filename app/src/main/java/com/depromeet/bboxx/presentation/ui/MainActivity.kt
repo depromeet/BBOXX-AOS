@@ -26,8 +26,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         init()
         setAdapter()
+
     }
 
     private fun init() {
@@ -40,7 +43,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     /**
      *  감정일기에 쓸 이모션 불러오기
      */
-    fun getEmotionListImage() {
+    fun getEmotionListImage(){
         //  감정일기 이모션 불러오기
         feelingNoteViewModel.getFeeling()
     }
@@ -48,7 +51,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     /**
      *  타임라인 보기
      */
-    fun requestFeelHistoryList() {
+    fun requestFeelHistoryList(){
         SharedPreferenceUtil.initSharedPreference(this, C_MEMBER_ID_SHRED)
         val memberId =
             SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)
@@ -72,15 +75,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
     }
 
-    fun deleteFeelData(emotionId: Int) {
+    fun deleteFeelData(emotionId: Int){
         feelingNoteViewModel.deleteFeelings(emotionId)
     }
 
-    fun searchFeelingContent(emotionDiaryId: Int) {
+    fun searchFeelingContent(emotionDiaryId: Int){
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
-    fun beforeFeelingContent(emotionDiaryId: Int) {
+    fun beforeFeelingContent(emotionDiaryId: Int){
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
@@ -91,6 +94,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     fun addFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit()
+
     }
 
     fun replaceFragment(replacefragment: Fragment) {
