@@ -20,7 +20,7 @@ interface EmotionsApis {
     fun searchRequestEmotions(@Path("emotionId") emotionId: Int) : Single<SearchEmotionDto>
 
     @Headers("Content-type: application/json;charset=UTF-8")
-    @DELETE("emotions")
+    @DELETE("emotions/{emotionId}")
     fun deleteEmotions(@Path("emotionId") emotionId: Int): Single<EmptyDto>
 
 }

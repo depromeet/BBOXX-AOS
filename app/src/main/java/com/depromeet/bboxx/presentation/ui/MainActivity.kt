@@ -75,6 +75,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
     }
 
+    fun deleteFeelData(emotionId: Int){
+        feelingNoteViewModel.deleteFeelings(emotionId)
+    }
+
     fun searchFeelingContent(emotionDiaryId: Int){
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
