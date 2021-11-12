@@ -56,7 +56,7 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
         mainActivity.feelingNoteViewModel.emotionDiary.observeNonNull(this){
             binding.tvDate.text = it.createdAt
             binding.etTitleText.text = it.title
-            binding.etMainText.setText(it.content)
+            binding.etMainText.text = it.content
         }
 
         return binding.root
