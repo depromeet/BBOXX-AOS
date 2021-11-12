@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.LayoutFeelingCardViewBinding
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.util.DateFormatter
 import com.google.android.material.chip.Chip
 
 
@@ -54,7 +56,9 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
 
     inner class Holder(val binding: LayoutFeelingCardViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("NewApi")
         fun setData(data: ImprovementDiaries, color: Int) {
+            binding.tvDate.text = DateFormatter().formatFormatterEmotion(data.createdAt)
             binding.tvTitle.text = data.title
             binding.tvMainText.text = data.content
 
@@ -64,7 +68,6 @@ class CardViewAdapter(val context: MainActivity) : RecyclerView.Adapter<CardView
             binding.ivGradation.backgroundTintList =
                 ColorStateList.valueOf(ContextCompat.getColor(context, color))
 
-            //val dummyTexts = arrayListOf<String>("나 왜그랬지", "이불킥 각", "개웃겨", "용기파워","난 너무 멋져")
             val tagList = arrayListOf<String>()
             tagList.addAll(data.tags)
             tagList.forEach {

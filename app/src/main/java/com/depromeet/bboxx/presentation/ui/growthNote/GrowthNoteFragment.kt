@@ -110,7 +110,9 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
             initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
             val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
 
-            mainActivity.growthNoteViewModel.testSendNotification(1, memberId!!)
+            mainActivity.growthNoteViewModel.testSendNotification(2, memberId!!)
+            mainActivity.growthNoteViewModel.testSendNotification(3, memberId!!)
+            mainActivity.growthNoteViewModel.testSendNotification(4, memberId!!)
         }
 
 
