@@ -32,7 +32,7 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO HAERIN FRAGMNET이동
+        mainActivity.setStatusBarColor(R.color.main_bg)
 
         val today = DateFormatter().formatNowTime()
         binding.txtTodayDate.text = today

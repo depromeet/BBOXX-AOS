@@ -35,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1025445736589-ugkbpv9tmkp0ngjjhtd6scknpgde3vb3.apps.googleusercontent.com",
+              "client_id": "1025445736589-81774863ramd3cablchem35050bevdg7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1025445736589-je857q5op87sto83dtnvjpm3q444c5db.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.keunna.BBOXX-iOS"
+              }
             }
           ]
         }
