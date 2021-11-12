@@ -15,10 +15,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
-abstract class BaseActivity<T : ViewDataBinding> (@LayoutRes private val contentLayoutId: Int) : AppCompatActivity(),
-    CoroutineScope {
+abstract class BaseActivity<T : ViewDataBinding> (@LayoutRes private val contentLayoutId: Int) : AppCompatActivity(){
 
     val disposable: CompositeDisposable by lazy {
         CompositeDisposable()
@@ -26,17 +24,11 @@ abstract class BaseActivity<T : ViewDataBinding> (@LayoutRes private val content
 
     protected lateinit var binding: T
 
-    private lateinit var coroutineJob: Job
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + coroutineJob
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, contentLayoutId)
-
-        coroutineJob = SupervisorJob()
 
         ActivityManager.addActivity(this)
     }
@@ -45,7 +37,6 @@ abstract class BaseActivity<T : ViewDataBinding> (@LayoutRes private val content
         super.onDestroy()
         ActivityManager.removeActivity(this)
         disposable.clear()
-        coroutineJob.cancelChildren()
     }
 
     fun setStatusBarColor(@ColorRes statusColor:Int){

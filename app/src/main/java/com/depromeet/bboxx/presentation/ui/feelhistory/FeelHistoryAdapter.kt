@@ -50,7 +50,7 @@ class FeelHistoryAdapter
         deleteStatusChange(false)
     }
 
-    fun deleteStatusChange(isDelete: Boolean){
+    private fun deleteStatusChange(isDelete: Boolean){
         val renew = arrayListOf<NotificationModel>()
 
         notificationList.forEach {
@@ -58,7 +58,7 @@ class FeelHistoryAdapter
             renew.add(notifications)
         }
 
-        submitList(renew)
+        submitList(renew.sortedByDescending { it.id })
     }
 
     fun setOnClickListener(onClickListener: UserClickEvent) {

@@ -11,8 +11,6 @@ import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.GrowthNoteCompleteLayoutBinding
 import com.depromeet.bboxx.presentation.model.GrowthNoteModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.MainFragment
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteModel) : Fragment() {
@@ -37,9 +35,9 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.finish()
-                NavigatorUI.toMain(mainActivity)
-
+//                mainActivity.finish()
+//                NavigatorUI.toMain(mainActivity)
+                mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close)
 

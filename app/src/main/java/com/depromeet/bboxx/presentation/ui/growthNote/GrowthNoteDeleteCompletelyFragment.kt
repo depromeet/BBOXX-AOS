@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentDeleteAllResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.presentation.ui.MainFragment
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class GrowthNoteDeleteCompletelyFragment() : Fragment() {
@@ -35,15 +33,18 @@ class GrowthNoteDeleteCompletelyFragment() : Fragment() {
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.finish()
-                NavigatorUI.toMain(mainActivity)
+//                mainActivity.finish()
+//                NavigatorUI.toMain(mainActivity)
+                mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close)
 
 
         binding.btGoToHome.setOnClickListener {
-            mainActivity.finish()
-            NavigatorUI.toMain(mainActivity)
+//            mainActivity.finish()
+//            NavigatorUI.toMain(mainActivity)
+              mainActivity.allClearFragment()
+             // mainActivity.allClearAndGrowth()
         }
 
 

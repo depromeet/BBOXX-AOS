@@ -23,9 +23,7 @@ import com.google.android.material.chip.Chip
 class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDiaries) : Fragment() {
 
     lateinit var mainActivity: MainActivity
-
-
-    var isFold = true
+    
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
@@ -47,7 +45,7 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
         //  이전 감정 보기
         binding.clSetFold.setOnClickListener {
             if(!binding.clHistory.isVisible){
-                mainActivity.beforeFeelingContent(improveData.emotionDiaryId)
+                mainActivity.searchFeelingContent(improveData.emotionDiaryId)
             }
             else{
                 binding.arrowDown.rotation = 270f
