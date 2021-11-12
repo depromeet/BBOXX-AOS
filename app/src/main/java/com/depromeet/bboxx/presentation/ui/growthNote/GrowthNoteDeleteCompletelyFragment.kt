@@ -9,10 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentDeleteAllResultBinding
-import com.depromeet.bboxx.databinding.FragmentResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.MainFragment
-import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
+import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class GrowthNoteDeleteCompletelyFragment() : Fragment() {
@@ -34,21 +33,22 @@ class GrowthNoteDeleteCompletelyFragment() : Fragment() {
 
         val binding = FragmentDeleteAllResultBinding.inflate(inflater, container, false)
 
-        binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
+        binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.replaceFragment(MainFragment())
+                mainActivity.finish()
+                NavigatorUI.toMain(mainActivity)
             }
         }, R.drawable.ic_close)
 
 
         binding.btGoToHome.setOnClickListener {
-            mainActivity.addFragment(MainFragment())
+            mainActivity.finish()
+            NavigatorUI.toMain(mainActivity)
         }
 
 
         return binding.root
     }
-
 
 
 }

@@ -129,7 +129,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(notifications: NotificationModel, position: Long) {
         // 페이지 이동
-        mainActivity.addTopFragment(GrwothNoteTagFragment(notifications.emotionDiaryId))
+//        mainActivity.addTopFragment(GrwothNoteTagFragment(notifications.emotionDiaryId))
 
             //  상세 보기
             if (isDelete) {

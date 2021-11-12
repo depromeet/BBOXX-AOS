@@ -12,6 +12,7 @@ import com.depromeet.bboxx.databinding.GrowthNoteCompleteLayoutBinding
 import com.depromeet.bboxx.presentation.model.GrowthNoteModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.MainFragment
+import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteModel) : Fragment() {
@@ -36,7 +37,9 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.replaceFragment(MainFragment())
+                mainActivity.finish()
+                NavigatorUI.toMain(mainActivity)
+
             }
         }, R.drawable.ic_close)
 
@@ -46,6 +49,9 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
 
         binding.btGoToCardView.setOnClickListener {
             mainActivity.addFragment(GrowthNoteFragment())
+            //TODO HAERIN 성장일기로 넘어가기
+//            mainActivity.finish()
+//            NavigatorUI.toMain(mainActivity, 1)
         }
 
         return binding.root

@@ -60,7 +60,7 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
                 mainActivity.clearThisFragment(this@GrowthNoteViewerFragment)
             }
 
-        }, resources.getString(R.color.white))
+        }, )
 
         binding.clTopView.setBackgroundColor(ContextCompat.getColor(mainActivity, bgColor))
         mainActivity.setStatusBarColor(bgColor)

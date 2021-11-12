@@ -86,10 +86,11 @@ object NavigatorUI {
         }
     }
 
-    fun toMain(context: Context) {
+    fun toMain(context: Context, position : Int = 0) {
         with(context) {
             startActivity(
                 intentFor<MainActivity>()
+                    .putExtra("position", position)
                     .clearTop()
                     .singleTop()
                     .noAnimation()

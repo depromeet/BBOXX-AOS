@@ -12,9 +12,13 @@ import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import dagger.hilt.android.AndroidEntryPoint
+import android.content.Intent
+
+
+
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity() : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     val mainViewModel: MainViewModel by viewModels()
     val decibelViewModel: DecibelViewModel by viewModels()
@@ -27,7 +31,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-        setAdapter()
+
+        setAdapter(intent.getIntExtra("position", 0))
     }
 
     private fun init() {
@@ -84,9 +89,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
-    private fun setAdapter() {
+    private fun setAdapter(position :Int) {
         viewPager = binding.vpMain
-        viewPager.adapter = MainViewAdapter(this)
+        viewPager.adapter = MainViewAdapter(this).apply {
+            createFragment(position)
+        }
+
     }
 
     fun addFragment(fragment: Fragment) {
