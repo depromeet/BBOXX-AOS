@@ -57,6 +57,8 @@ class FeelHistoryAdapter
             val notifications = NotificationModel(it.createAt,it.emotionDiaryId,it.id,it.message, it.receiverId, it.state,it.title, it.updateAt, isDelete, it.beforeDate)
             renew.add(notifications)
         }
+        notificationList.clear()
+        notificationList.addAll(renew)
 
         submitList(renew.sortedByDescending { it.id })
     }
@@ -73,12 +75,12 @@ class FeelHistoryAdapter
             binding.executePendingBindings()
 
             binding.layAlarmMain.setOnClickListener {
-                onClickListener?.onItemClick(element, itemId)
+                onClickListener?.onItemClick(element, adapterPosition)
             }
 
             binding.btnRemove.setOnClickListener {
-                notificationList.removeAt(itemId.toInt())
-                onClickListener?.onItemDeleteClick(element, itemId)
+                notificationList.removeAt(adapterPosition)
+                onClickListener?.onItemDeleteClick(element, adapterPosition)
             }
         }
     }
