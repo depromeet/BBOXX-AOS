@@ -46,7 +46,7 @@
 \n다시 시도해주세요.</string>
     <string name="text_select_title">오늘 무슨 일 있었어?</string>
     <string name="text_select_title_main">기분 시원하게 풀러 갈까?</string>
-    <string name="text_main_nickname_title">%1$s\n오늘도 좋은 하루보내🌼</string>
+    <string name="text_main_nickname_title">%1$s\n오늘도 좋은 하루보내🌼\nTest를 위한 사용자 ID : %2$s</string>
     <string name="text_growth_my_feel_title">지금 내 감정은...</string>
     <string name="text_growth_my_feel_choice">최대 다섯개까지 선택해봐.</string>
 
