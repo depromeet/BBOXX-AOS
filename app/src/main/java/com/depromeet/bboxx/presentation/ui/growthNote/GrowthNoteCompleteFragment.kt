@@ -35,7 +35,7 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-                mainActivity.allClearFragment()
+                mainActivity.allClearAndGrowth()
             }
         }, R.drawable.ic_close)
 
