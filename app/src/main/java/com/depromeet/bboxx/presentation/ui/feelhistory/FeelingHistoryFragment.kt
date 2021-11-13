@@ -54,7 +54,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
         return binding.root
     }
 
-    fun initView(binding: FragmentAlarmBinding, ctx: Context){
+    fun initView(binding: FragmentAlarmBinding, ctx: Context) {
 
         topViewInit(binding)
         setAdapterAndRecyclerViewInit(binding)
@@ -127,15 +127,14 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemClick(notifications: NotificationModel, position: Int) {
-            if (!isDelete) {
-                mainActivity.addFragment(GrowthNoteReViewFeelingNote(notifications.emotionDiaryId))
-            }
-        }
-
-        override fun onItemDeleteClick(notifications: NotificationModel, position: Int) {
-            // 감정 삭제
-            mainActivity.deleteFeelData(notifications.emotionDiaryId)
-            feelHistoryAdapter.notifyItemRemoved(position)
-
+        if (!isDelete) {
+            mainActivity.addFragment(GrowthNoteReViewFeelingNote(notifications.emotionDiaryId))
         }
     }
+
+    override fun onItemDeleteClick(notifications: NotificationModel, position: Int) {
+        // 감정 삭제
+        mainActivity.deleteFeelData(notifications.emotionDiaryId)
+        feelHistoryAdapter.notifyItemRemoved(position)
+    }
+}

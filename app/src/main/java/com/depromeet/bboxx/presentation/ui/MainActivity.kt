@@ -88,6 +88,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         feelingNoteViewModel.searchFeelings(emotionDiaryId)
     }
 
+    /**
+     *  뷰페이저 Adpater
+     */
     private fun setAdapter(position :Int) {
         viewPager = binding.vpMain
         viewPager.adapter = MainViewAdapter(this).apply {
@@ -101,6 +104,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     fun addTopFragment(fragment: Fragment) {
+        fragmentlist.add(fragment)
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.anim_up, R.anim.anim_down)
         supportFragmentManager.beginTransaction().add(R.id.fl_main, fragment).commit()
@@ -125,8 +129,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         fragmentlist.forEach {
             supportFragmentManager.beginTransaction().remove(it).commit()
         }
-        setAdapter(intent.getIntExtra("position", 1))
-        viewPager.adapter?.notifyDataSetChanged()
+        viewPager.currentItem = viewPager.currentItem + 1
     }
 
     override fun onBackPressed() {

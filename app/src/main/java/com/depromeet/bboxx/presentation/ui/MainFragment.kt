@@ -14,7 +14,10 @@ import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
 import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_SHRED
 import javax.inject.Inject
@@ -37,9 +40,13 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         val today = DateFormatter().formatNowTime()
         binding.txtTodayDate.text = today
 
-        initSharedPreference(mainActivity.applicationContext, C_NICKNAME_SHRED)
+        initSharedPreference(requireContext(), C_NICKNAME_SHRED)
         val nickName = SharedPreferenceUtil.getDataStringSharedPreference(C_NICKNAME_KEY)
-        binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName)
+
+        initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
+        val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY).toString()
+
+        binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName, memberId)
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {

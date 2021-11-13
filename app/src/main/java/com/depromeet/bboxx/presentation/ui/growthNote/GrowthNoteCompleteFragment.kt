@@ -35,8 +35,6 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback {
             override fun callback() {
-//                mainActivity.finish()
-//                NavigatorUI.toMain(mainActivity)
                 mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close)
@@ -46,11 +44,7 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
         writeGrowth()
 
         binding.btGoToCardView.setOnClickListener {
-            mainActivity.addFragment(GrowthNoteFragment())
-            //TODO HAERIN 성장일기로 넘어가기
-//            mainActivity.finish()
-//            NavigatorUI.toMain(mainActivity, 1)
-            mainActivity.allClearFragment()
+            mainActivity.allClearAndGrowth()
         }
 
         return binding.root
