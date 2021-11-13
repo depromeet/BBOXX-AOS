@@ -57,10 +57,12 @@ class FeelHistoryAdapter
             val notifications = NotificationModel(it.createAt,it.emotionDiaryId,it.id,it.message, it.receiverId, it.state,it.title, it.updateAt, isDelete, it.beforeDate)
             renew.add(notifications)
         }
+
         notificationList.clear()
         notificationList.addAll(renew)
+        renew.clear()
 
-        submitList(renew.sortedByDescending { it.id })
+        submitList(notificationList.sortedByDescending { it.id })
     }
 
     fun setOnClickListener(onClickListener: UserClickEvent) {
