@@ -24,7 +24,4 @@ object SharedConstants {
 
     const val C_PUSH_STATUS_SHRED = "PUSHSTATUS"
     const val C_PUSH_STATUS_KEY = "PushStatusKey"
-
-    const val C_TEMP_EMOTION_ID = "EMOTIONID"
-    const val C_TEMP_EMOTION_ID_KEY = "EmotionIdKey"
 }
