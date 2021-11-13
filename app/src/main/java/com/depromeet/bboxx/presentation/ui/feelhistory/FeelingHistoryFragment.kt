@@ -126,21 +126,16 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
 
     @RequiresApi(Build.VERSION_CODES.M)
-    override fun onItemClick(notifications: NotificationModel, position: Long) {
-        // 페이지 이동
-//        mainActivity.addTopFragment(GrwothNoteTagFragment(notifications.emotionDiaryId))
-
-            //  상세 보기
-            if (isDelete) {
-                feelHistoryAdapter.notifyItemRemoved(position.toInt())
-                feelHistoryAdapter.notifyDataSetChanged()
-            } else {
+    override fun onItemClick(notifications: NotificationModel, position: Int) {
+            if (!isDelete) {
                 mainActivity.addFragment(GrowthNoteReViewFeelingNote(notifications.emotionDiaryId))
             }
         }
 
-        override fun onItemDeleteClick(notifications: NotificationModel, position: Long) {
-            feelHistoryAdapter.notifyItemRemoved(position.toInt())
-            feelHistoryAdapter.notifyDataSetChanged()
+        override fun onItemDeleteClick(notifications: NotificationModel, position: Int) {
+            // 감정 삭제
+            mainActivity.deleteFeelData(notifications.emotionDiaryId)
+            feelHistoryAdapter.notifyItemRemoved(position)
+
         }
     }
