@@ -50,6 +50,7 @@ class GrowthNoteCompleteFragment(private val growthNoteModelData: GrowthNoteMode
             //TODO HAERIN 성장일기로 넘어가기
 //            mainActivity.finish()
 //            NavigatorUI.toMain(mainActivity, 1)
+            mainActivity.allClearFragment()
         }
 
         return binding.root

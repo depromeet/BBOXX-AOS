@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.presentation.ui.growthNote
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.BottomCalendarViewBinding
 import com.depromeet.bboxx.presentation.model.SelectCalendarModel
+import com.depromeet.bboxx.util.DateFormatter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class GrowthCalendarFragment: BottomSheetDialogFragment() {
@@ -19,20 +21,25 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
     companion object {
         val TAG = this::class.java.name
 
-        fun newInstance(listener: GrowthMonthListener,  month: List<String>, year: String): GrowthCalendarFragment {
+        fun newInstance(listener: GrowthMonthListener,  month: List<String>, year: String, currentDate: String): GrowthCalendarFragment {
             return GrowthCalendarFragment().apply{
                 this.monthListener = listener
                 this.yearTitle = year
                 this.usingMonth = month as MutableList<String>
+                this.currentDate = currentDate
             }
         }
     }
 
     private lateinit var binding : BottomCalendarViewBinding
     private var yearTitle: String = ""
+    private var currentDate: String = ""
+    private var standardCurrentDate: String = ""
+
     private var usingMonth = mutableListOf<String>()
     private var calendarList = mutableListOf<SelectCalendarModel>()
     private var monthListener: GrowthMonthListener? = null
+    private var isLeftMoveToEventStatus = true
 
     private val growthCalendarAdapter: GrowthCalendarAdapter by lazy{
         GrowthCalendarAdapter({
@@ -64,8 +71,9 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
             )
         )!!
 
-
         binding.lifecycleOwner = this
+
+        standardCurrentDate = currentDate
 
         onViewSetting()
 
@@ -80,6 +88,14 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
         binding.txtYear.text = yearTitle
 
         setAdapterInit()
+
+        binding.btnCalLeft.setOnClickListener {
+            moveLeftDate()
+        }
+
+        binding.btnCalRight.setOnClickListener {
+            moveRightDate()
+        }
     }
 
     private fun setAdapterInit(){
@@ -100,20 +116,57 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
 
     private fun setCalendarModel(){
         for(month in 1..12){
-            if(usingMonth.contains(month.toString())){
-                calendarActive(month)
+            calendarActive(month)
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private fun moveLeftDate(){
+        if(!isLeftMoveToEventStatus){
+            if(currentDate == standardCurrentDate){
+                setLeftImageButtonUnActive()
             }
             else{
-                calendarList.add(SelectCalendarModel(
-                    "$month 월",
-                    R.color.color_E5E5E5,
-                    R.color.color_9D9D9D,
-                    false,
-                    month
-                ))
+                currentDate = DateFormatter().calendarMinerYear(currentDate)
+
+                yearTitle = currentDate.substring(0,4)
+
+                binding.txtYear.text = yearTitle
+
+                if(currentDate == standardCurrentDate){
+                    setLeftImageButtonUnActive()
+                    isLeftMoveToEventStatus = true
+                }
             }
         }
     }
+
+    @SuppressLint("NewApi")
+    private fun moveRightDate(){
+        isLeftMoveToEventStatus = false
+        currentDate = DateFormatter().calendarAddYear(currentDate)
+
+        yearTitle = currentDate.substring(0,4)
+
+        binding.txtYear.text = yearTitle
+
+        setLeftImageButtonActive()
+    }
+
+    private fun setLeftImageButtonActive() {
+        binding.btnCalLeft.backgroundTintList =
+            ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
+        binding.btnCalRight.backgroundTintList =
+            ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
+        binding.btnCalLeft.isClickable = true
+    }
+
+    private fun setLeftImageButtonUnActive(){
+        binding.btnCalLeft.backgroundTintList =
+            ColorStateList.valueOf(Color.parseColor("#9D9D9D"))
+        binding.btnCalLeft.isClickable = false
+    }
+
 
     private fun calendarActive(month: Int){
         when (month) {
