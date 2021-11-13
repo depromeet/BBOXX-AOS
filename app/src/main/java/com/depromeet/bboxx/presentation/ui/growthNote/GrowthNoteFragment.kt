@@ -191,6 +191,15 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
         binding.ivLeft.isClickable = false
     }
 
+    override fun clickMonth(year: String, month: String) {
+        binding.tvMonth.text = "${year}년 ${month}월"
+        currentDate = "${year}년 ${month}월"
+        nowYear = year
+        nowMonth = month
+
+        mainActivity.getGrowthList(year, month)
+    }
+
     /**
      *  Notification Send Logic Test Code
      */
@@ -204,8 +213,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
 //            mainActivity.growthNoteViewModel.testSendNotification(4, memberId!!)
     }
 
-    override fun clickMonth(year: String, month: String) {
-        mainActivity.getGrowthList(year, month)
-    }
+
 
 }
