@@ -21,13 +21,13 @@ import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
 
-class GrowthNoteFragment : Fragment(), GrowthMonthListener{
+class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
     lateinit var mainActivity: MainActivity
     lateinit var mAdapter: CardViewAdapter
     private var nowYear: String = ""
     private var nowMonth: String = ""
-    private lateinit var binding : GrowthDiaryBinding
+    private lateinit var binding: GrowthDiaryBinding
     private var standardCurrentDate = ""
     private var currentDate = ""
     private var isLeftMoveToEventStatus = true
@@ -110,11 +110,11 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
         super.onViewCreated(view, savedInstanceState)
 
         mainActivity.growthNoteViewModel.growthList.observeNonNull(this) {
-            if(it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 binding.emptyView.isVisible = false
                 binding.rlCardView.isVisible = true
                 mAdapter.setData(it)
-            }else{
+            } else {
                 binding.rlCardView.isVisible = false
                 binding.emptyView.isVisible = true
             }
@@ -122,7 +122,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
     }
 
     @SuppressLint("NewApi")
-    private fun setDateInit(){
+    private fun setDateInit() {
         currentDate = DateFormatter().calendarNowTime()
 
         standardCurrentDate = currentDate
@@ -137,23 +137,22 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
     }
 
     @SuppressLint("NewApi")
-    private fun moveLeftDate(){
-        if(!isLeftMoveToEventStatus){
-            if(currentDate == standardCurrentDate){
+    private fun moveLeftDate() {
+        if (!isLeftMoveToEventStatus) {
+            if (currentDate == standardCurrentDate) {
                 setLeftImageButtonUnActive()
-            }
-            else{
+            } else {
                 currentDate = DateFormatter().growthCalendarMinerTime(currentDate)
 
-                nowYear = currentDate.substring(0,4)
-                nowMonth = currentDate.substring(6,8)
+                nowYear = currentDate.substring(0, 4)
+                nowMonth = currentDate.substring(6, 8)
 
                 binding.tvMonth.text = currentDate
 
                 //  날짜 기준으로 성장일기 요청
                 mainActivity.getGrowthList(nowYear, nowMonth)
 
-                if(currentDate == standardCurrentDate){
+                if (currentDate == standardCurrentDate) {
                     setLeftImageButtonUnActive()
                     isLeftMoveToEventStatus = true
                 }
@@ -162,12 +161,12 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
     }
 
     @SuppressLint("NewApi")
-    private fun moveRightDate(){
+    private fun moveRightDate() {
         isLeftMoveToEventStatus = false
         currentDate = DateFormatter().growthCalendarAddTime(currentDate)
 
-        nowYear = currentDate.substring(0,4)
-        nowMonth = currentDate.substring(6,8)
+        nowYear = currentDate.substring(0, 4)
+        nowMonth = currentDate.substring(6, 8)
 
         binding.tvMonth.text = currentDate
 
@@ -185,7 +184,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
         binding.ivLeft.isClickable = true
     }
 
-    private fun setLeftImageButtonUnActive(){
+    private fun setLeftImageButtonUnActive() {
         binding.ivLeft.backgroundTintList =
             ColorStateList.valueOf(Color.parseColor("#9D9D9D"))
         binding.ivLeft.isClickable = false
@@ -197,13 +196,18 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
         nowYear = year
         nowMonth = month
 
+        if (currentDate != standardCurrentDate) {
+            setLeftImageButtonActive()
+            isLeftMoveToEventStatus = false
+        }
+
         mainActivity.getGrowthList(year, month)
     }
 
     /**
      *  Notification Send Logic Test Code
      */
-    private fun onTest(){
+    private fun onTest() {
         // Test Notification Send Logic
 //            initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
 //            val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
@@ -212,7 +216,4 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener{
 //            mainActivity.growthNoteViewModel.testSendNotification(3, memberId!!)
 //            mainActivity.growthNoteViewModel.testSendNotification(4, memberId!!)
     }
-
-
-
 }

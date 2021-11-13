@@ -7,6 +7,7 @@ import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteFragment
 
 class MainViewAdapter(fragmentActivity: FragmentActivity):
     FragmentStateAdapter(fragmentActivity){
+
     override fun getItemCount(): Int {
         return 2
     }
