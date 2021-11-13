@@ -40,7 +40,7 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setStatusBarColor(R.color.black)
+        setStatusBarColor(R.color.mypage_bg)
         splashViewModel.init()
 
         splashViewModel.naviToActivity.observeNonNull(this){ event ->

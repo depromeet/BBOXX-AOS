@@ -21,7 +21,6 @@ class DateFormatter{
     private val calendarTimeFormatter = SimpleDateFormat("yyyy년 MM월")
     private val calendar = Calendar.getInstance()
 
-
     fun formatFormatterCalc(date : String) : String {
         try{
             val mDate: Date = simpleTimeFormatterCal.parse(date)
@@ -50,8 +49,6 @@ class DateFormatter{
 
     fun formatNowTime() : String {
         return simpleTimeFormatter.format(Date())
-//        simpleTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Seoul")
-//        return simpleTimeFormatter.format(Calendar.getInstance().time)
     }
 
     fun growthNowTime(): String{
@@ -69,6 +66,64 @@ class DateFormatter{
     fun calendarNowTime(): String{
         return calendarTimeFormatter.format(Date())
     }
+
+    fun growthCalendarAddTime(date: String): String{
+        try{
+            val mDate: Date = calendarTimeFormatter.parse(date)
+            calendar.time = mDate
+            calendar.add(Calendar.MONTH, +1)
+
+            return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
+        return ""
+    }
+
+    fun growthCalendarMinerTime(date: String): String{
+        try{
+            val mDate: Date = calendarTimeFormatter.parse(date)
+            calendar.time = mDate
+            calendar.add(Calendar.MONTH, -1)
+
+            return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
+        return ""
+    }
+
+    fun calendarAddYear(date: String): String{
+        try{
+            val mDate: Date = calendarTimeFormatter.parse(date)
+            calendar.time = mDate
+            calendar.add(Calendar.YEAR, +1)
+
+            return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
+        return ""
+    }
+
+
+    fun calendarMinerYear(date: String): String{
+        try{
+            val mDate: Date = calendarTimeFormatter.parse(date)
+            calendar.time = mDate
+            calendar.add(Calendar.YEAR, -1)
+
+            return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
+        return ""
+    }
+
 
     private object TIME_MAXIMUM {
         const val SEC = 60
