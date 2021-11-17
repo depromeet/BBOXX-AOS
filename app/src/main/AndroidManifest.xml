@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.depromeet.bboxx">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:name=".presentation.ui.AppContext"
         android:allowBackup="true"
@@ -27,12 +24,13 @@
                     android:scheme="kakaoa591a8c1ec1e7f76e15911d67b9bcde4" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.ui.splash.SplashActivity"
+        <activity
+            android:name=".presentation.ui.splash.SplashActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" >
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,62 +38,67 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.ui.onboard.OnboardActivity"
+        <activity
+            android:name=".presentation.ui.onboard.OnboardActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
-        <activity android:name=".presentation.ui.onboard.OnboardRefuseActivity"
+        <activity
+            android:name=".presentation.ui.onboard.OnboardRefuseActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
-        <activity android:name=".presentation.ui.onboard.OnboardRefuseReCheckActivity"
+        <activity
+            android:name=".presentation.ui.onboard.OnboardRefuseReCheckActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
-        <activity android:name=".presentation.ui.login.LoginActivity"
+        <activity
+            android:name=".presentation.ui.login.LoginActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing"/>
-        <activity android:name=".presentation.ui.nickname.NicknameActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
+        <activity
+            android:name=".presentation.ui.nickname.NicknameActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing"/>
-        <activity android:name=".presentation.ui.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
+        <activity
+            android:name=".presentation.ui.MainActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
-        <activity android:name=".presentation.ui.login.GoogleLoginActivity"
+        <activity
+            android:name=".presentation.ui.login.GoogleLoginActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
-        <activity android:name=".presentation.ui.login.KakaoTalkLoginActivity"
+        <activity
+            android:name=".presentation.ui.login.KakaoTalkLoginActivity"
             android:configChanges="locale|fontScale|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing"/>
+            android:windowSoftInputMode="stateAlwaysHidden|stateHidden|adjustNothing" />
 
-        <service android:name=".presentation.ui.service.FCMMessageService"
+        <service
+            android:name=".presentation.ui.service.FCMMessageService"
             android:enabled="true"
             android:exported="true"
             android:stopWithTask="false">
@@ -105,7 +108,23 @@
             </intent-filter>
         </service>
 
+
+
+    <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="${applicationId}.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths" />
+    </provider>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
