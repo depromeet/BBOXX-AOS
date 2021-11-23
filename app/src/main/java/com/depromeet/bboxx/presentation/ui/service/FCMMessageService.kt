@@ -7,15 +7,18 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.presentation.ui.AppContext
-import com.depromeet.bboxx.presentation.ui.feelhistory.FeelingHistoryFragment
+import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
 import com.depromeet.bboxx.util.VersionUtils
 import com.depromeet.bboxx.util.constants.SharedConstants
+import com.depromeet.bboxx.util.constants.SharedConstants.C_FCM_MSG_KEY
+import com.depromeet.bboxx.util.constants.SharedConstants.C_FCM_MSG_SHARED
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import java.text.SimpleDateFormat
@@ -23,6 +26,7 @@ import java.util.*
 
 class FCMMessageService: FirebaseMessagingService() {
 
+    private var fcmMsg = ""
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -44,19 +48,31 @@ class FCMMessageService: FirebaseMessagingService() {
     }
 
     private fun saveFcmMessage(message: RemoteMessage){
-        message.data?.let{ data ->
-            val msg = data["message"] ?: ""
-            val title = data["title"] ?: msg
-
-            sendNotification(title, msg)
-
+        message?.let{ message ->
+            val emotionDiaryId = message.data?.let{
+                it["emotionDiaryId"]
+            }
+            val fcmMsg = message.notification?.let{
+                it.body
+            }
+            val id = message.senderId
+            val sentTime = message.sentTime
             val today = Calendar.getInstance()
             val sendDateTime = SimpleDateFormat("MM.dd").format(today.time)
 
+            Log.d("FCM", "$emotionDiaryId + $fcmMsg + $id + $sentTime + SendDateTime : $sendDateTime")
+
+            sendNotification(getString(R.string.notice), fcmMsg)
         }
     }
 
     private fun sendNotification(title: String?, message: String?){
+        AppContext.applicationContext()?.let{
+            initSharedPreference(it, C_FCM_MSG_SHARED)
+            if (title != null) {
+                setDataStringSharedPreference(title, C_FCM_MSG_KEY)
+            }
+        }
         val notiManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notiManager.createNotificationChannel(
@@ -77,7 +93,7 @@ class FCMMessageService: FirebaseMessagingService() {
                     setContentText(message)
                     setTicker(message ?: "")
                     setContentIntent(getPendingIntent())
-                    //setSmallIcon(R.drawable.l_launcher)
+                    setSmallIcon(R.mipmap.ic_launcher_bboxx)
                     setAutoCancel(true)
                     setWhen(System.currentTimeMillis())
                     setDefaults(Notification.DEFAULT_ALL)
@@ -98,7 +114,7 @@ class FCMMessageService: FirebaseMessagingService() {
 
     private fun getPendingIntent(): PendingIntent {
         return PendingIntent.getActivity(this, 1019,
-            Intent(this, FeelingHistoryFragment::class.java).apply {
+            Intent(this, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }, PendingIntent.FLAG_UPDATE_CURRENT)
     }
