@@ -24,4 +24,7 @@ object SharedConstants {
 
     const val C_PUSH_STATUS_SHRED = "PUSHSTATUS"
     const val C_PUSH_STATUS_KEY = "PushStatusKey"
+
+    const val C_FCM_MSG_SHARED = "FCM_MSG"
+    const val C_FCM_MSG_KEY = "FCMKey"
 }

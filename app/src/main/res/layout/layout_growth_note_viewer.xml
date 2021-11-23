@@ -43,7 +43,7 @@
                     android:textSize="12sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_top_view"
-                   />
+                    tools:ignore="NotSibling" />
 
                 <TextView
                     android:id="@+id/tv_title"

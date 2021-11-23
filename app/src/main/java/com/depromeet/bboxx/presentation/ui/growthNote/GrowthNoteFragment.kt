@@ -20,6 +20,10 @@ import com.depromeet.bboxx.presentation.ui.feelhistory.FeelingHistoryFragment
 import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
+import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
+import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 
 class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
@@ -78,7 +82,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
                 .show(childFragmentManager, GrowthCalendarFragment.TAG)
 
         }
-        //  이전 달 
+        //  이전 달
         binding.ivLeft.setOnClickListener {
             moveLeftDate()
         }
@@ -86,6 +90,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
         //   다음 달 이동
         binding.ivRight.setOnClickListener {
             moveRightDate()
+            //onTest()
         }
 
         if (binding.btnShow.isVisible) {
@@ -209,11 +214,11 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
      */
     private fun onTest() {
         // Test Notification Send Logic
-//            initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
-//            val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
-//
-//            mainActivity.growthNoteViewModel.testSendNotification(2, memberId!!)
-//            mainActivity.growthNoteViewModel.testSendNotification(3, memberId!!)
-//            mainActivity.growthNoteViewModel.testSendNotification(4, memberId!!)
+        initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
+        val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
+
+//        mainActivity.growthNoteViewModel.testSendNotification(6, memberId!!)
+//        mainActivity.growthNoteViewModel.testSendNotification(7, memberId!!)
+        mainActivity.growthNoteViewModel.testSendNotification(8, memberId!!)
     }
 }
