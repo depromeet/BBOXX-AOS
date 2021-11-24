@@ -13,12 +13,9 @@ import com.depromeet.bboxx.presentation.ui.main.SelectActionFragment
 import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
-import com.depromeet.bboxx.util.SharedPreferenceUtil.delSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataStringSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
-import com.depromeet.bboxx.util.constants.SharedConstants.C_FCM_MSG_KEY
-import com.depromeet.bboxx.util.constants.SharedConstants.C_FCM_MSG_SHARED
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_KEY
 import com.depromeet.bboxx.util.constants.SharedConstants.C_MEMBER_ID_SHRED
 import com.depromeet.bboxx.util.constants.SharedConstants.C_NICKNAME_KEY
@@ -36,7 +33,9 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
 
     override fun onResume() {
         super.onResume()
-        fcmMsgValueCheck()
+        if(mainActivity.fcmTitle.isNotBlank()){
+            mainActivity.addFragment(FeelingHistoryFragment())
+        }
     }
 
 
@@ -71,14 +70,4 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
             mainActivity.addFragment(SelectActionFragment())
         }
     }
-
-    private fun fcmMsgValueCheck(){
-        initSharedPreference(requireContext(), C_FCM_MSG_SHARED)
-        val msg = getDataStringSharedPreference(C_FCM_MSG_KEY)
-        if(msg == "타임라인"){
-            delSharedPreference(C_FCM_MSG_KEY)
-            mainActivity.addFragment(FeelingHistoryFragment())
-        }
-    }
-
 }

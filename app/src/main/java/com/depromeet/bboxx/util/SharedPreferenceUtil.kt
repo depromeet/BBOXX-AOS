@@ -1,5 +1,6 @@
 package com.depromeet.bboxx.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 
@@ -50,7 +51,8 @@ object SharedPreferenceUtil {
     }
 
 
-    fun delSharedPreference(sharedKey: String){
+    @SuppressLint("ApplySharedPref")
+    fun delSharedPreference(){
         pref?.edit()?.clear()?.apply()
     }
 }

@@ -6,6 +6,7 @@ import com.depromeet.bboxx.presentation.event.MoveToEvent
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.ui.AppContext
 import com.depromeet.bboxx.presentation.utils.SingleLiveEvent
+import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataBooleanSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataStringSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
@@ -25,6 +26,7 @@ class SplashViewModel @Inject constructor(
 
     val naviToActivity = SingleLiveEvent<MoveToEvent>()
     var token: String = ""
+    var fcmData: String = ""
 
     private fun checkFirstRun(): Boolean{
         var isFistRun = false
@@ -86,7 +88,7 @@ class SplashViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         if(it.valid){
-                            naviToActivity.value = MoveToEvent.MAIN
+                            fcmMsgValueCheck()
                         }
                         else{
                             naviToActivity.value = MoveToEvent.LOGIN
@@ -97,5 +99,21 @@ class SplashViewModel @Inject constructor(
                         naviToActivity.value = MoveToEvent.LOGIN
                     }
                 )
+    }
+
+    private fun fcmMsgValueCheck(){
+        AppContext.applicationContext()?.let { context ->
+            initSharedPreference(
+                context,
+                SharedConstants.C_FCM_MSG_SHARED
+            )
+            val msg = getDataStringSharedPreference(SharedConstants.C_FCM_MSG_KEY)
+            if(msg?.isNotBlank() == true){
+                SharedPreferenceUtil.delSharedPreference()
+                fcmData = msg
+            }
+
+            naviToActivity.value = MoveToEvent.MAIN
+        }
     }
 }

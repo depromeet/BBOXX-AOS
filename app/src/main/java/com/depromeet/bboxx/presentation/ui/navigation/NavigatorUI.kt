@@ -86,11 +86,13 @@ object NavigatorUI {
         }
     }
 
-    fun toMain(context: Context, position : Int = 0) {
+    fun toMain(context: Context, position : Int = 0, fcmData: String) {
         with(context) {
             startActivity(
-                intentFor<MainActivity>()
-                    .putExtra("position", position)
+                intentFor<MainActivity>(
+                    MainActivity.EXTRA_FCM_DATA to fcmData,
+                    MainActivity.EXTRA_POSION to position
+                )
                     .clearTop()
                     .singleTop()
                     .noAnimation()

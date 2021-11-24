@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.ActivityMainBinding
 import com.depromeet.bboxx.presentation.base.BaseActivity
+import com.depromeet.bboxx.presentation.extension.extraNotNull
 import com.depromeet.bboxx.presentation.viewmodel.*
 import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
@@ -26,11 +27,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var viewPager: ViewPager2
     private var fragmentlist = mutableListOf<Fragment>()
 
+    companion object {
+        val EXTRA_FCM_DATA = "extra_fcm_data"
+        val EXTRA_POSION = "extra_position"
+    }
+    val fcmData by extraNotNull(EXTRA_FCM_DATA, "")
+    val position by extraNotNull(EXTRA_POSION, 0)
+
+    var fcmTitle = ""
+    var positionPager = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
 
-        setAdapter(intent.getIntExtra("position", 0))
+        setAdapter(position)
     }
 
     private fun init() {
@@ -38,6 +49,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             lifecycleOwner = this@MainActivity
             vm = mainViewModel
         }
+        fcmTitle = fcmData
+        positionPager = position
     }
 
     /**

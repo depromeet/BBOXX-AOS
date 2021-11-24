@@ -65,7 +65,7 @@ class NicknameActivity : BaseActivity<ActivityNicknameBinding>(R.layout.activity
     }
 
     private fun onMoveMain(){
-        toMain(this)
+        toMain(this, 0, "")
         finish()
     }
 }
