@@ -11,7 +11,6 @@ import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.dialog.SystemErrorDialog
 import com.depromeet.bboxx.presentation.event.SnsErrorEvent
 import com.depromeet.bboxx.presentation.extension.observeNonNull
-import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
@@ -57,7 +56,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
             if(token.isNotBlank()){
                 initSharedPreference(this, SharedConstants.C_JWT_SHRED)
                 setDataStringSharedPreference(token, SharedConstants.C_JWT_KEY)
-                toMain(this)
+                toMain(this, 0, "")
                 finish()
             }
             else{
@@ -77,7 +76,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
             vm = loginViewModel
         }
         binding.txtLoginTitle.setOnClickListener {
-            NavigatorUI.toMain(this)
+            toMain(this, 0, "")
             finish()
         }
     }

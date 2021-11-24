@@ -13,8 +13,10 @@ import com.depromeet.bboxx.presentation.ui.AppContext
 import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -74,6 +76,23 @@ class GrowthNoteViewModel @Inject constructor(
 
 
     fun testSendNotification(emotionDiaryId: Int, ownerId: Int) {
+        disposable +=
+            Observable.timer(7, TimeUnit.SECONDS)
+                .onIOforMainThread()
+                .subscribeBy(
+                    onComplete = {
+                        testSend(emotionDiaryId, ownerId)
+                    },
+                    onError = {
+
+                    }
+                )
+
+
+
+    }
+
+    fun testSend(emotionDiaryId: Int, ownerId: Int){
         disposable +=
             noticeUseCase.sendNotificationTest(emotionDiaryId, ownerId)
                 .onIOforMainThread()

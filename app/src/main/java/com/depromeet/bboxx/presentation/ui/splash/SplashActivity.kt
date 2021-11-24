@@ -50,10 +50,9 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
                     reqPermissions(this, getPermissionList(permissions))
                 }
                 MoveToEvent.LOGIN -> NavigatorUI.toLogin(this)
-                else -> NavigatorUI.toMain(this)
+                else -> NavigatorUI.toMain(this,0, splashViewModel.fcmData)
             }
         }
-
     }
 
     private fun changeImage(){

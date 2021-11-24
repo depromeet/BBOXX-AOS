@@ -42,7 +42,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
         mainActivity = context as MainActivity
     }
 
-
     @SuppressLint("ClickableViewAccessibility", "ResourceType", "NewApi")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,8 +88,8 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
         //   다음 달 이동
         binding.ivRight.setOnClickListener {
-            moveRightDate()
-            //onTest()
+            //moveRightDate()
+            onTest()
         }
 
         if (binding.btnShow.isVisible) {
@@ -109,6 +108,10 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
     override fun onResume() {
         super.onResume()
         mainActivity.setStatusBarColor(R.color.main_bg)
+
+        if(mainActivity.fcmTitle.isNotBlank()){
+            mainActivity.addFragment(FeelingHistoryFragment())
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -219,6 +222,6 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
 //        mainActivity.growthNoteViewModel.testSendNotification(6, memberId!!)
 //        mainActivity.growthNoteViewModel.testSendNotification(7, memberId!!)
-        mainActivity.growthNoteViewModel.testSendNotification(8, memberId!!)
+        mainActivity.growthNoteViewModel.testSendNotification(9, memberId!!)
     }
 }
