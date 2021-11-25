@@ -88,8 +88,8 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
         //   다음 달 이동
         binding.ivRight.setOnClickListener {
-            //moveRightDate()
-            onTest()
+            moveRightDate()
+            //onTest()
         }
 
         if (binding.btnShow.isVisible) {
