@@ -3,17 +3,13 @@ package com.depromeet.bboxx.util
 import android.os.Build
 import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
-class DateFormatter{
+class DateFormatter {
 
-    private var simplePushFormatter =   SimpleDateFormat("MM.dd")
-    private var simpleDateFormatter = DateTimeFormatter.ofPattern("MM.dd", Locale.getDefault())
-    private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
-    private val simpleTimeFormatterCal = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-    private val simpleFullTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
+    private val simpleTimeFormatterCal =
+        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
     private val growthTimeFormatter = SimpleDateFormat("MM. dd EE")
     private val simpleTimeFormatter = SimpleDateFormat("yyyy년 MM월 dd일")
     private val monthTimeFormatter = SimpleDateFormat("MM")
@@ -21,104 +17,98 @@ class DateFormatter{
     private val calendarTimeFormatter = SimpleDateFormat("yyyy년 MM월")
     private val calendar = Calendar.getInstance()
 
-    fun formatFormatterCalc(date : String) : String {
-        try{
+    fun formatFormatterCalc(date: String): String {
+        try {
             val mDate: Date = simpleTimeFormatterCal.parse(date)
             calendar.time = mDate
 
             return SimpleDateFormat("MM.dd", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
     }
 
-    fun formatFormatterEmotion(date : String) : String {
-        try{
+    fun formatFormatterEmotion(date: String): String {
+        try {
             val mDate: Date = simpleTimeFormatterCal.parse(date)
             calendar.time = mDate
 
             return SimpleDateFormat("MM. dd. EE", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
     }
 
-    fun formatNowTime() : String {
+    fun formatNowTime(): String {
         return simpleTimeFormatter.format(Date())
     }
 
-    fun growthNowTime(): String{
+    fun growthNowTime(): String {
         return growthTimeFormatter.format(Date())
     }
 
-    fun formatNowMonth(): String{
+    fun formatNowMonth(): String {
         return monthTimeFormatter.format(Date())
     }
 
-    fun formatNowYear(): String{
+    fun formatNowYear(): String {
         return yearTimeFormatter.format(Date())
     }
 
-    fun calendarNowTime(): String{
+    fun calendarNowTime(): String {
         return calendarTimeFormatter.format(Date())
     }
 
-    fun growthCalendarAddTime(date: String): String{
-        try{
+    fun growthCalendarAddTime(date: String): String {
+        try {
             val mDate: Date = calendarTimeFormatter.parse(date)
             calendar.time = mDate
             calendar.add(Calendar.MONTH, +1)
 
             return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
     }
 
-    fun growthCalendarMinerTime(date: String): String{
-        try{
+    fun growthCalendarMinerTime(date: String): String {
+        try {
             val mDate: Date = calendarTimeFormatter.parse(date)
             calendar.time = mDate
             calendar.add(Calendar.MONTH, -1)
 
             return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
     }
 
-    fun calendarAddYear(date: String): String{
-        try{
+    fun calendarAddYear(date: String): String {
+        try {
             val mDate: Date = calendarTimeFormatter.parse(date)
             calendar.time = mDate
             calendar.add(Calendar.YEAR, +1)
 
             return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
     }
 
 
-    fun calendarMinerYear(date: String): String{
-        try{
+    fun calendarMinerYear(date: String): String {
+        try {
             val mDate: Date = calendarTimeFormatter.parse(date)
             calendar.time = mDate
             calendar.add(Calendar.YEAR, -1)
 
             return SimpleDateFormat("yyyy년 MM월", Locale.getDefault()).format(calendar.time)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""
@@ -133,13 +123,12 @@ class DateFormatter{
         const val MONTH = 12
     }
 
-    fun convertDateBefore(date: String):String{
-        try{
+    fun convertDateBefore(date: String): String {
+        try {
             val df = simpleTimeFormatterCal.parse(date)
 
-            return formatTimeString(df.time)?:""
-        }
-        catch (e: Exception){
+            return formatTimeString(df.time) ?: ""
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return ""

@@ -70,12 +70,13 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
     }
 
     private fun setAdapterAndRecyclerViewInit(binding: FragmentAlarmBinding) {
+
         binding.rvAlarmHistory.run {
             adapter = feelHistoryAdapter
             setHasFixedSize(false)
 
             ItemTouchHelper(object :
-                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+                ItemTouchHelper.SimpleCallback(0, 0) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -85,9 +86,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    if (viewHolder is FeelHistoryAdapter.NotificationInformationHolder) {
 
-                    }
                 }
             }).attachToRecyclerView(this)
         }

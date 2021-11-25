@@ -34,7 +34,6 @@ class GrowthNoteViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
-                        Log.d("_growthList", it.toString())
                         _growthList.value = it
                     },
                     onError = {
@@ -87,9 +86,6 @@ class GrowthNoteViewModel @Inject constructor(
 
                     }
                 )
-
-
-
     }
 
     fun testSend(emotionDiaryId: Int, ownerId: Int){

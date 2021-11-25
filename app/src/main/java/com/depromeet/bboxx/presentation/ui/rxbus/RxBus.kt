@@ -19,11 +19,4 @@ object RxBus {
     fun <T> toObservable(cls: Class<T>): Observable<T> {
         return bus.ofType(cls)
     }
-
-    fun hasObservers(): Boolean {
-        return bus.hasObservers()
-    }
-    /*
-    fun <T> listen(eventType : Class<T>) : Observable<T> = bus.ofType(eventType)*/
-
 }
