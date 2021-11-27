@@ -11,14 +11,6 @@
         android:background="@color/color_A45D63"
         android:clickable="true">
 
-        <com.depromeet.bboxx.presentation.utils.CustomTopView
-            android:id="@+id/cl_top_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_editor_absoluteY="134dp" />
-
         <ScrollView
             android:id="@+id/sv_viewer"
             android:layout_width="match_parent"
@@ -65,7 +57,7 @@
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="27dp"
                     android:layout_marginBottom="127dp"
-                    android:text="지난 두 달간 써온 회고일기를 오늘 다시 읽어보았다. 얼핏 일기와 비슷해보이긴 하지만 조금 더 객관적이고 디테일하다는 측면에서 확연히 다르다. 나의 복잡다단한 감정을 쏟아내는 내면일기가 아니라, 명확한 질문을 두고 ‘나’ 라는 청자에게 쓰는 외면일기에 가깝다. 내가 무엇을 잘했고 부족했는지, 다음 단계로 나가기 위해서는 어떻게 해야하는지. 몇 주간의 기록을 쭉 훑어보니, 내가 일과 삶에 어떤 방향성을 지니고 싶어하는지가 보이고, 그러기 위해 노력하는 모습도 보여서 뿌듯했다.\n
+                    tools:text="지난 두 달간 써온 회고일기를 오늘 다시 읽어보았다. 얼핏 일기와 비슷해보이긴 하지만 조금 더 객관적이고 디테일하다는 측면에서 확연히 다르다. 나의 복잡다단한 감정을 쏟아내는 내면일기가 아니라, 명확한 질문을 두고 ‘나’ 라는 청자에게 쓰는 외면일기에 가깝다. 내가 무엇을 잘했고 부족했는지, 다음 단계로 나가기 위해서는 어떻게 해야하는지. 몇 주간의 기록을 쭉 훑어보니, 내가 일과 삶에 어떤 방향성을 지니고 싶어하는지가 보이고, 그러기 위해 노력하는 모습도 보여서 뿌듯했다.\n
 지난 두 달간 써온 회고일기를 오늘 다시 읽어보았다. 얼핏 일기와 비슷해보이긴 하지만 조금 더 객관적이고 디테일하다는 측면에서 확연히 다르다. 나의 복잡다단한 감정을 쏟아내는 내면일기가 아니라, 명확한 질문을 두고 ‘나’ 라는 청자에게 쓰는 외면일기에 가깝다. 내가 무엇을 잘했고 부족했는지, 다음 단계로 나가기 위해서는 어떻게 해야하는지. 몇 주간의 기록을 쭉 훑어보니, 내가 일과 삶에 어떤 방향성을 지니고 싶어하는지가 보이고, 그러기 위해 노력하는 모습도 보여서 뿌듯했다."
                     android:textColor="@color/white"
                     android:textSize="16sp"
@@ -127,6 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_background"
+                    android:minHeight="500dp"
                     android:paddingBottom="20dp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent">
@@ -163,7 +156,7 @@
                         android:layout_marginHorizontal="24dp"
                         android:layout_marginTop="10dp"
                         android:gravity="top"
-                        android:text="어린이집 교사인데 어이가 없는 게 본인은 아닌 척 하면서 진상인 부모님들 많이 봄. 감사하다고 하면 더 잘해드리고 싶고 그러는데 진짜 틈만 나면 아무것도 아닌 걸로 트집 잡고 이러면 감사한 마음 하나도 없고, 잘해드리고 싶지도 않고 진짜 의욕상실...
+                        tools:text="어린이집 교사인데 어이가 없는 게 본인은 아닌 척 하면서 진상인 부모님들 많이 봄. 감사하다고 하면 더 잘해드리고 싶고 그러는데 진짜 틈만 나면 아무것도 아닌 걸로 트집 잡고 이러면 감사한 마음 하나도 없고, 잘해드리고 싶지도 않고 진짜 의욕상실...
 우리도 돈 받고 이러는 입장에서 나름 잘하려고 하고 있는데 애가 하원 할 때 달려 나온다는 이유로 학대 의심 받고 이러면 어이도 없고, 이게 맞나 싶고 다 부질없어짐. 하원 할 때 안 달려나가는 아이들이 어디 있나 물어보고 싶음. 2학기 학부모 상담 진짜 걱정된다.
 
 어린이집 교사인데 어이가 없는 게 본인은 아닌 척 하면서 진상인 부모님들 많이 봄. 감사하다고 하면 더 잘해드리고 싶고 그러는데 진짜 틈만 나면 아무것도 아닌 걸로 트집 잡고 이러면 감사한 마음 하나도 없고, 잘해드리고 싶지도 않고 진짜 의욕상실...
@@ -193,10 +186,16 @@
                     tools:layout_height="80dp" />
 
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
+        <com.depromeet.bboxx.presentation.utils.CustomTopView
+            android:id="@+id/cl_top_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="134dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
