@@ -29,7 +29,12 @@ class LoginViewModel @Inject constructor(
                 .onIOforMainThread()
                 .subscribeBy(
                     onSuccess = {
-                        token.value = it.token
+                        if(it.token == null){
+                            token.value = ""
+                        }
+                        else{
+                            token.value = it.token
+                        }
                     },
                     onError = {
                         loginEvent.value = Result.Error(it)
