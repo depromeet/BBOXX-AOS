@@ -5,6 +5,7 @@ import com.depromeet.bboxx.domain.usecases.auth.AuthSignUseCase
 import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.model.TokenModel
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.presentation.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -31,7 +32,7 @@ class LoginViewModel @Inject constructor(
                         token.value = it.token
                     },
                     onError = {
-                        snsLoginResult.value = it.message
+                        loginEvent.value = Result.Error(it)
                     }
                 )
 

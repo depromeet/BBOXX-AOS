@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,9 +19,9 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.model.NotificationModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.growthNote.GrowthNoteReViewFeelingNote
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import org.jetbrains.anko.runOnUiThread
-
 
 class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
@@ -56,6 +57,8 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
     fun initView(binding: FragmentAlarmBinding, ctx: Context) {
 
+        mainActivity.setStatusBarColor(R.color.main_bg)
+
         topViewInit(binding)
         setAdapterAndRecyclerViewInit(binding)
 
@@ -65,6 +68,14 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
                 binding.rvAlarmHistory.isVisible = true
                 binding.txtAlarmTitle.isVisible = false
                 binding.imgAlarmNo.isVisible = false
+            }
+        }
+
+        mainActivity.feelHistoryViewModel.networkErrorEvent.observeNonNull(this){
+            when(it){
+                is Result.Error ->{
+                    errorEventMsg(it.exception)
+                }
             }
         }
     }
@@ -135,5 +146,10 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
         // 감정 삭제
         mainActivity.deleteFeelData(notifications.emotionDiaryId)
         feelHistoryAdapter.notifyItemRemoved(position)
+    }
+
+    private fun errorEventMsg(error: Throwable){
+        val errorMsg = error.message
+        Toast.makeText(requireContext(), "Error Msg: $errorMsg", Toast.LENGTH_SHORT).show()
     }
 }

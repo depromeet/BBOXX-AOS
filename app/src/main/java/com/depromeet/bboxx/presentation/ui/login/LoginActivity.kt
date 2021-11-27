@@ -14,6 +14,7 @@ import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.presentation.viewmodel.*
 import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
 import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataStringSharedPreference
@@ -61,7 +62,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 toNickName(this, accessToken = userToken, snsPlatformType.name)
                 finish()
             }
+        }
 
+        loginViewModel.loginEvent.observeNonNull(this) {
+            when(it){
+                is Result.Error ->{
+                    errorEventMsg(it.exception)
+                }
+            }
         }
 
         subscribeEvent(SnsVerifyEvent::class.java, ::userSnsVerifyEvent)
@@ -98,6 +106,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 //        systemErrorDialog?.setCancelable(false)
 //        systemErrorDialog?.show()
     }
+
+    private fun errorEventMsg(event: Throwable){
+        val errorMsg = event.message
+        Toast.makeText(this, "SNS Sign Error : $errorMsg", Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun moveActivityTest() {
         toNickName(this, accessToken = "userToken", snsPlatformType.name)

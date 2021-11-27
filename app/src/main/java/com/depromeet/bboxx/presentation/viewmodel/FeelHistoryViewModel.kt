@@ -9,6 +9,7 @@ import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.mapper.NotificationsMapper
 import com.depromeet.bboxx.presentation.model.NotificationModel
+import com.depromeet.bboxx.presentation.ui.result.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -29,6 +30,7 @@ class FeelHistoryViewModel @Inject constructor(
         _noticeList.value = list
     }
 
+    val networkErrorEvent = MutableLiveData<Result<String>>()
 
     fun getNoticeList(memberId: Int) {
         disposable +=
@@ -41,7 +43,7 @@ class FeelHistoryViewModel @Inject constructor(
                         _noticeList.value = it
                     },
                     onError = {
-
+                        networkErrorEvent.value = Result.Error(it)
                     }
 
                 )

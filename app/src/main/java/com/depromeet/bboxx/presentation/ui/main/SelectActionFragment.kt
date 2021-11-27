@@ -2,6 +2,7 @@ package com.depromeet.bboxx.presentation.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentSelectActionBinding
@@ -26,15 +27,16 @@ class SelectActionFragment @Inject constructor()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        mainActivity.setStatusBarColor(R.color.select_bg)
 
         binding.btnDecibel.setOnClickListener {
+            Log.d("okhttpClient","GoToDecibel")
             mainActivity.addFragment(DecibelFragment())
         }
 
         binding.btnFeel.setOnClickListener {
+            Log.d("okhttpClient","GoToSelect")
            mainActivity.addFragment(FeelingNoteSelectFragment())
-           // mainActivity.addFragment(GrowthNoteReViewFeelingNote(1))
         }
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{

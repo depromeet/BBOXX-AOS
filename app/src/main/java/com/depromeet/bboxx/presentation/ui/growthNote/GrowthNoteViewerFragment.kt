@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.depromeet.bboxx.databinding.LayoutGrowthNoteViewerBinding
 import com.depromeet.bboxx.domain.model.ImprovementDiaries
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.DateFormatter
 import com.google.android.material.chip.Chip
@@ -79,6 +81,14 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
             }
         }
 
+        mainActivity.feelingNoteViewModel.searchNetworkErrorEvent.observeNonNull(this){
+            when(it){
+                is Result.Error ->{
+                    errorEventMsg(it.exception)
+                }
+            }
+        }
+
         return binding.root
     }
 
@@ -113,5 +123,10 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
     override fun onStop() {
         super.onStop()
         mainActivity.setStatusBarColor(R.color.main_bg)
+    }
+
+    private fun errorEventMsg(error: Throwable){
+        val errorMsg = error.message
+        Toast.makeText(requireContext(), "Error Msg: $errorMsg", Toast.LENGTH_SHORT).show()
     }
 }

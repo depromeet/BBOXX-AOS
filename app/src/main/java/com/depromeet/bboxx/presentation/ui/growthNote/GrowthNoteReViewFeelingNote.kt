@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.databinding.GrowthFeelingNoteLayoutBinding
 import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.MainActivity
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.presentation.utils.CustomTopView
 
 class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
@@ -59,8 +61,20 @@ class GrowthNoteReViewFeelingNote(val emotionId: Int): Fragment() {
             binding.etMainText.text = it.content
         }
 
+        mainActivity.feelingNoteViewModel.searchNetworkErrorEvent.observeNonNull(this){
+            when(it){
+                is Result.Error ->{
+                    errorEventMsg(it.exception)
+                }
+            }
+        }
+
         return binding.root
     }
 
+    private fun errorEventMsg(error: Throwable){
+        val errorMsg = error.message
+        Toast.makeText(requireContext(), "Error Msg: $errorMsg", Toast.LENGTH_SHORT).show()
+    }
 
 }
