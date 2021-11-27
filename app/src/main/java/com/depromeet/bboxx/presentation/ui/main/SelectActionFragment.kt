@@ -52,4 +52,9 @@ class SelectActionFragment @Inject constructor()
 
         }, R.drawable.ic_profile)
     }
+
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 }
