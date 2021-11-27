@@ -1,6 +1,8 @@
 package com.depromeet.bboxx.presentation.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.depromeet.bboxx.domain.model.UserInfo
 import com.depromeet.bboxx.domain.usecases.notice.NoticeUseCase
 import com.depromeet.bboxx.domain.usecases.userinfo.UserInfoUseCase
@@ -37,6 +39,10 @@ class MainViewModel @Inject constructor(
     private var ownerId = -1
     private var token = ""
 
+    private var _nickName = MutableLiveData<String>()
+    val nickName : LiveData<String>
+        get() = _nickName
+
     init {
         //  FCM Token 불러와서 Token 값 저장한다.
         //  추후 해당 부분 수정...필요 (귀찮지즘... 발동!!)
@@ -53,6 +59,7 @@ class MainViewModel @Inject constructor(
                 .subscribeBy(
                     onSuccess = {
                         if (it != null) {
+                            _nickName.value = it.nickname
                             saveUserId(it)
                         }
                     },

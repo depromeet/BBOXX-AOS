@@ -9,6 +9,7 @@ import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.mapper.FeelingEmotionMapper
 import com.depromeet.bboxx.presentation.model.FeelingEmotionModel
+import com.depromeet.bboxx.presentation.ui.result.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -29,6 +30,9 @@ class FeelingNoteViewModel @Inject constructor(
     val emotionDiary: LiveData<EmotionDiary>
         get() = _emotionDiary
 
+    val networkErrorEvent = MutableLiveData<Result<String>>()
+    val searchNetworkErrorEvent = MutableLiveData<Result<String>>()
+
     fun getFeeling(){
         disposable+=
             emotionUseCase.requestEmotionStatus()
@@ -40,6 +44,7 @@ class FeelingNoteViewModel @Inject constructor(
                         Log.d("FEEL", it.toString())
                     },
                     onError = {
+                        networkErrorEvent.value = Result.Error(it)
                     }
                 )
     }
@@ -69,6 +74,7 @@ class FeelingNoteViewModel @Inject constructor(
                         _emotionDiary.value = it
                     },
                     onError = {
+                        searchNetworkErrorEvent.value = Result.Error(it)
                     }
                 )
     }

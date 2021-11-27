@@ -45,7 +45,7 @@ class MyPageFragment @Inject constructor() : BaseFragment<ActivityMypageBinding>
 
         mainActivity.setStatusBarColor(R.color.mypage_bg)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            myPageViewModel.version.value = VersionUtils.appVersionInfo(requireContext())
+            myPageViewModel.version.value = appVersionInfo(requireContext())
         }
 
         initSharedPreference(

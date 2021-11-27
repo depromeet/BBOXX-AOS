@@ -3,11 +3,13 @@ package com.depromeet.bboxx.presentation.ui
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FragmentMainBinding
 import com.depromeet.bboxx.presentation.base.BaseFragment
+import com.depromeet.bboxx.presentation.extension.observeNonNull
 import com.depromeet.bboxx.presentation.ui.feelhistory.FeelingHistoryFragment
 import com.depromeet.bboxx.presentation.ui.main.SelectActionFragment
 import com.depromeet.bboxx.presentation.ui.mypage.MyPageFragment
@@ -25,6 +27,8 @@ import javax.inject.Inject
 class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     lateinit var mainActivity: MainActivity
+
+    private var nickName = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,12 +53,19 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         binding.txtTodayDate.text = today
 
         initSharedPreference(requireContext(), C_NICKNAME_SHRED)
-        val nickName = getDataStringSharedPreference(C_NICKNAME_KEY)
+        nickName = getDataStringSharedPreference(C_NICKNAME_KEY) ?: ""
 
         initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
         val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY).toString()
 
-        binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName, memberId)
+        mainActivity.mainViewModel.nickName.observeNonNull(this){
+            if(it.isNotBlank()){
+                nickName = it
+            }
+
+            binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName, memberId)
+        }
+
 
         binding.clTopView.setRightBtn(object : CustomTopView.OnclickCallback{
             override fun callback() {
@@ -63,10 +74,12 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
         }, R.drawable.ic_profile)
 
         binding.layGoToFeelingNote.setOnClickListener {
+            Log.d("okhttpClient","GoToHistory")
             mainActivity.addFragment(FeelingHistoryFragment())
         }
 
         binding.layGoToDecibel.setOnClickListener {
+            Log.d("okhttpClient","GoToSelect")
             mainActivity.addFragment(SelectActionFragment())
         }
     }

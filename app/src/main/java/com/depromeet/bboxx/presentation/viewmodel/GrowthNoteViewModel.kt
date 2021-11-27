@@ -10,6 +10,7 @@ import com.depromeet.bboxx.presentation.base.BaseViewModel
 import com.depromeet.bboxx.presentation.extension.onIOforMainThread
 import com.depromeet.bboxx.presentation.model.GrowthNoteTagModel
 import com.depromeet.bboxx.presentation.ui.AppContext
+import com.depromeet.bboxx.presentation.ui.result.Result
 import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,6 +29,8 @@ class GrowthNoteViewModel @Inject constructor(
     val growthList: LiveData<List<ImprovementDiaries>>
         get() = _growthList
 
+    val networkErrorEvent = MutableLiveData<Result<String>>()
+
     fun getGrowthList(memberId: Int, month: Int, year: Int) {
         disposable +=
             improveUseCase.getImproveDiaries(memberId, month, year)
@@ -37,7 +40,7 @@ class GrowthNoteViewModel @Inject constructor(
                         _growthList.value = it
                     },
                     onError = {
-
+                        networkErrorEvent.value = Result.Error(it)
                     }
                 )
     }
