@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">ecs-loadbalancer-640d958083694585.elb.ap-northeast-2.amazonaws.com</domain>
+    </domain-config>
+</network-security-config>
