@@ -125,7 +125,6 @@ output.json
 
 # Android Studio
 /*/build/
-/*/local.properties
 /*/out
 /*/*/build
 /*/*/production
@@ -135,7 +134,6 @@ output.json
 
 # Keystore files
 *.jks
-*.keystore
 
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
