@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,7 @@ class FeelingNoteSelectFeelingFragment(
         mainActivity = context as MainActivity
     }
 
-    val selectFeelingModel = ArrayList<SelectFeelingEmotionModel>()
+    val selectFeelingModel = mutableListOf<SelectFeelingEmotionModel>()
 
     private var tempSaveCategoryId: Int = 1
 
@@ -62,7 +61,7 @@ class FeelingNoteSelectFeelingFragment(
 
         adapter = FeelingNoteSelectFeelingAdapter(object :
             FeelingNoteSelectFeelingAdapter.dataSelectCallback {
-            override fun callback(data: FeelingEmotionModel) {
+            override fun activeCallback(data: FeelingEmotionModel) {
                 selectFeelingModel.add(
                     SelectFeelingEmotionModel(
                         data.emotionUrl,
@@ -74,6 +73,31 @@ class FeelingNoteSelectFeelingFragment(
                 )
                 setBtnActivated(binding)
             }
+
+            override fun unActiveCallback(data: FeelingEmotionModel) {
+                val selectModel = SelectFeelingEmotionModel(
+                    data.emotionUrl,
+                    data.drawableid,
+                    data.id,
+                    data.text,
+                    data.isSelected
+                )
+                var index = 0
+
+                selectFeelingModel.forEach {
+                    if(it.text == selectModel.text){
+                        selectFeelingModel.removeAt(index)
+                        return@forEach
+                    }
+                    index++
+                }
+
+                setBtnActivated(binding)
+            }
+
+            override fun limitDataCallback(limitStatus: Boolean) {
+                onLimitToast()
+            }
         })
         binding.rlGrid.adapter = adapter
 
@@ -81,7 +105,6 @@ class FeelingNoteSelectFeelingFragment(
         layoutManager.orientation = RecyclerView.HORIZONTAL
         binding.rlGrid.layoutManager = layoutManager
 
-        //  Emotion API 작업중 from.중근
         mainActivity.feelingNoteViewModel.feelingEmotionList.observeNonNull(this) {
             val dataList = ArrayList<FeelingEmotionModel>()
             it.forEach { data ->
@@ -120,15 +143,14 @@ class FeelingNoteSelectFeelingFragment(
         })
     }
 
-    fun setBtnActivated(binding: FeelingNoteSelectFeelingLayoutBinding) {
-        if (!selectFeelingModel.isNullOrEmpty()) {
+    private fun setBtnActivated(binding: FeelingNoteSelectFeelingLayoutBinding) {
+        if (selectFeelingModel.size != 0) {
+            binding.btnSuccess.isClickable = true
+
             binding.btnSuccess.backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
             binding.btnSuccess.setTextColor(Color.parseColor("#ffffff"))
             binding.btnSuccess.setOnClickListener {
-                selectFeelingModel.forEachIndexed { index, tempFeeling ->
-                    Log.d("HAE", index.toString() + "번쨰" + tempFeeling.text)
-                }
 
                 mainActivity.addFragment(
                     FeelingNoteResultFragment(
@@ -141,6 +163,16 @@ class FeelingNoteSelectFeelingFragment(
                 )
             }
         }
+        else{
+            binding.btnSuccess.isClickable = false
+            binding.btnSuccess.backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor("#332C2C2C"))
+            binding.btnSuccess.setTextColor(Color.parseColor("#662C2C2C"))
+        }
+    }
+
+    private fun onLimitToast(){
+        Toast.makeText(requireContext(), "최대 5개까지 고를 수 있어.", Toast.LENGTH_SHORT).show()
     }
 
     private fun errorEventMsg(error: Throwable){

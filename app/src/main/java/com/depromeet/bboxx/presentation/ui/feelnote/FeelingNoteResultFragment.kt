@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
 import com.depromeet.bboxx.presentation.model.SelectFeelingEmotionModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
-import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.SharedPreferenceUtil.getDataIntSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.initSharedPreference
+import com.depromeet.bboxx.util.SharedPreferenceUtil.setDataIntSharedPreference
 import com.depromeet.bboxx.util.constants.SharedConstants
 
-class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String, val feelingList : ArrayList<SelectFeelingEmotionModel>, val title : String, val main : String ) : Fragment() {
+class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String, val feelingList : MutableList<SelectFeelingEmotionModel>, val title : String, val main : String ) : Fragment() {
 
     lateinit var mainActivity: MainActivity
 
@@ -74,11 +76,30 @@ class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String
 
         var memberId = -1
 
-        SharedPreferenceUtil.initSharedPreference(requireContext(), SharedConstants.C_MEMBER_ID_SHRED)
-        memberId = SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)!!
+        initSharedPreference(requireContext(), SharedConstants.C_MEMBER_ID_SHRED)
+        memberId = getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)!!
 
         mainActivity.feelingNoteViewModel.writeFeeling(categoryId, main, emotionIdList, memberId, title)
+
+        testSendNotification(memberId)
+
     }
 
+    /**
+     *  Test Send Notification
+     */
+    private fun testSendNotification(memberId: Int){
+        initSharedPreference(requireContext(), SharedConstants.C_EMOTION_ID_TEST_SHARED)
+        var emotionId = getDataIntSharedPreference(SharedConstants.C_EMOTION_ID_TEST_KEY)
+        if(emotionId == 0){
+            setDataIntSharedPreference(1, SharedConstants.C_EMOTION_ID_TEST_KEY)
+            mainActivity.growthNoteViewModel.testSendNotification(1, memberId)
+        }
+        else{
+            emotionId = emotionId!! + 1
+            setDataIntSharedPreference(emotionId, SharedConstants.C_EMOTION_ID_TEST_KEY)
+            mainActivity.growthNoteViewModel.testSendNotification(emotionId, memberId)
+        }
+    }
 
 }

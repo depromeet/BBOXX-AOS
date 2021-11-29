@@ -63,7 +63,7 @@ class MainFragment @Inject constructor() : BaseFragment<FragmentMainBinding>(R.l
                 nickName = it
             }
 
-            binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName, memberId)
+            binding.txtNicknameTitle.text = getString(R.string.text_main_nickname_title, nickName)
         }
 
 

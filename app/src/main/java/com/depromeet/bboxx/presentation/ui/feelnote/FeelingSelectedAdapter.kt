@@ -13,7 +13,7 @@ class FeelingSelectedAdapter(val context: Context) :
     RecyclerView.Adapter<FeelingSelectedAdapter.Holder>() {
     var listData = mutableListOf<SelectFeelingEmotionModel>()
 
-    fun setData(dataList: ArrayList<SelectFeelingEmotionModel>) {
+    fun setData(dataList: MutableList<SelectFeelingEmotionModel>) {
         listData.clear()
         listData.addAll(dataList)
         notifyDataSetChanged()

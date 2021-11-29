@@ -3,16 +3,18 @@ package com.depromeet.bboxx.presentation.ui.feelnote
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
+import android.util.SparseBooleanArray
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.depromeet.bboxx.databinding.ItemSelectFeelingBinding
 import com.depromeet.bboxx.presentation.extension.loadUrl
 import com.depromeet.bboxx.presentation.model.FeelingEmotionModel
+
 
 class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
     RecyclerView.Adapter<FeelingNoteSelectFeelingAdapter.Holder>() {
@@ -20,6 +22,9 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
     var context: Context? = null
 
     var listFeel = mutableListOf<FeelingEmotionModel>()
+    var feelingTextFiveLimit = mutableListOf<String>()
+
+    private val mSelectedItems = SparseBooleanArray(0)
 
     fun setFeelData(dataList: ArrayList<FeelingEmotionModel>){
         listFeel.clear()
@@ -67,6 +72,8 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
             }
         }
 
+
+
         holder.setBindData(member, context)
     }
 
@@ -81,12 +88,13 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
 
     override fun getItemCount() = listFeel.size
 
-
     inner class Holder(val binding: ItemSelectFeelingBinding, val callback: dataSelectCallback?) :
         RecyclerView.ViewHolder(binding.root) {
 
         //  From 중근
         fun setBindData(data: FeelingEmotionModel, context: Context?){
+            val position = adapterPosition
+
             if (data.drawableid == 0) {
                 binding.clBg.backgroundTintList =
                     ColorStateList.valueOf(Color.parseColor("#00ff0000"))
@@ -102,25 +110,89 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
 
                 binding.tvFeeling.text = data.text
                 binding.ivFeeling.loadUrl(data.emotionUrl)
-                val position = adapterPosition
 
                 itemView.setOnClickListener {
-                    binding.clBg.backgroundTintList =
-                        ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
-                    binding.tvFeeling.setTextColor(Color.WHITE)
-                    if(!listFeel[position].isSelected){
-                        callback?.let {
-                            callback.callback(data)
+                    if(binding.tvFeeling.isVisible){
+                        if(feelingTextFiveLimit.size < 5){
+                            if(activeFeelingStatusCheck(binding, position)){
+                                addClickedData(position, binding, callback, data)
+                            }
+                            else{
+                                removeClickedData(position, callback, data)
+                            }
                         }
-                        listFeel[position].isSelected = true
+                        else{
+                            callback?.let{
+                                it.limitDataCallback(false)
+                            }
+                        }
                     }
                 }
+            }
+
+            activeStatus(binding, position)
+        }
+    }
+
+    private fun activeStatus(binding: ItemSelectFeelingBinding, position: Int){
+        feelingTextFiveLimit.forEach {
+            if(it == listFeel[position].text){
+                activeBtn(binding)
             }
         }
     }
 
+    private fun activeFeelingStatusCheck(binding: ItemSelectFeelingBinding, position: Int) : Boolean{
+        feelingTextFiveLimit.forEach {
+            if(it == listFeel[position].text){
+                unActiveBtn(binding)
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun activeBtn(binding: ItemSelectFeelingBinding){
+        binding.clBg.backgroundTintList =
+            ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
+        binding.tvFeeling.setTextColor(Color.WHITE)
+
+    }
+
+    private fun unActiveBtn(binding: ItemSelectFeelingBinding){
+        binding.clBg.backgroundTintList =
+            ColorStateList.valueOf(Color.parseColor("#ffffff"))
+        binding.tvFeeling.setTextColor(Color.BLACK)
+    }
+
+    private fun addClickedData(position: Int, binding: ItemSelectFeelingBinding, callback: dataSelectCallback?, data: FeelingEmotionModel){
+        if(!listFeel[position].isSelected){
+            activeBtn(binding)
+
+            feelingTextFiveLimit.add(listFeel[position].text)
+            listFeel[position].isSelected = true
+
+            callback?.let {
+                callback.activeCallback(data)
+            }
+        }
+    }
+
+    private fun removeClickedData(position: Int, callback: dataSelectCallback?, data: FeelingEmotionModel){
+        feelingTextFiveLimit.remove(listFeel[position].text)
+        listFeel[position].isSelected = false
+
+        callback?.let{
+            it.unActiveCallback(data)
+        }
+    }
+
     interface dataSelectCallback {
-        fun callback(data: FeelingEmotionModel)
+        fun activeCallback(data: FeelingEmotionModel)
+
+        fun unActiveCallback(data: FeelingEmotionModel)
+
+        fun limitDataCallback(limitStatus: Boolean)
     }
 }
 

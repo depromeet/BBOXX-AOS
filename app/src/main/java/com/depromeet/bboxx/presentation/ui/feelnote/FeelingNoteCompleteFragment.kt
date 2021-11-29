@@ -49,6 +49,9 @@ class FeelingNoteCompleteFragment() : Fragment() {
         return binding.root
     }
 
-
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.select_bg)
+    }
 
 }

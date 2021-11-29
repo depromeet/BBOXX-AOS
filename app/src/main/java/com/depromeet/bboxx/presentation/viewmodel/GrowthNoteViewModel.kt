@@ -79,7 +79,7 @@ class GrowthNoteViewModel @Inject constructor(
 
     fun testSendNotification(emotionDiaryId: Int, ownerId: Int) {
         disposable +=
-            Observable.timer(7, TimeUnit.SECONDS)
+            Observable.timer(180, TimeUnit.SECONDS)
                 .onIOforMainThread()
                 .subscribeBy(
                     onComplete = {
@@ -91,7 +91,7 @@ class GrowthNoteViewModel @Inject constructor(
                 )
     }
 
-    fun testSend(emotionDiaryId: Int, ownerId: Int){
+    private fun testSend(emotionDiaryId: Int, ownerId: Int){
         disposable +=
             noticeUseCase.sendNotificationTest(emotionDiaryId, ownerId)
                 .onIOforMainThread()

@@ -109,4 +109,9 @@ class DecibelFragment : Fragment() {
                 override fun onReadError(error: Int) {}
             })
     }
+
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.select_bg)
+    }
 }

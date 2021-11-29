@@ -17,8 +17,8 @@ android {
         applicationId "com.depromeet.bboxx"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 10003
-        versionName "1.0.3"
+        versionCode 10006
+        versionName "1.0.6"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

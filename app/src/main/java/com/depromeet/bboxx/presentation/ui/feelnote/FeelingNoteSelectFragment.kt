@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FeelingNoteSelectReasonLayoutBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
@@ -31,6 +32,8 @@ class FeelingNoteSelectFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
 
         val binding = FeelingNoteSelectReasonLayoutBinding.inflate(inflater, container, false)
 
@@ -72,9 +75,14 @@ class FeelingNoteSelectFragment : Fragment() {
 
     }
 
-    fun setBtn(bt: TextView) {
+    private fun setBtn(bt: TextView) {
         bt.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#2C2C2C"))
         bt.setTextColor(Color.parseColor("#FFFFFF"))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mainActivity.setStatusBarColor(R.color.select_bg)
     }
 }
 
