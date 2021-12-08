@@ -11,6 +11,7 @@ import com.depromeet.bboxx.presentation.base.BaseActivity
 import com.depromeet.bboxx.presentation.dialog.SystemErrorDialog
 import com.depromeet.bboxx.presentation.event.SnsErrorEvent
 import com.depromeet.bboxx.presentation.extension.observeNonNull
+import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toGoogleLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toKakaoLogin
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toMain
 import com.depromeet.bboxx.presentation.ui.navigation.NavigatorUI.toNickName
@@ -43,9 +44,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     toKakaoLogin(this)
                 }
                 "google" -> {
-//                    snsPlatformType = ProviderType.GOOGLE
-//                    toGoogleLogin(this)
-                    onToastMsg()
+                    snsPlatformType = ProviderType.GOOGLE
+                    toGoogleLogin(this)
+                   // onToastMsg()
                 }
             }
             // Test code

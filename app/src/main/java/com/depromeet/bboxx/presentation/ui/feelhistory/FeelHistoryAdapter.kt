@@ -38,6 +38,7 @@ class FeelHistoryAdapter
     }
 
     fun replaceItems(items: MutableList<NotificationModel>) {
+        notificationList.clear()
         notificationList.addAll(items.sortedByDescending { it.id })
         submitList(items.sortedByDescending { it.id })
     }
@@ -69,6 +70,17 @@ class FeelHistoryAdapter
         this.onClickListener = onClickListener
     }
 
+    fun dataRemove(position: Int){
+        if(position >= 0){
+            notificationList.removeAt(position)
+            submitList(notificationList.sortedByDescending { it.id })
+        }
+    }
+
+    fun onAllClear(){
+        notificationList.clear()
+    }
+
     inner class NotificationInformationHolder(binding: ItemAlarmHistoryBinding) :
         BaseHolder<ItemAlarmHistoryBinding, NotificationModel>(binding) {
         override fun bind(element: NotificationModel) {
@@ -81,7 +93,6 @@ class FeelHistoryAdapter
             }
 
             binding.btnRemove.setOnClickListener {
-                notificationList.removeAt(adapterPosition)
                 onClickListener?.onItemDeleteClick(element, adapterPosition)
             }
         }
