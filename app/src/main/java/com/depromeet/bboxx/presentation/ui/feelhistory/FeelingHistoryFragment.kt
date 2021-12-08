@@ -37,6 +37,7 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
     private val feelHistoryAdapter: FeelHistoryAdapter by lazy {
         FeelHistoryAdapter()
     }
+    private var notificationList = mutableListOf<NotificationModel>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -64,6 +65,8 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
 
         mainActivity.feelHistoryViewModel.noticeList.observeNonNull(this) {
             if (it.isNotEmpty()) {
+                notificationList.addAll(it.toMutableList())
+
                 feelHistoryAdapter.replaceItems(it.toMutableList())
                 binding.rvAlarmHistory.isVisible = true
                 binding.txtAlarmTitle.isVisible = false
@@ -145,11 +148,17 @@ class FeelingHistoryFragment : Fragment(), UserClickEvent {
     override fun onItemDeleteClick(notifications: NotificationModel, position: Int) {
         // 감정 삭제
         mainActivity.deleteFeelData(notifications.emotionDiaryId)
-        feelHistoryAdapter.notifyItemRemoved(position)
+        notificationList.remove(notifications)
+        feelHistoryAdapter.dataRemove(position)
     }
 
     private fun errorEventMsg(error: Throwable){
         val errorMsg = error.message
         Toast.makeText(requireContext(), "Error Msg: $errorMsg", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        feelHistoryAdapter.onAllClear()
     }
 }
