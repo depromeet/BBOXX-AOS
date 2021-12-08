@@ -49,7 +49,7 @@
     <string name="text_main_nickname_title">%1$s\n오늘도 좋은 하루보내🌼</string>
     <string name="text_growth_my_feel_title">지금 내 감정은...</string>
     <string name="text_growth_my_feel_choice">최대 다섯개까지 선택해봐.</string>
-
+    <string name="text_feeling_result_nickname">%1$s아,\n좀 후련해졌어?</string>
     <string name="text_feeling_select_hint">선택하기</string>
 
     <string name="notification_channel_id" translatable="false">fcm_default_channel</string>

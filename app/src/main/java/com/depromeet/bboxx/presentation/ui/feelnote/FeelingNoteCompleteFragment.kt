@@ -12,6 +12,8 @@ import com.depromeet.bboxx.databinding.FragmentResultBinding
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.ui.decibel.DecibelFragment
 import com.depromeet.bboxx.presentation.utils.CustomTopView
+import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.constants.SharedConstants
 
 class FeelingNoteCompleteFragment() : Fragment() {
 
@@ -32,6 +34,13 @@ class FeelingNoteCompleteFragment() : Fragment() {
 
         val binding = FragmentResultBinding.inflate(inflater, container, false)
 
+        SharedPreferenceUtil.initSharedPreference(
+            requireContext(),
+            SharedConstants.C_NICKNAME_SHRED
+        )
+        val nickName = SharedPreferenceUtil.getDataStringSharedPreference(SharedConstants.C_NICKNAME_KEY)
+            ?: ""
+        binding.tvMainText.text = getString(R.string.text_feeling_result_nickname, nickName)
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
                 mainActivity.allClearFragment()
