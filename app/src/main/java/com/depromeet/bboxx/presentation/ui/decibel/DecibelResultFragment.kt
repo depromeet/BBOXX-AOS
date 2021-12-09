@@ -58,7 +58,7 @@ class DecibelResultFragment(private val dB: Int) : Fragment() {
                 mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close, resources.getString(R.color.main_bg))
-        binding.tvResutDb.text = dB.toString() + "dB"
+        binding.tvResutDb.text = dB.toString()
 
         @SuppressLint("SetTextI18n")
 
