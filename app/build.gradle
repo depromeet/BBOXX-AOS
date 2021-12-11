@@ -5,6 +5,7 @@ plugins {
 }
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -17,8 +18,8 @@ android {
         applicationId "com.depromeet.bboxx"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 10006
-        versionName "1.0.6"
+        versionCode 10007
+        versionName "1.0.7"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -145,6 +146,7 @@ dependencies {
     implementation "com.google.firebase:firebase-messaging:20.2.1"
     implementation "com.google.firebase:firebase-config-ktx:19.1.4"
     implementation "com.google.firebase:firebase-perf:19.0.7"
+    implementation "com.google.firebase:firebase-crashlytics-ktx"
 
     // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:19.2.0'

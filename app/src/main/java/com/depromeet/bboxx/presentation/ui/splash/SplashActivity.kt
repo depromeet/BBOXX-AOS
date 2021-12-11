@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.kotlin.toObservable
 class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
 
     private val splashViewModel: SplashViewModel by viewModels()
+    private val TAG = "SplashActivity"
 
     //요청하고 싶은 권한들을 String 타입의 배열로 선언
     private val permissions = arrayOf(

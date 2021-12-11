@@ -101,6 +101,9 @@ class SplashViewModel @Inject constructor(
                 )
     }
 
+    /**
+     *  알림 왔을때 메인이 실행되는지 여부 판단목적
+     */
     private fun fcmMsgValueCheck(){
         AppContext.applicationContext()?.let { context ->
             initSharedPreference(
