@@ -81,12 +81,10 @@ class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String
 
         mainActivity.feelingNoteViewModel.writeFeeling(categoryId, main, emotionIdList, memberId, title)
 
-        testSendNotification(memberId)
-
     }
 
     /**
-     *  Test Send Notification
+     *  Test Send Notification [테스트 기간이 끝나 사용 Holding]
      */
     private fun testSendNotification(memberId: Int){
         initSharedPreference(requireContext(), SharedConstants.C_EMOTION_ID_TEST_SHARED)

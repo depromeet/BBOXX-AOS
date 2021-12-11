@@ -31,6 +31,9 @@ class GrowthNoteViewModel @Inject constructor(
 
     val networkErrorEvent = MutableLiveData<Result<String>>()
 
+    /**
+     *  성장일기 리스트 가져오기
+     */
     fun getGrowthList(memberId: Int, month: Int, year: Int) {
         disposable +=
             improveUseCase.getImproveDiaries(memberId, month, year)
@@ -45,6 +48,9 @@ class GrowthNoteViewModel @Inject constructor(
                 )
     }
 
+    /**
+     *  성장일기 쓰기
+     */
     fun writeGrowth(
         content: String,
         emotionDiaryId: Int,
@@ -77,6 +83,9 @@ class GrowthNoteViewModel @Inject constructor(
     }
 
 
+    /**
+     *  테스트 기간에 사용하기 위해 만들어둠
+     */
     fun testSendNotification(emotionDiaryId: Int, ownerId: Int) {
         disposable +=
             Observable.timer(180, TimeUnit.SECONDS)

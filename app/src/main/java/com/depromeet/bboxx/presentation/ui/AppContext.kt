@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.constants.Constants.REMOTE_CONFIG_CACHE_EXPIRATON
+import com.depromeet.bboxx.presentation.extension.CrashHandler
 import com.google.firebase.FirebaseApp
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
@@ -28,6 +29,7 @@ class AppContext : Application() {
 
         initKakaoTalk()
         initFirebase()
+        initCrashHandler()
 
     }
     private fun initKakaoTalk() {
@@ -45,5 +47,19 @@ class AppContext : Application() {
             firebaseRemoteConfig.activate()
         }
 
+    }
+    private fun initCrashHandler() {
+
+        val defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler{_,_ ->
+        }
+        val firebaseExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler(
+            CrashHandler(
+                this,
+                defaultExceptionHandler,
+                firebaseExceptionHandler
+            )
+        )
     }
 }
