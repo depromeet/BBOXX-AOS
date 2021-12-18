@@ -118,13 +118,11 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
                                 addClickedData(position, binding, callback, data)
                             }
                             else{
-                                removeClickedData(position, callback, data)
+                                removeClickedData(binding, position, callback, data)
                             }
                         }
                         else{
-                            callback?.let{
-                                it.limitDataCallback(false)
-                            }
+                            checkSameItemData(binding, position, callback, data)
                         }
                     }
                 }
@@ -178,12 +176,37 @@ class FeelingNoteSelectFeelingAdapter(val dataCallback: dataSelectCallback) :
         }
     }
 
-    private fun removeClickedData(position: Int, callback: dataSelectCallback?, data: FeelingEmotionModel){
+    private fun removeClickedData(binding: ItemSelectFeelingBinding, position: Int, callback: dataSelectCallback?, data: FeelingEmotionModel){
         feelingTextFiveLimit.remove(listFeel[position].text)
         listFeel[position].isSelected = false
 
         callback?.let{
             it.unActiveCallback(data)
+        }
+    }
+
+    private fun checkSameItemData(binding: ItemSelectFeelingBinding, position: Int, callback: dataSelectCallback?, data: FeelingEmotionModel){
+        var isLimitStatus = true
+        feelingTextFiveLimit.forEach {
+            if(it == listFeel[position].text){
+                unActiveBtn(binding)
+                isLimitStatus = false
+                return@forEach
+            }
+        }
+
+        if(isLimitStatus){
+            callback?.let{ back ->
+                back.limitDataCallback(false)
+            }
+        }
+        else{
+            feelingTextFiveLimit.remove(listFeel[position].text)
+            listFeel[position].isSelected = false
+
+            callback?.let{ back ->
+                back.unActiveCallback(data)
+            }
         }
     }
 

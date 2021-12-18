@@ -33,6 +33,12 @@ class GrowthNoteViewerFragment(val bgColor: Int, val improveData: ImprovementDia
 
     private lateinit var improveModel: ImprovementDiaries
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(bgColor)
+    }
+
     @SuppressLint("ClickableViewAccessibility", "ResourceType", "NewApi")
     override fun onCreateView(
         inflater: LayoutInflater,

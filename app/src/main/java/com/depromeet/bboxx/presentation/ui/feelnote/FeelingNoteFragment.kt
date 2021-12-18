@@ -10,7 +10,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.EmotionDiaryEditLayoutBinding
 import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
@@ -26,11 +28,17 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
     var titleText = ""
     var mainTitle = ""
 
-    private var tempSaveCategoryId: Int = -1
+    private var tempSaveCategoryId: Int = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
     }
 
     var isButtonActivated = false
@@ -116,15 +124,19 @@ class FeelingNoteFragment(val categoryId: Int, val selectedFeeling: String) : Fr
         })
 
         binding.btnSuccess.setOnClickListener {
-            //  생명주기에 따라 categoryId 가 있을지 없을지.. 확인해봐야 할것 같습니다.
-            mainActivity.addFragment(
-                FeelingNoteSelectFeelingFragment(
-                    tempSaveCategoryId,
-                    selectedFeeling,
-                    titleText,
-                    mainTitle
+            if(titleText.isNotBlank() && mainTitle.isNotBlank()){
+                mainActivity.addFragment(
+                    FeelingNoteSelectFeelingFragment(
+                        tempSaveCategoryId,
+                        selectedFeeling,
+                        titleText,
+                        mainTitle
+                    )
                 )
-            )
+            }
+            else{
+                Toast.makeText(requireContext(), "감정을 입력해줘", Toast.LENGTH_SHORT).show()
+            }
         }
         return binding.root
     }

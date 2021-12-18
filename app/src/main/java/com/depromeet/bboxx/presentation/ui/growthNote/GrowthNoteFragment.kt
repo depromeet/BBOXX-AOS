@@ -139,38 +139,38 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
         beforeMonth = nowMonth
 
         binding.tvMonth.text = currentDate
-
-        //  2021.11.13일 출시 기준으로 배포되기 때문에 이전 달 이동은 버튼은 클릭 비활성화
-        setLeftImageButtonUnActive()
     }
 
     @SuppressLint("NewApi")
     private fun moveLeftDate() {
-        if (!isLeftMoveToEventStatus) {
-            if (currentDate == standardCurrentDate) {
-                setLeftImageButtonUnActive()
-            } else {
-                currentDate = DateFormatter().growthCalendarMinerTime(currentDate)
 
-                nowYear = currentDate.substring(0, 4)
-                nowMonth = currentDate.substring(6, 8)
+        currentDate = DateFormatter().growthCalendarMinerTime(currentDate)
 
-                binding.tvMonth.text = currentDate
+        nowYear = currentDate.substring(0, 4)
+        nowMonth = currentDate.substring(6, 8)
 
-                //  날짜 기준으로 성장일기 요청
-                mainActivity.getGrowthList(nowYear, nowMonth)
+        binding.tvMonth.text = currentDate
 
-                if (currentDate == standardCurrentDate) {
-                    setLeftImageButtonUnActive()
-                    isLeftMoveToEventStatus = true
-                }
-            }
-        }
+        //  날짜 기준으로 성장일기 요청
+        mainActivity.getGrowthList(nowYear, nowMonth)
+
+
+//        if (!isLeftMoveToEventStatus) {
+//            if (currentDate == standardCurrentDate) {
+//                setLeftImageButtonUnActive()
+//            } else {
+//
+//                if (currentDate == standardCurrentDate) {
+//                    setLeftImageButtonUnActive()
+//                    isLeftMoveToEventStatus = true
+//                }
+//            }
+//        }
     }
 
     @SuppressLint("NewApi")
     private fun moveRightDate() {
-        isLeftMoveToEventStatus = false
+        //isLeftMoveToEventStatus = false
         currentDate = DateFormatter().growthCalendarAddTime(currentDate)
 
         nowYear = currentDate.substring(0, 4)
@@ -178,7 +178,7 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
 
         binding.tvMonth.text = currentDate
 
-        setLeftImageButtonActive()
+        //setLeftImageButtonActive()
 
         //  날짜 기준으로 성장일기 요청
         mainActivity.getGrowthList(nowYear, nowMonth)
@@ -210,18 +210,5 @@ class GrowthNoteFragment : Fragment(), GrowthMonthListener {
         }
 
         mainActivity.getGrowthList(year, month)
-    }
-
-    /**
-     *  Notification Send Logic Test Code
-     */
-    private fun onTest() {
-        // Test Notification Send Logic
-        initSharedPreference(requireContext(), C_MEMBER_ID_SHRED)
-        val memberId = getDataIntSharedPreference(C_MEMBER_ID_KEY)
-
-//        mainActivity.growthNoteViewModel.testSendNotification(6, memberId!!)
-//        mainActivity.growthNoteViewModel.testSendNotification(7, memberId!!)
-        mainActivity.growthNoteViewModel.testSendNotification(9, memberId!!)
     }
 }

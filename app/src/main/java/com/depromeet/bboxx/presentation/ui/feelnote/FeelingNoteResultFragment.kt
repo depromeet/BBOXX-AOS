@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.EmotionDiaryResultLayoutBinding
 import com.depromeet.bboxx.presentation.model.SelectFeelingEmotionModel
 import com.depromeet.bboxx.presentation.ui.MainActivity
@@ -30,6 +31,11 @@ class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String
         mainActivity = context as MainActivity
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -80,24 +86,18 @@ class FeelingNoteResultFragment(val categoryId: Int, val selectedFeeling: String
         memberId = getDataIntSharedPreference(SharedConstants.C_MEMBER_ID_KEY)!!
 
         mainActivity.feelingNoteViewModel.writeFeeling(categoryId, main, emotionIdList, memberId, title)
+        initSharedPreference(requireContext(), SharedConstants.C_EMOTION_ID_SHARED)
+        setDataIntSharedPreference(categoryId, SharedConstants.C_EMOTION_ID_KEY)
 
+        //testSendNotification(memberId, categoryId)
     }
 
     /**
      *  Test Send Notification [테스트 기간이 끝나 사용 Holding]
      */
-    private fun testSendNotification(memberId: Int){
-        initSharedPreference(requireContext(), SharedConstants.C_EMOTION_ID_TEST_SHARED)
-        var emotionId = getDataIntSharedPreference(SharedConstants.C_EMOTION_ID_TEST_KEY)
-        if(emotionId == 0){
-            setDataIntSharedPreference(1, SharedConstants.C_EMOTION_ID_TEST_KEY)
-            mainActivity.growthNoteViewModel.testSendNotification(1, memberId)
-        }
-        else{
-            emotionId = emotionId!! + 1
-            setDataIntSharedPreference(emotionId, SharedConstants.C_EMOTION_ID_TEST_KEY)
-            mainActivity.growthNoteViewModel.testSendNotification(emotionId, memberId)
-        }
+    private fun testSendNotification(memberId: Int, categoryId: Int){
+
+        mainActivity.growthNoteViewModel.testSendNotification(categoryId, memberId)
     }
 
 }

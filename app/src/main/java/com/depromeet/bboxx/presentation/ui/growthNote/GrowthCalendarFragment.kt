@@ -82,8 +82,8 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
 
 
     private fun onViewSetting(){
-        binding.btnCalLeft.backgroundTintList =
-            ColorStateList.valueOf(Color.parseColor("#9D9D9D"))
+//        binding.btnCalLeft.backgroundTintList =
+//            ColorStateList.valueOf(Color.parseColor("#9D9D9D"))
 
         binding.txtYear.text = yearTitle
 
@@ -111,7 +111,7 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
         setCalendarModel()
 
         growthCalendarAdapter.setDataList(calendarList)
-
+        setLeftImageButtonActive()
     }
 
     private fun setCalendarModel(){
@@ -122,35 +122,20 @@ class GrowthCalendarFragment: BottomSheetDialogFragment() {
 
     @SuppressLint("NewApi")
     private fun moveLeftDate(){
-        if(!isLeftMoveToEventStatus){
-            if(currentDate == standardCurrentDate){
-                setLeftImageButtonUnActive()
-            }
-            else{
-                currentDate = DateFormatter().calendarMinerYear(currentDate)
+        currentDate = DateFormatter().calendarMinerYear(currentDate)
 
-                yearTitle = currentDate.substring(0,4)
+        yearTitle = currentDate.substring(0,4)
 
-                binding.txtYear.text = yearTitle
-
-                if(currentDate == standardCurrentDate){
-                    setLeftImageButtonUnActive()
-                    isLeftMoveToEventStatus = true
-                }
-            }
-        }
+        binding.txtYear.text = yearTitle
     }
 
     @SuppressLint("NewApi")
     private fun moveRightDate(){
-        isLeftMoveToEventStatus = false
         currentDate = DateFormatter().calendarAddYear(currentDate)
 
         yearTitle = currentDate.substring(0,4)
 
         binding.txtYear.text = yearTitle
-
-        setLeftImageButtonActive()
     }
 
     private fun setLeftImageButtonActive() {

@@ -28,6 +28,6 @@ object SharedConstants {
     const val C_FCM_MSG_SHARED = "FCM_MSG"
     const val C_FCM_MSG_KEY = "FCMKey"
 
-    const val C_EMOTION_ID_TEST_SHARED = "EMOTIONID"
-    const val C_EMOTION_ID_TEST_KEY = "EmotionKey"
+    const val C_EMOTION_ID_SHARED = "EMOTIONID"
+    const val C_EMOTION_ID_KEY = "EmotionKey"
 }

@@ -15,15 +15,20 @@ import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.SharedPreferenceUtil
 import com.depromeet.bboxx.util.constants.SharedConstants
 
-class FeelingNoteCompleteFragment() : Fragment() {
+class FeelingNoteCompleteFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-
+    private var isClickStatus = true
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -43,24 +48,30 @@ class FeelingNoteCompleteFragment() : Fragment() {
         binding.tvMainText.text = getString(R.string.text_feeling_result_nickname, nickName)
         binding.clTopView.setRightBtn(object  : CustomTopView.OnclickCallback{
             override fun callback() {
+                isClickStatus = false
                 mainActivity.allClearFragment()
             }
         }, R.drawable.ic_close)
 
         binding.btGoToDecibel.setOnClickListener {
-            mainActivity.addFragment(DecibelFragment())
+            mainActivity.addFragment(DecibelFragment(2))
         }
         binding.btGoToHome.setOnClickListener {
+            isClickStatus = false
             mainActivity.allClearFragment()
-        }
 
+        }
 
         return binding.root
     }
 
     override fun onStop() {
         super.onStop()
-        mainActivity.setStatusBarColor(R.color.select_bg)
+        if(isClickStatus){
+            mainActivity.setStatusBarColor(R.color.black_80)
+        }
+        else{
+            mainActivity.setStatusBarColor(R.color.main_bg)
+        }
     }
-
 }

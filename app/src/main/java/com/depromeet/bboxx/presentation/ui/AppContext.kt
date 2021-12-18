@@ -56,7 +56,6 @@ class AppContext : Application() {
         val firebaseExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler(
             CrashHandler(
-                this,
                 defaultExceptionHandler,
                 firebaseExceptionHandler
             )

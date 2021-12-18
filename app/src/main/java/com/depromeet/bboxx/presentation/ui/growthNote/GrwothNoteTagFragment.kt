@@ -54,6 +54,12 @@ class GrwothNoteTagFragment(private val emotionDiaryId: Int) : BaseFragment<Frag
         mainActivity = context as MainActivity
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
+
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
