@@ -24,6 +24,11 @@ class SelectActionFragment @Inject constructor()
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.select_bg)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,12 +36,12 @@ class SelectActionFragment @Inject constructor()
 
         binding.btnDecibel.setOnClickListener {
             Log.d("okhttpClient","GoToDecibel")
-            mainActivity.addFragment(DecibelFragment())
+            mainActivity.addFragment(DecibelFragment(1))
         }
 
         binding.btnFeel.setOnClickListener {
             Log.d("okhttpClient","GoToSelect")
-           mainActivity.addFragment(FeelingNoteSelectFragment())
+           mainActivity.addFragment(FeelingNoteSelectFragment(0))
         }
 
         binding.clTopView.setBackBtn(object : CustomTopView.OnclickCallback{

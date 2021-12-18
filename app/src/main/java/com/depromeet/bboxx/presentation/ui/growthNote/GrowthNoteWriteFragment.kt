@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.GrowthNoteEditLayoutBinding
 import com.depromeet.bboxx.presentation.model.GrowthNoteModel
 import com.depromeet.bboxx.presentation.model.GrowthNoteTagModel
@@ -39,6 +40,12 @@ class GrowthNoteWriteFragment(private val tagList: List<String>, private val emo
     }
 
     var isButtonActivated = false
+
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ClickableViewAccessibility")

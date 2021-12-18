@@ -37,7 +37,7 @@ class FeelingNoteSelectFeelingFragment(
 
     val selectFeelingModel = mutableListOf<SelectFeelingEmotionModel>()
 
-    private var tempSaveCategoryId: Int = 1
+    private var tempSaveCategoryId: Int = 0
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(

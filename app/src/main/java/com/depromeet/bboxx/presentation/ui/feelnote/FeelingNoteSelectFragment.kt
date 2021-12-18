@@ -12,10 +12,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.depromeet.bboxx.R
 import com.depromeet.bboxx.databinding.FeelingNoteSelectReasonLayoutBinding
+import com.depromeet.bboxx.presentation.ui.BackLayerFragment
 import com.depromeet.bboxx.presentation.ui.MainActivity
 import com.depromeet.bboxx.presentation.utils.CustomTopView
+import com.depromeet.bboxx.util.SharedPreferenceUtil
+import com.depromeet.bboxx.util.constants.SharedConstants
 
-class FeelingNoteSelectFragment : Fragment() {
+class FeelingNoteSelectFragment(private val colorNumber: Int) : Fragment() {
 
     lateinit var mainActivity: MainActivity
     var selectedFeeling: String = ""
@@ -24,7 +27,13 @@ class FeelingNoteSelectFragment : Fragment() {
         mainActivity = context as MainActivity
     }
 
-    private var categoryId: Int = -1
+    private var categoryId: Int = 0
+
+    override fun onResume() {
+        super.onResume()
+
+        mainActivity.setStatusBarColor(R.color.main_bg)
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -48,11 +57,24 @@ class FeelingNoteSelectFragment : Fragment() {
     fun initView(binding: FeelingNoteSelectReasonLayoutBinding, ctx: Context) {
         var isActivated = false
 
+        SharedPreferenceUtil.initSharedPreference(
+            requireContext(),
+            SharedConstants.C_EMOTION_ID_SHARED
+        )
+        val emotionId =
+            SharedPreferenceUtil.getDataIntSharedPreference(SharedConstants.C_EMOTION_ID_KEY)
+        categoryId = if(emotionId == 0){
+            1
+        } else{
+            emotionId!! + 1
+        }
+
         binding.clTopView.setBackBtn(object :CustomTopView.OnclickCallback{
             override fun callback() {
-                mainActivity.clearThisFragment(this@FeelingNoteSelectFragment)
+                //mainActivity.clearThisFragment(this@FeelingNoteSelectFragment)
+                val bottomNote = BackLayerFragment(this@FeelingNoteSelectFragment)
+                bottomNote.show(childFragmentManager, bottomNote.tag)
             }
-
         })
 
         binding.spFeeling.setOnClickListener {
@@ -82,7 +104,20 @@ class FeelingNoteSelectFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        mainActivity.setStatusBarColor(R.color.select_bg)
+        onRestartViewTitleColorChange()
     }
+
+    private fun onRestartViewTitleColorChange(){
+        when(colorNumber){
+            1 -> mainActivity.setStatusBarColor(R.color.color_6AA13D)
+            2 -> mainActivity.setStatusBarColor(R.color.color_A8BD28)
+            3 -> mainActivity.setStatusBarColor(R.color.color_EF9E24)
+            4 -> mainActivity.setStatusBarColor(R.color.color_EF9E24)
+            5 -> mainActivity.setStatusBarColor(R.color.color_EF9E24)
+            6 -> mainActivity.setStatusBarColor(R.color.color_D04141)
+            else -> mainActivity.setStatusBarColor(R.color.select_bg)
+        }
+    }
+
 }
 

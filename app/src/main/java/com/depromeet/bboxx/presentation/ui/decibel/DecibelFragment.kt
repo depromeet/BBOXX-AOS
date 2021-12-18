@@ -17,13 +17,18 @@ import com.depromeet.bboxx.presentation.utils.CustomTopView
 import com.depromeet.bboxx.util.AudioReaderJava
 
 
-class DecibelFragment : Fragment() {
+class DecibelFragment(private val viewStatusCode: Int) : Fragment() {
     var maxDecibel = 0
 
     lateinit var mainActivity: MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.setStatusBarColor(R.color.black_80)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -110,8 +115,16 @@ class DecibelFragment : Fragment() {
             })
     }
 
+    private fun onRestartViewTitleColorChange(){
+        when(viewStatusCode){
+            1 -> mainActivity.setStatusBarColor(R.color.select_bg)
+            2 -> mainActivity.setStatusBarColor(R.color.main_bg)
+            else -> mainActivity.setStatusBarColor(R.color.main_bg)
+        }
+    }
+
     override fun onStop() {
         super.onStop()
-        mainActivity.setStatusBarColor(R.color.select_bg)
+        onRestartViewTitleColorChange()
     }
 }
